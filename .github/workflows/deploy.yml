@@ -13,7 +13,7 @@ jobs:
       uses: burnett01/rsync-deployments@5.2
       with:
         switches: -avzr
-        path: src/
+        path: ./
         remote_path: /home/ubuntu/sites/testdeploy
         remote_host: 129.152.11.153
         remote_user: ubuntu
