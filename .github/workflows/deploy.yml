@@ -12,7 +12,7 @@ jobs:
     - name: rsync deployments
       uses: burnett01/rsync-deployments@5.2
       with:
-        switches: -avzr --delete --exclude=".git"
+        switches: -avzr --exclude=".git"
         path: ./
         remote_path: /home/ubuntu/sites/magento2
         remote_host: 129.152.11.153
