@@ -16,7 +16,7 @@ services:
   app:
     image: markoshust/magento-nginx:1.18-7
     volumes: &appvolumes
-      - ./src:/var/www/html
+      - ./src:/var/www/html:Z
       - sockdata:/sock
     networks:
       - proxy
