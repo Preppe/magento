@@ -1,5 +1,18 @@
 <?php
 return [
+    'system' => [
+        'default' => [
+            'web' => [
+                'graphql' => [
+                    'cors_max_age' => 86400,
+                    'cors_allow_credentials' => 1,
+                    'cors_allowed_methods' => 'POST, OPTIONS, GET',
+                    'cors_allowed_headers' => 'Content-Currency, Store, X-Magento-Cache-Id, X-Captcha, Content-Type, Authorization, DNT, TE',
+                    'cors_allowed_origins' => 'https://frontend.example.com, http://localhost:3000, https://localhost:3000'
+                ]
+            ]
+        ]
+    ],
     'backend' => [
         'frontName' => 'admin'
     ],
