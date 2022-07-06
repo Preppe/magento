@@ -5,6 +5,21 @@ on:
     - main
 
 jobs:
+  
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: rsync deployments
+      uses: burnett01/rsync-deployments@5.2
+      with:
+        switches: -azr --exclude=".git"
+        path: ./
+        remote_path: /home/ubuntu/sites/magento2
+        remote_host: 129.152.11.153
+        remote_user: ubuntu
+        remote_key: ${{ secrets.DEPLOY_KEY }}
+        
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -17,6 +32,10 @@ jobs:
         key: ${{ secrets.DEPLOY_KEY }}
         port: "22"
         script: |
-          whoami
-          ls -al
-
+          cd /home/ubuntu/sites/magento2
+          docker-compose up -d
+          bin/root chown app:app . -R
+          bin/composer install
+          bin/magento setup:upgrade
+          bin/magento deploy:mode:set production
+          bin/magento maintenance:disable
