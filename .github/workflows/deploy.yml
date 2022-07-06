@@ -6,24 +6,24 @@ on:
 
 jobs:
 
-  permission:
-    name: permission
-    runs-on: ubuntu-latest
-    steps:
-    - name: executing remote ssh commands using ssh key
-      uses: appleboy/ssh-action@master
-      with:
-        host: "129.152.11.153"
-        username: "ubuntu"
-        key: ${{ secrets.DEPLOY_KEY }}
-        port: "22"
-        script: |
-          cd /home/ubuntu/sites/magento2
-          sudo chmod 777 ./ -R
+  # permission:
+  #   name: permission
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: executing remote ssh commands using ssh key
+  #     uses: appleboy/ssh-action@master
+  #     with:
+  #       host: "129.152.11.153"
+  #       username: "ubuntu"
+  #       key: ${{ secrets.DEPLOY_KEY }}
+  #       port: "22"
+  #       script: |
+  #         cd /home/ubuntu/sites/magento2
+  #         sudo chmod 777 ./ -R
   
   deploy:
     runs-on: ubuntu-latest
-    needs: permission
+    # needs: permission
     steps:
     - uses: actions/checkout@v2
     - name: rsync deployments
@@ -51,7 +51,6 @@ jobs:
         script: |
           cd /home/ubuntu/sites/magento2
           docker-compose up -d
-          bin/root chown app:app . -R
           bin/composer install
           bin/magento setup:upgrade
           bin/magento deploy:mode:set production
