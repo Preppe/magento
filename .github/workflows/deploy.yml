@@ -41,3 +41,4 @@ jobs:
           bin/clinotty bin/magento setup:upgrade
           bin/clinotty bin/magento deploy:mode:set production
           bin/clinotty bin/magento maintenance:disable
+
