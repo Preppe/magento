@@ -22,7 +22,7 @@ docker-compose -f docker-compose.yml up -d
 [ $? != 0 ] && echo "Failed to start Docker services" && exit
 
 bin/clinotty chmod u+x bin/magento
-rm -rf src && mkdir src
+# rm -rf src && mkdir src
 
 echo "Waiting for connection to Elasticsearch..."
 bin/clinotty timeout $ES_HEALTHCHECK_TIMEOUT bash -c "

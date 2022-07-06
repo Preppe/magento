@@ -34,6 +34,9 @@ atlassian*
 /.php-cs-fixer.cache
 /grunt-config.json
 
+/pub/static/*
+!/pub/static/.htaccess
+
 /var/*
 !/var/.htaccess
 /vendor/*
