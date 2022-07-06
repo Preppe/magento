@@ -19,9 +19,6 @@ services:
       - ./src:/var/www/html
       - sockdata:/sock
       - ssldata:/etc/nginx/certs
-    ports:
-      - 80:8000
-      - 443:8443
     networks:
       - proxy
       - default
@@ -48,8 +45,6 @@ services:
     image: mariadb:10.4
     command: --max_allowed_packet=64M
     env_file: env/db.env
-    ports:
-      - 3306:3306
     volumes:
       - ./db:/docker-entrypoint-initdb.d
       - dbdata:/var/lib/mysql
