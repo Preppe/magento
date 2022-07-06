@@ -8,7 +8,6 @@ jobs:
 
   perission:
     name: permission
-    needs: deploy
     runs-on: ubuntu-latest
     steps:
     - name: executing remote ssh commands using ssh key
