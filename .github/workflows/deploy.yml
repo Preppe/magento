@@ -22,7 +22,6 @@ jobs:
           docker-compose up -d
           sudo chown ubuntu:ubuntu . -R
 
-  
   deploy:
     name: Deploy
     needs: perission
@@ -43,6 +42,7 @@ jobs:
     name: Build
     needs: deploy
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
