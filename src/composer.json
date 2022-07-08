@@ -17,6 +17,7 @@
     },
     "version": "2.4.4",
     "require": {
+        "abelbm/magento2-disablefrontend": "^1.1",
         "graycore/magento2-cors": "^1.6",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "~2.0",

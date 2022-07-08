@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "68ba5664c784140037d3b178e4f6cb7d",
+    "content-hash": "20fcba50571acb09399528d55858313a",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -50,6 +50,50 @@
                 "source": "https://github.com/2tvenom/CBOREncode/tree/1.0.2"
             },
             "time": "2020-10-27T07:22:41+00:00"
+        },
+        {
+            "name": "abelbm/magento2-disablefrontend",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/abelbm/magento2-disable-frontend.git",
+                "reference": "7f90d465d3692dda67eea63a48df4c17406cc984"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/abelbm/magento2-disable-frontend/zipball/7f90d465d3692dda67eea63a48df4c17406cc984",
+                "reference": "7f90d465d3692dda67eea63a48df4c17406cc984",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Abelbm\\DisableFrontend\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "description": "Disable Frontend in Magento 2.",
+            "keywords": [
+                "Disable Frontend Magento 2",
+                "disable",
+                "frontend",
+                "magento 2",
+                "magento2"
+            ],
+            "support": {
+                "issues": "https://github.com/abelbm/magento2-disable-frontend/issues",
+                "source": "https://github.com/abelbm/magento2-disable-frontend/tree/master"
+            },
+            "time": "2019-01-03T20:06:25+00:00"
         },
         {
             "name": "astock/stock-api-libphp",
