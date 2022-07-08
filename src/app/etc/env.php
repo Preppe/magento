@@ -9,6 +9,14 @@ return [
                     'cors_allowed_methods' => 'POST, OPTIONS, GET',
                     'cors_allowed_headers' => 'Content-Currency, Store, X-Magento-Cache-Id, X-Captcha, Content-Type, Authorization, DNT, TE',
                     'cors_allowed_origins' => 'https://storefront.fumarola.ovh, http://localhost:3000, https://localhost:3000'
+                ],
+                'unsecure' => [
+                    'base_url' => 'http://magento.fumarola.ovh/',
+                    'base_link_url' => '{{unsecure_base_url}}'
+                ],
+                'secure' => [
+                    'base_url' => 'https://magento.fumarola.ovh/',
+                    'base_link_url' => '{{secure_base_url}}'
                 ]
             ]
         ]
