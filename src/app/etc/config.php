@@ -343,6 +343,7 @@ return [
         'Magento_WishlistAnalytics' => 1,
         'Magento_WishlistGraphQl' => 1,
         'Magento_WishlistSampleData' => 1,
+        'Abelbm_DisableFrontend' => 1,
         'Graycore_Cors' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
