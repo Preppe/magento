@@ -23,7 +23,7 @@ jobs:
           sudo chown ubuntu:ubuntu . -R
 
   rsyn:
-    name: Deploy
+    name: Rsyn
     needs: perission
     runs-on: ubuntu-latest
     steps:
