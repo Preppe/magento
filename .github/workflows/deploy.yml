@@ -22,7 +22,7 @@ jobs:
           docker-compose up -d
           sudo chown ubuntu:ubuntu . -R
 
-  deploy:
+  rsyn:
     name: Deploy
     needs: perission
     runs-on: ubuntu-latest
