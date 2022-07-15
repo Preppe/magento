@@ -42,7 +42,7 @@ jobs:
     name: Build
     needs: rsyn
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    command_timeout: 60m
     steps:
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
