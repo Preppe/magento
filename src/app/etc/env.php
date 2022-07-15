@@ -64,7 +64,7 @@ return [
         ]
     ],
     'x-frame-options' => 'SAMEORIGIN',
-    'MAGE_MODE' => 'default',
+    'MAGE_MODE' => 'production',
     'session' => [
         'save' => 'redis',
         'redis' => [
@@ -119,7 +119,10 @@ return [
                 ]
             ]
         ],
-        'allow_parallel_generation' => false
+        'allow_parallel_generation' => false,
+        'graphql' => [
+            'id_salt' => 'TS0rc6uzY0Epwt2z2d25QUj5mDxIulGv'
+        ]
     ],
     'lock' => [
         'provider' => 'db',

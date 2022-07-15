@@ -345,8 +345,11 @@ return [
         'Magento_WishlistSampleData' => 1,
         'Abelbm_DisableFrontend' => 1,
         'Graycore_Cors' => 1,
+        'Mageplaza_Core' => 1,
+        'Mageplaza_Smtp' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
-        'Temando_ShippingRemover' => 1
+        'Temando_ShippingRemover' => 1,
+        'Theshreyas_DynamicAttributesGraphql' => 1
     ]
 ];
