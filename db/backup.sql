@@ -1,4 +1,4 @@
--- MariaDB dump 10.19  Distrib 10.4.25-MariaDB, for debian-linux-gnu (x86_64)
+-- MariaDB dump 10.19  Distrib 10.4.25-MariaDB, for debian-linux-gnu (aarch64)
 --
 -- Host: localhost    Database: magento
 -- ------------------------------------------------------
@@ -27,7 +27,7 @@ CREATE TABLE `admin_analytics_usage_version_log` (
   `last_viewed_in_version` varchar(50) NOT NULL COMMENT 'Viewer last viewed on product version',
   PRIMARY KEY (`id`),
   UNIQUE KEY `ADMIN_ANALYTICS_USAGE_VERSION_LOG_LAST_VIEWED_IN_VERSION` (`last_viewed_in_version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Admin Notification Viewer Log Table';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Admin Notification Viewer Log Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,6 +36,7 @@ CREATE TABLE `admin_analytics_usage_version_log` (
 
 LOCK TABLES `admin_analytics_usage_version_log` WRITE;
 /*!40000 ALTER TABLE `admin_analytics_usage_version_log` DISABLE KEYS */;
+INSERT INTO `admin_analytics_usage_version_log` VALUES (1,'2.4.4');
 /*!40000 ALTER TABLE `admin_analytics_usage_version_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +131,7 @@ CREATE TABLE `admin_user` (
 
 LOCK TABLES `admin_user` WRITE;
 /*!40000 ALTER TABLE `admin_user` DISABLE KEYS */;
-INSERT INTO `admin_user` VALUES (1,'john','smith','john.smith@gmail.com','giuseppe','b6064bc7dc73463611bc5774b34621c3a128a325aed72bff5bc079af4d7f23cb:90vIggUmb6WZcxRwStPaOBKWtsq8Vlqn:3_32_2_67108864','2022-07-15 06:20:42','2022-07-15 06:20:42',NULL,0,0,1,NULL,NULL,NULL,'en_US',0,NULL,NULL);
+INSERT INTO `admin_user` VALUES (1,'john','smith','john.smith@gmail.com','giuseppe','b6064bc7dc73463611bc5774b34621c3a128a325aed72bff5bc079af4d7f23cb:90vIggUmb6WZcxRwStPaOBKWtsq8Vlqn:3_32_2_67108864','2022-07-15 06:20:42','2022-07-15 12:07:26','2022-07-15 12:07:26',3,0,1,'{\"configState\":{\"admin_usage\":\"0\",\"web_default\":\"0\",\"web_default_layouts\":\"0\",\"admin_disable_frontend\":\"1\"}}',NULL,NULL,'en_US',0,NULL,NULL);
 /*!40000 ALTER TABLE `admin_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +178,7 @@ CREATE TABLE `admin_user_session` (
   KEY `ADMIN_USER_SESSION_SESSION_ID` (`session_id`),
   KEY `ADMIN_USER_SESSION_USER_ID` (`user_id`),
   CONSTRAINT `ADMIN_USER_SESSION_USER_ID_ADMIN_USER_USER_ID` FOREIGN KEY (`user_id`) REFERENCES `admin_user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Admin User sessions table';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Admin User sessions table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,6 +187,7 @@ CREATE TABLE `admin_user_session` (
 
 LOCK TABLES `admin_user_session` WRITE;
 /*!40000 ALTER TABLE `admin_user_session` DISABLE KEYS */;
+INSERT INTO `admin_user_session` VALUES (1,NULL,1,1,'2022-07-15 06:54:14','2022-07-15 07:04:44','172.23.0.3'),(2,NULL,1,1,'2022-07-15 10:26:20','2022-07-15 10:40:45','172.23.0.3'),(3,NULL,1,1,'2022-07-15 12:07:26','2022-07-15 12:31:14','172.23.0.3');
 /*!40000 ALTER TABLE `admin_user_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -553,7 +555,7 @@ CREATE TABLE `catalog_category_entity` (
   PRIMARY KEY (`entity_id`),
   KEY `CATALOG_CATEGORY_ENTITY_LEVEL` (`level`),
   KEY `CATALOG_CATEGORY_ENTITY_PATH` (`path`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Catalog Category Table';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='Catalog Category Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -562,9 +564,63 @@ CREATE TABLE `catalog_category_entity` (
 
 LOCK TABLES `catalog_category_entity` WRITE;
 /*!40000 ALTER TABLE `catalog_category_entity` DISABLE KEYS */;
-INSERT INTO `catalog_category_entity` VALUES (1,3,0,'2022-07-15 06:20:40','2022-07-15 06:20:41','1',0,0,1),(2,3,1,'2022-07-15 06:20:41','2022-07-15 06:20:41','1/2',1,1,0);
+INSERT INTO `catalog_category_entity` VALUES (1,3,0,'2022-07-15 06:20:40','2022-07-15 10:40:05','1',0,0,4),(2,3,1,'2022-07-15 06:20:41','2022-07-15 10:40:05','1/2',1,1,3),(3,3,2,'2022-07-15 10:37:26','2022-07-15 10:37:26','1/2/3',1,2,0),(4,3,2,'2022-07-15 10:39:57','2022-07-15 10:40:05','1/2/4',2,2,1),(5,3,4,'2022-07-15 10:40:05','2022-07-15 10:40:05','1/2/4/5',1,3,0);
 /*!40000 ALTER TABLE `catalog_category_entity` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_category_entity_after_insert AFTER INSERT ON catalog_category_entity FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalog_category_product_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_category_entity_after_update AFTER UPDATE ON catalog_category_entity FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`attribute_set_id` <=> OLD.`attribute_set_id`) OR NOT(NEW.`parent_id` <=> OLD.`parent_id`) OR NOT(NEW.`created_at` <=> OLD.`created_at`) OR NOT(NEW.`path` <=> OLD.`path`) OR NOT(NEW.`position` <=> OLD.`position`) OR NOT(NEW.`level` <=> OLD.`level`) OR NOT(NEW.`children_count` <=> OLD.`children_count`)) THEN INSERT IGNORE INTO `catalog_category_product_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_category_entity_after_delete AFTER DELETE ON catalog_category_entity FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalog_category_product_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `catalog_category_entity_datetime`
@@ -653,7 +709,7 @@ CREATE TABLE `catalog_category_entity_int` (
   CONSTRAINT `CATALOG_CATEGORY_ENTITY_INT_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_ENTT_INT_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_ENTT_INT_ENTT_ID_CAT_CTGR_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_category_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Catalog Category Integer Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='Catalog Category Integer Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -662,9 +718,63 @@ CREATE TABLE `catalog_category_entity_int` (
 
 LOCK TABLES `catalog_category_entity_int` WRITE;
 /*!40000 ALTER TABLE `catalog_category_entity_int` DISABLE KEYS */;
-INSERT INTO `catalog_category_entity_int` VALUES (1,69,0,1,1),(2,46,0,2,1),(3,69,0,2,1);
+INSERT INTO `catalog_category_entity_int` VALUES (1,69,0,1,1),(2,46,0,2,1),(3,69,0,2,1),(4,46,0,3,1),(5,54,0,3,1),(6,69,0,3,1),(7,46,0,4,1),(8,54,0,4,1),(9,69,0,4,1),(10,46,0,5,1),(11,54,0,5,1),(12,69,0,5,1);
 /*!40000 ALTER TABLE `catalog_category_entity_int` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_category_entity_int_after_insert AFTER INSERT ON catalog_category_entity_int FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalog_category_product_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_category_entity_int_after_update AFTER UPDATE ON catalog_category_entity_int FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalog_category_product_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_category_entity_int_after_delete AFTER DELETE ON catalog_category_entity_int FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalog_category_product_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `catalog_category_entity_text`
@@ -720,7 +830,7 @@ CREATE TABLE `catalog_category_entity_varchar` (
   CONSTRAINT `CATALOG_CATEGORY_ENTITY_VARCHAR_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_ENTT_VCHR_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_ENTT_VCHR_ENTT_ID_CAT_CTGR_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_category_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Catalog Category Varchar Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='Catalog Category Varchar Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -729,7 +839,7 @@ CREATE TABLE `catalog_category_entity_varchar` (
 
 LOCK TABLES `catalog_category_entity_varchar` WRITE;
 /*!40000 ALTER TABLE `catalog_category_entity_varchar` DISABLE KEYS */;
-INSERT INTO `catalog_category_entity_varchar` VALUES (1,45,0,1,'Root Catalog'),(2,45,0,2,'Default Category'),(3,52,0,2,'PRODUCTS');
+INSERT INTO `catalog_category_entity_varchar` VALUES (1,45,0,1,'Root Catalog'),(2,45,0,2,'Default Category'),(3,52,0,2,'PRODUCTS'),(4,45,0,3,'Bevande'),(5,121,0,3,'bevande'),(6,122,0,3,'bevande'),(7,45,0,4,'Pizze'),(8,121,0,4,'pizze'),(9,122,0,4,'pizze'),(10,45,0,5,'Classiche'),(11,121,0,5,'classiche'),(12,122,0,5,'pizze/classiche');
 /*!40000 ALTER TABLE `catalog_category_entity_varchar` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -750,7 +860,7 @@ CREATE TABLE `catalog_category_product` (
   KEY `CATALOG_CATEGORY_PRODUCT_PRODUCT_ID` (`product_id`),
   CONSTRAINT `CAT_CTGR_PRD_CTGR_ID_CAT_CTGR_ENTT_ENTT_ID` FOREIGN KEY (`category_id`) REFERENCES `catalog_category_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_CTGR_PRD_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Product To Category Linkage Table';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='Catalog Product To Category Linkage Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -759,7 +869,92 @@ CREATE TABLE `catalog_category_product` (
 
 LOCK TABLES `catalog_category_product` WRITE;
 /*!40000 ALTER TABLE `catalog_category_product` DISABLE KEYS */;
+INSERT INTO `catalog_category_product` VALUES (1,3,4,0),(2,4,1,0),(3,5,1,0),(4,4,2,0),(5,5,2,0),(6,4,3,0),(7,5,3,0);
 /*!40000 ALTER TABLE `catalog_category_product` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_category_product_after_insert AFTER INSERT ON catalog_category_product FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`product_id`);
+INSERT IGNORE INTO `catalog_product_category_cl` (`entity_id`) VALUES (NEW.`product_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`product_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_category_product_after_update AFTER UPDATE ON catalog_category_product FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`category_id` <=> OLD.`category_id`) OR NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`position` <=> OLD.`position`)) THEN INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`product_id`); END IF;
+IF (NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`category_id` <=> OLD.`category_id`) OR NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`position` <=> OLD.`position`)) THEN INSERT IGNORE INTO `catalog_product_category_cl` (`entity_id`) VALUES (NEW.`product_id`); END IF;
+IF (NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`category_id` <=> OLD.`category_id`) OR NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`position` <=> OLD.`position`)) THEN INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`product_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_category_product_after_delete AFTER DELETE ON catalog_category_product FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (OLD.`product_id`);
+INSERT IGNORE INTO `catalog_product_category_cl` (`entity_id`) VALUES (OLD.`product_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (OLD.`product_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `catalog_category_product_cl`
+--
+
+DROP TABLE IF EXISTS `catalog_category_product_cl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `catalog_category_product_cl` (
+  `version_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Version ID',
+  `entity_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Entity ID',
+  PRIMARY KEY (`version_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='catalog_category_product_cl';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `catalog_category_product_cl`
+--
+
+LOCK TABLES `catalog_category_product_cl` WRITE;
+/*!40000 ALTER TABLE `catalog_category_product_cl` DISABLE KEYS */;
+INSERT INTO `catalog_category_product_cl` VALUES (1,1),(2,2),(3,3),(4,3),(5,3),(6,3),(7,3),(8,1),(9,2),(10,4),(11,4),(12,4),(13,4),(14,4),(15,1),(16,2),(17,4),(18,5),(19,5),(20,5),(21,5),(22,5);
+/*!40000 ALTER TABLE `catalog_category_product_cl` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -835,8 +1030,8 @@ CREATE TABLE `catalog_category_product_index_store1` (
   `store_id` smallint(5) unsigned NOT NULL DEFAULT 0 COMMENT 'Store Id',
   `visibility` smallint(5) unsigned NOT NULL COMMENT 'Visibility',
   PRIMARY KEY (`category_id`,`product_id`,`store_id`),
-  KEY `IDX_4B965DC45C352D6E4C9DC0FF50B1FCF5` (`product_id`,`store_id`,`category_id`,`visibility`),
-  KEY `IDX_47AB760CD6A893ACEA69A9C2E0112C60` (`store_id`,`category_id`,`visibility`,`is_parent`,`position`)
+  KEY `CAT_CTGR_PRD_IDX_STORE1_PRD_ID_STORE_ID_CTGR_ID_VISIBILITY` (`product_id`,`store_id`,`category_id`,`visibility`),
+  KEY `IDX_216E521C8AD125E066D2B0BAB4A08412` (`store_id`,`category_id`,`visibility`,`is_parent`,`position`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Category Product Index Store1';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -846,6 +1041,7 @@ CREATE TABLE `catalog_category_product_index_store1` (
 
 LOCK TABLES `catalog_category_product_index_store1` WRITE;
 /*!40000 ALTER TABLE `catalog_category_product_index_store1` DISABLE KEYS */;
+INSERT INTO `catalog_category_product_index_store1` VALUES (2,1,0,1,1,4),(2,2,0,1,1,4),(2,3,0,1,1,4),(2,4,0,1,1,4),(3,4,0,1,1,4),(4,1,0,1,1,4),(4,2,0,1,1,4),(4,3,0,1,1,4),(5,1,0,1,1,4),(5,2,0,1,1,4),(5,3,0,1,1,4);
 /*!40000 ALTER TABLE `catalog_category_product_index_store1` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -864,8 +1060,8 @@ CREATE TABLE `catalog_category_product_index_store1_replica` (
   `store_id` smallint(5) unsigned NOT NULL DEFAULT 0 COMMENT 'Store Id',
   `visibility` smallint(5) unsigned NOT NULL COMMENT 'Visibility',
   PRIMARY KEY (`category_id`,`product_id`,`store_id`),
-  KEY `CAT_CTGR_PRD_IDX_STORE1_PRD_ID_STORE_ID_CTGR_ID_VISIBILITY` (`product_id`,`store_id`,`category_id`,`visibility`),
-  KEY `IDX_216E521C8AD125E066D2B0BAB4A08412` (`store_id`,`category_id`,`visibility`,`is_parent`,`position`)
+  KEY `IDX_4B965DC45C352D6E4C9DC0FF50B1FCF5` (`product_id`,`store_id`,`category_id`,`visibility`),
+  KEY `IDX_47AB760CD6A893ACEA69A9C2E0112C60` (`store_id`,`category_id`,`visibility`,`is_parent`,`position`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Category Product Index Store1 Replica';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -875,6 +1071,7 @@ CREATE TABLE `catalog_category_product_index_store1_replica` (
 
 LOCK TABLES `catalog_category_product_index_store1_replica` WRITE;
 /*!40000 ALTER TABLE `catalog_category_product_index_store1_replica` DISABLE KEYS */;
+INSERT INTO `catalog_category_product_index_store1_replica` VALUES (2,1,0,0,1,4),(2,2,0,0,1,4),(2,3,0,0,1,4);
 /*!40000 ALTER TABLE `catalog_category_product_index_store1_replica` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1015,8 +1212,32 @@ CREATE TABLE `catalog_eav_attribute` (
 
 LOCK TABLES `catalog_eav_attribute` WRITE;
 /*!40000 ALTER TABLE `catalog_eav_attribute` DISABLE KEYS */;
-INSERT INTO `catalog_eav_attribute` VALUES (45,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(46,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(47,NULL,0,1,0,0,0,0,1,0,0,0,0,NULL,0,0,1,0,0,0,0,0,1,0,NULL),(48,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(49,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(50,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(51,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(52,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(53,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(54,NULL,1,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(55,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(56,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(57,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(58,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(59,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(60,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(61,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(62,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(63,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(64,NULL,0,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(65,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(66,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(67,'Magento\\Catalog\\Block\\Adminhtml\\Category\\Helper\\Sortby\\Available',0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(68,'Magento\\Catalog\\Block\\Adminhtml\\Category\\Helper\\Sortby\\DefaultSortby',0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(69,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(70,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(71,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(72,'Magento\\Catalog\\Block\\Adminhtml\\Category\\Helper\\Pricestep',0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(73,NULL,0,1,1,0,0,0,0,0,0,1,1,NULL,1,0,0,0,0,0,0,0,5,0,NULL),(74,NULL,1,1,1,0,1,0,0,0,0,0,0,NULL,1,0,0,0,0,0,0,0,6,0,NULL),(75,NULL,0,1,1,0,1,0,1,0,0,0,0,NULL,1,0,1,0,0,0,0,0,1,1,NULL),(76,NULL,0,1,1,0,1,0,1,0,0,1,0,NULL,1,0,1,0,0,1,0,0,1,0,NULL),(77,NULL,1,1,1,1,0,0,0,0,0,1,1,'simple,virtual,downloadable,bundle,configurable',1,0,0,0,0,0,0,0,1,0,NULL),(78,NULL,1,1,0,0,0,0,0,0,0,1,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,1,0,1,1,0,NULL),(79,NULL,2,1,0,0,0,0,0,0,0,1,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,1,0,0,1,0,NULL),(80,NULL,2,1,0,0,0,0,0,0,0,1,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,1,0,0,1,0,NULL),(81,NULL,1,1,0,0,0,0,0,0,0,0,0,'simple,virtual,downloadable',0,0,0,0,0,1,0,1,1,0,NULL),(82,'Magento\\Catalog\\Block\\Adminhtml\\Product\\Helper\\Form\\Weight',1,1,0,0,0,0,0,0,0,0,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,1,0,1,1,0,NULL),(83,NULL,1,1,1,1,1,0,0,0,0,0,0,'simple,configurable',1,0,0,0,0,1,0,1,1,0,NULL),(84,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,1,1,0,NULL),(85,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,1,1,0,NULL),(86,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,1,1,0,NULL),(87,NULL,0,1,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(88,NULL,0,1,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(89,NULL,0,1,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(90,NULL,1,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(91,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(92,NULL,2,1,0,0,0,0,0,0,0,0,0,'simple,virtual,downloadable,bundle',0,0,0,0,0,0,0,0,1,0,NULL),(93,NULL,1,1,1,1,1,0,0,0,0,0,0,'simple,virtual,configurable',1,0,0,0,0,1,0,1,1,0,NULL),(94,NULL,2,1,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,1,0,0,1,0,NULL),(95,NULL,2,1,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,1,0,0,1,0,NULL),(96,NULL,1,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(97,'Magento\\Framework\\Data\\Form\\Element\\Hidden',2,1,1,0,0,0,0,0,0,1,0,NULL,0,0,0,0,1,0,0,0,1,0,NULL),(98,NULL,0,0,0,0,0,0,0,0,0,0,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,0,0,0,1,0,NULL),(99,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,1,0,0,0,1,0,NULL),(100,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,1,1,0,NULL),(101,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,0,1,0,NULL),(102,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,0,1,0,NULL),(103,NULL,0,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(104,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,0,1,0,NULL),(105,'Magento\\Catalog\\Block\\Adminhtml\\Product\\Helper\\Form\\Category',1,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(106,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(107,NULL,1,0,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(108,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(109,NULL,0,0,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(110,NULL,0,0,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(111,NULL,0,0,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(112,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(113,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(114,NULL,2,1,0,0,0,0,0,0,0,0,0,'simple,bundle,grouped,configurable',0,0,0,0,0,1,0,1,1,0,NULL),(115,'Magento\\CatalogInventory\\Block\\Adminhtml\\Form\\Field\\Stock',1,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(116,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,0,1,0,NULL),(117,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(118,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(119,'Magento\\Msrp\\Block\\Adminhtml\\Product\\Helper\\Form\\Type',1,1,0,0,0,0,0,0,0,1,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,1,0,1,1,0,NULL),(120,'Magento\\Msrp\\Block\\Adminhtml\\Product\\Helper\\Form\\Type\\Price',2,1,0,0,0,0,0,0,0,1,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,0,0,0,1,0,NULL),(121,NULL,0,1,1,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(122,NULL,0,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(123,NULL,0,1,1,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,1,0,1,1,0,NULL),(124,NULL,0,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(125,NULL,1,0,0,0,0,0,0,0,0,1,0,'downloadable',0,0,0,0,0,0,0,0,1,0,NULL),(126,NULL,0,0,0,0,0,0,0,0,0,0,0,'downloadable',0,0,0,0,0,0,0,0,1,0,NULL),(127,NULL,0,0,0,0,0,0,0,0,0,0,0,'downloadable',0,0,0,0,0,0,0,0,1,0,NULL),(128,NULL,1,0,0,0,0,0,0,0,0,1,0,'downloadable',0,0,0,0,0,0,0,0,1,0,NULL),(129,NULL,1,1,0,0,0,0,0,0,0,1,0,'bundle',0,0,0,0,0,0,0,0,1,0,NULL),(130,NULL,1,1,0,0,0,0,0,0,0,0,0,'bundle',0,0,0,0,0,0,0,0,1,0,NULL),(131,NULL,1,1,0,0,0,0,0,0,0,1,0,'bundle',0,0,0,0,0,0,0,0,1,0,NULL),(132,NULL,1,1,0,0,0,0,0,0,0,1,0,'bundle',0,0,0,0,0,0,0,0,1,0,NULL),(133,NULL,1,1,0,0,0,0,0,0,0,1,0,'bundle',0,0,0,0,0,0,0,0,1,0,NULL),(134,'Magento\\GiftMessage\\Block\\Adminhtml\\Product\\Helper\\Form\\Config',1,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,0,1,0,NULL),(135,NULL,0,1,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(136,NULL,2,1,1,0,0,0,0,0,0,1,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,1,0,1,1,0,NULL);
+INSERT INTO `catalog_eav_attribute` VALUES (45,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(46,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(47,NULL,0,1,0,0,0,0,1,0,0,0,0,NULL,0,0,1,0,0,0,0,0,1,0,NULL),(48,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(49,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(50,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(51,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(52,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(53,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(54,NULL,1,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(55,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(56,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(57,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(58,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(59,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(60,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(61,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(62,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(63,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(64,NULL,0,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(65,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(66,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(67,'Magento\\Catalog\\Block\\Adminhtml\\Category\\Helper\\Sortby\\Available',0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(68,'Magento\\Catalog\\Block\\Adminhtml\\Category\\Helper\\Sortby\\DefaultSortby',0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(69,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(70,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(71,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(72,'Magento\\Catalog\\Block\\Adminhtml\\Category\\Helper\\Pricestep',0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(73,NULL,0,1,1,0,0,0,0,0,0,1,1,NULL,1,0,0,0,0,0,0,0,5,0,NULL),(74,NULL,1,1,1,0,1,0,0,0,0,0,0,NULL,1,0,0,0,0,0,0,0,6,0,NULL),(75,NULL,0,1,1,0,1,0,1,0,0,0,0,NULL,1,0,1,0,0,0,0,0,1,1,NULL),(76,NULL,0,1,1,0,1,0,1,0,0,1,0,NULL,1,0,1,0,0,1,0,0,1,0,NULL),(77,NULL,1,1,1,1,0,0,0,0,0,1,1,'simple,virtual,downloadable,bundle,configurable',1,0,0,0,0,0,0,0,1,0,NULL),(78,NULL,1,1,0,0,0,0,0,0,0,1,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,1,0,1,1,0,NULL),(79,NULL,2,1,0,0,0,0,0,0,0,1,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,1,0,0,1,0,NULL),(80,NULL,2,1,0,0,0,0,0,0,0,1,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,1,0,0,1,0,NULL),(81,NULL,1,1,0,0,0,0,0,0,0,0,0,'simple,virtual,downloadable',0,0,0,0,0,1,0,1,1,0,NULL),(82,'Magento\\Catalog\\Block\\Adminhtml\\Product\\Helper\\Form\\Weight',1,1,0,0,0,0,0,0,0,0,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,1,0,1,1,0,NULL),(83,NULL,1,1,1,1,1,0,0,0,0,0,0,'simple,configurable',1,0,0,0,0,1,0,1,1,0,NULL),(84,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,1,1,0,NULL),(85,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,1,1,0,NULL),(86,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,1,1,0,NULL),(87,NULL,0,1,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(88,NULL,0,1,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(89,NULL,0,1,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(90,NULL,1,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(91,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(92,NULL,2,1,0,0,0,0,0,0,0,0,0,'simple,virtual,downloadable,bundle',0,0,0,0,0,0,0,0,1,0,NULL),(93,NULL,1,1,1,1,1,0,0,0,0,0,0,'simple,virtual,configurable',1,0,0,0,0,1,0,1,1,0,NULL),(94,NULL,2,1,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,1,0,0,1,0,NULL),(95,NULL,2,1,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,1,0,0,1,0,NULL),(96,NULL,1,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(97,'Magento\\Framework\\Data\\Form\\Element\\Hidden',2,1,1,0,0,0,0,0,0,1,0,NULL,0,0,0,0,1,0,0,0,1,0,NULL),(98,NULL,0,0,0,0,0,0,0,0,0,0,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,0,0,0,1,0,NULL),(99,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,1,0,0,0,1,0,NULL),(100,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,1,1,0,NULL),(101,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,0,1,0,NULL),(102,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,0,1,0,NULL),(103,NULL,0,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(104,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,0,1,0,NULL),(105,'Magento\\Catalog\\Block\\Adminhtml\\Product\\Helper\\Form\\Category',1,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(106,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(107,NULL,1,0,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(108,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(109,NULL,0,0,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(110,NULL,0,0,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(111,NULL,0,0,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(112,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(113,NULL,1,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(114,NULL,2,1,0,0,0,0,0,0,0,0,0,'simple,bundle,grouped,configurable',0,0,0,0,0,1,0,1,1,0,NULL),(115,'Magento\\CatalogInventory\\Block\\Adminhtml\\Form\\Field\\Stock',1,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(116,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,0,1,0,NULL),(117,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(118,NULL,0,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(119,'Magento\\Msrp\\Block\\Adminhtml\\Product\\Helper\\Form\\Type',1,1,0,0,0,0,0,0,0,1,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,1,0,1,1,0,NULL),(120,'Magento\\Msrp\\Block\\Adminhtml\\Product\\Helper\\Form\\Type\\Price',2,1,0,0,0,0,0,0,0,1,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,0,0,0,1,0,NULL),(121,NULL,0,1,1,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(122,NULL,0,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(123,NULL,0,1,1,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,1,0,1,1,0,NULL),(124,NULL,0,0,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(125,NULL,1,0,0,0,0,0,0,0,0,1,0,'downloadable',0,0,0,0,0,0,0,0,1,0,NULL),(126,NULL,0,0,0,0,0,0,0,0,0,0,0,'downloadable',0,0,0,0,0,0,0,0,1,0,NULL),(127,NULL,0,0,0,0,0,0,0,0,0,0,0,'downloadable',0,0,0,0,0,0,0,0,1,0,NULL),(128,NULL,1,0,0,0,0,0,0,0,0,1,0,'downloadable',0,0,0,0,0,0,0,0,1,0,NULL),(129,NULL,1,1,0,0,0,0,0,0,0,1,0,'bundle',0,0,0,0,0,0,0,0,1,0,NULL),(130,NULL,1,1,0,0,0,0,0,0,0,0,0,'bundle',0,0,0,0,0,0,0,0,1,0,NULL),(131,NULL,1,1,0,0,0,0,0,0,0,1,0,'bundle',0,0,0,0,0,0,0,0,1,0,NULL),(132,NULL,1,1,0,0,0,0,0,0,0,1,0,'bundle',0,0,0,0,0,0,0,0,1,0,NULL),(133,NULL,1,1,0,0,0,0,0,0,0,1,0,'bundle',0,0,0,0,0,0,0,0,1,0,NULL),(134,'Magento\\GiftMessage\\Block\\Adminhtml\\Product\\Helper\\Form\\Config',1,1,0,0,0,0,0,0,0,0,0,NULL,0,0,0,0,0,1,0,0,1,0,NULL),(135,NULL,0,1,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,0,0,0,1,0,NULL),(136,NULL,2,1,1,0,0,0,0,0,0,1,0,'simple,virtual,downloadable,bundle,configurable',0,0,0,0,0,1,0,1,1,0,NULL),(137,NULL,2,1,0,0,0,0,0,0,0,1,0,NULL,0,0,0,0,0,1,1,1,1,0,NULL);
 /*!40000 ALTER TABLE `catalog_eav_attribute` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `catalog_product_attribute_cl`
+--
+
+DROP TABLE IF EXISTS `catalog_product_attribute_cl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `catalog_product_attribute_cl` (
+  `version_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Version ID',
+  `entity_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Entity ID',
+  PRIMARY KEY (`version_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='catalog_product_attribute_cl';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `catalog_product_attribute_cl`
+--
+
+LOCK TABLES `catalog_product_attribute_cl` WRITE;
+/*!40000 ALTER TABLE `catalog_product_attribute_cl` DISABLE KEYS */;
+INSERT INTO `catalog_product_attribute_cl` VALUES (1,4),(2,4),(3,4),(4,4),(5,4),(6,4),(7,4),(8,4),(9,4),(10,4),(11,4),(12,4),(13,4),(14,4),(15,4),(16,4),(17,4),(18,4),(19,4),(20,4);
+/*!40000 ALTER TABLE `catalog_product_attribute_cl` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1140,6 +1361,60 @@ LOCK TABLES `catalog_product_bundle_selection` WRITE;
 /*!40000 ALTER TABLE `catalog_product_bundle_selection` DISABLE KEYS */;
 /*!40000 ALTER TABLE `catalog_product_bundle_selection` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_bundle_selection_after_insert AFTER INSERT ON catalog_product_bundle_selection FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`parent_product_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_bundle_selection_after_update AFTER UPDATE ON catalog_product_bundle_selection FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`selection_id` <=> OLD.`selection_id`) OR NOT(NEW.`option_id` <=> OLD.`option_id`) OR NOT(NEW.`parent_product_id` <=> OLD.`parent_product_id`) OR NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`position` <=> OLD.`position`) OR NOT(NEW.`is_default` <=> OLD.`is_default`) OR NOT(NEW.`selection_price_type` <=> OLD.`selection_price_type`) OR NOT(NEW.`selection_price_value` <=> OLD.`selection_price_value`) OR NOT(NEW.`selection_qty` <=> OLD.`selection_qty`) OR NOT(NEW.`selection_can_change_qty` <=> OLD.`selection_can_change_qty`)) THEN INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`parent_product_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_bundle_selection_after_delete AFTER DELETE ON catalog_product_bundle_selection FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (OLD.`parent_product_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `catalog_product_bundle_selection_price`
@@ -1197,6 +1472,30 @@ LOCK TABLES `catalog_product_bundle_stock_index` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `catalog_product_category_cl`
+--
+
+DROP TABLE IF EXISTS `catalog_product_category_cl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `catalog_product_category_cl` (
+  `version_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Version ID',
+  `entity_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Entity ID',
+  PRIMARY KEY (`version_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='catalog_product_category_cl';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `catalog_product_category_cl`
+--
+
+LOCK TABLES `catalog_product_category_cl` WRITE;
+/*!40000 ALTER TABLE `catalog_product_category_cl` DISABLE KEYS */;
+INSERT INTO `catalog_product_category_cl` VALUES (1,4),(2,4),(3,4),(4,4),(5,4),(6,1),(7,1),(8,2),(9,2),(10,3),(11,3);
+/*!40000 ALTER TABLE `catalog_product_category_cl` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `catalog_product_entity`
 --
 
@@ -1215,7 +1514,7 @@ CREATE TABLE `catalog_product_entity` (
   PRIMARY KEY (`entity_id`),
   KEY `CATALOG_PRODUCT_ENTITY_ATTRIBUTE_SET_ID` (`attribute_set_id`),
   KEY `CATALOG_PRODUCT_ENTITY_SKU` (`sku`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Product Table';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Catalog Product Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1224,8 +1523,69 @@ CREATE TABLE `catalog_product_entity` (
 
 LOCK TABLES `catalog_product_entity` WRITE;
 /*!40000 ALTER TABLE `catalog_product_entity` DISABLE KEYS */;
+INSERT INTO `catalog_product_entity` VALUES (1,9,'simple','Margherita',1,0,'2022-07-15 10:27:59','2022-07-15 10:40:07'),(2,9,'simple','Diavola',0,0,'2022-07-15 10:31:00','2022-07-15 10:40:20'),(3,9,'simple','Capricciosa',0,0,'2022-07-15 10:32:29','2022-07-15 10:40:27'),(4,4,'simple','Acqua',0,0,'2022-07-15 10:37:29','2022-07-15 10:37:45');
 /*!40000 ALTER TABLE `catalog_product_entity` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_after_insert AFTER INSERT ON catalog_product_entity FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_after_update AFTER UPDATE ON catalog_product_entity FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`attribute_set_id` <=> OLD.`attribute_set_id`) OR NOT(NEW.`type_id` <=> OLD.`type_id`) OR NOT(NEW.`sku` <=> OLD.`sku`) OR NOT(NEW.`has_options` <=> OLD.`has_options`) OR NOT(NEW.`required_options` <=> OLD.`required_options`) OR NOT(NEW.`created_at` <=> OLD.`created_at`)) THEN INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`attribute_set_id` <=> OLD.`attribute_set_id`) OR NOT(NEW.`type_id` <=> OLD.`type_id`) OR NOT(NEW.`sku` <=> OLD.`sku`) OR NOT(NEW.`has_options` <=> OLD.`has_options`) OR NOT(NEW.`required_options` <=> OLD.`required_options`) OR NOT(NEW.`created_at` <=> OLD.`created_at`)) THEN INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`attribute_set_id` <=> OLD.`attribute_set_id`) OR NOT(NEW.`type_id` <=> OLD.`type_id`) OR NOT(NEW.`sku` <=> OLD.`sku`) OR NOT(NEW.`has_options` <=> OLD.`has_options`) OR NOT(NEW.`required_options` <=> OLD.`required_options`) OR NOT(NEW.`created_at` <=> OLD.`created_at`)) THEN INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_after_delete AFTER DELETE ON catalog_product_entity FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `catalog_product_entity_datetime`
@@ -1258,6 +1618,66 @@ LOCK TABLES `catalog_product_entity_datetime` WRITE;
 /*!40000 ALTER TABLE `catalog_product_entity_datetime` DISABLE KEYS */;
 /*!40000 ALTER TABLE `catalog_product_entity_datetime` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_datetime_after_insert AFTER INSERT ON catalog_product_entity_datetime FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_datetime_after_update AFTER UPDATE ON catalog_product_entity_datetime FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_datetime_after_delete AFTER DELETE ON catalog_product_entity_datetime FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `catalog_product_entity_decimal`
@@ -1279,7 +1699,7 @@ CREATE TABLE `catalog_product_entity_decimal` (
   CONSTRAINT `CATALOG_PRODUCT_ENTITY_DECIMAL_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_DEC_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_DEC_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Product Decimal Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Catalog Product Decimal Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1288,8 +1708,72 @@ CREATE TABLE `catalog_product_entity_decimal` (
 
 LOCK TABLES `catalog_product_entity_decimal` WRITE;
 /*!40000 ALTER TABLE `catalog_product_entity_decimal` DISABLE KEYS */;
+INSERT INTO `catalog_product_entity_decimal` VALUES (1,77,0,1,5.000000),(2,77,0,2,7.000000),(3,77,0,3,7.000000),(4,77,0,4,1.000000);
 /*!40000 ALTER TABLE `catalog_product_entity_decimal` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_decimal_after_insert AFTER INSERT ON catalog_product_entity_decimal FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `catalog_product_attribute_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_decimal_after_update AFTER UPDATE ON catalog_product_entity_decimal FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalog_product_attribute_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_decimal_after_delete AFTER DELETE ON catalog_product_entity_decimal FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `catalog_product_attribute_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `catalog_product_entity_gallery`
@@ -1346,7 +1830,7 @@ CREATE TABLE `catalog_product_entity_int` (
   CONSTRAINT `CATALOG_PRODUCT_ENTITY_INT_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_INT_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_INT_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Product Integer Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='Catalog Product Integer Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1355,8 +1839,78 @@ CREATE TABLE `catalog_product_entity_int` (
 
 LOCK TABLES `catalog_product_entity_int` WRITE;
 /*!40000 ALTER TABLE `catalog_product_entity_int` DISABLE KEYS */;
+INSERT INTO `catalog_product_entity_int` VALUES (1,97,0,1,1),(2,99,0,1,4),(3,136,0,1,2),(4,97,0,2,1),(5,99,0,2,4),(6,136,0,2,2),(7,97,0,3,1),(8,99,0,3,4),(9,136,0,3,2),(10,97,0,4,1),(11,99,0,4,4),(12,136,0,4,2);
 /*!40000 ALTER TABLE `catalog_product_entity_int` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_int_after_insert AFTER INSERT ON catalog_product_entity_int FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `catalog_product_category_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `catalog_product_attribute_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `cataloginventory_stock_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_int_after_update AFTER UPDATE ON catalog_product_entity_int FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalog_product_category_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalog_product_attribute_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `cataloginventory_stock_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_int_after_delete AFTER DELETE ON catalog_product_entity_int FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `catalog_product_category_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `catalog_product_attribute_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `cataloginventory_stock_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `catalog_product_entity_media_gallery`
@@ -1374,7 +1928,7 @@ CREATE TABLE `catalog_product_entity_media_gallery` (
   PRIMARY KEY (`value_id`),
   KEY `CATALOG_PRODUCT_ENTITY_MEDIA_GALLERY_ATTRIBUTE_ID` (`attribute_id`),
   CONSTRAINT `CAT_PRD_ENTT_MDA_GLR_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Product Media Gallery Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Catalog Product Media Gallery Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1383,6 +1937,7 @@ CREATE TABLE `catalog_product_entity_media_gallery` (
 
 LOCK TABLES `catalog_product_entity_media_gallery` WRITE;
 /*!40000 ALTER TABLE `catalog_product_entity_media_gallery` DISABLE KEYS */;
+INSERT INTO `catalog_product_entity_media_gallery` VALUES (1,90,'/i/m/immagine_2022-07-15_122942073.png','image',0),(2,90,'/i/m/immagine_2022-07-15_123053994.png','image',0),(3,90,'/i/m/immagine_2022-07-15_123224027.png','image',0),(4,90,'/i/m/immagine_2022-07-15_123742038.png','image',0);
 /*!40000 ALTER TABLE `catalog_product_entity_media_gallery` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1409,7 +1964,7 @@ CREATE TABLE `catalog_product_entity_media_gallery_value` (
   CONSTRAINT `CAT_PRD_ENTT_MDA_GLR_VAL_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_MDA_GLR_VAL_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_MDA_GLR_VAL_VAL_ID_CAT_PRD_ENTT_MDA_GLR_VAL_ID` FOREIGN KEY (`value_id`) REFERENCES `catalog_product_entity_media_gallery` (`value_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Product Media Gallery Attribute Value Table';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='Catalog Product Media Gallery Attribute Value Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1418,6 +1973,7 @@ CREATE TABLE `catalog_product_entity_media_gallery_value` (
 
 LOCK TABLES `catalog_product_entity_media_gallery_value` WRITE;
 /*!40000 ALTER TABLE `catalog_product_entity_media_gallery_value` DISABLE KEYS */;
+INSERT INTO `catalog_product_entity_media_gallery_value` VALUES (4,0,4,NULL,1,0,8),(1,0,1,NULL,1,0,10),(2,0,2,NULL,1,0,11),(3,0,3,NULL,1,0,12);
 /*!40000 ALTER TABLE `catalog_product_entity_media_gallery_value` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1444,6 +2000,7 @@ CREATE TABLE `catalog_product_entity_media_gallery_value_to_entity` (
 
 LOCK TABLES `catalog_product_entity_media_gallery_value_to_entity` WRITE;
 /*!40000 ALTER TABLE `catalog_product_entity_media_gallery_value_to_entity` DISABLE KEYS */;
+INSERT INTO `catalog_product_entity_media_gallery_value_to_entity` VALUES (1,1),(2,2),(3,3),(4,4);
 /*!40000 ALTER TABLE `catalog_product_entity_media_gallery_value_to_entity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1498,7 +2055,7 @@ CREATE TABLE `catalog_product_entity_text` (
   CONSTRAINT `CATALOG_PRODUCT_ENTITY_TEXT_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_TEXT_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_TEXT_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Product Text Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='Catalog Product Text Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1507,8 +2064,66 @@ CREATE TABLE `catalog_product_entity_text` (
 
 LOCK TABLES `catalog_product_entity_text` WRITE;
 /*!40000 ALTER TABLE `catalog_product_entity_text` DISABLE KEYS */;
+INSERT INTO `catalog_product_entity_text` VALUES (1,85,0,1,'Margherita'),(2,85,0,2,'Diavola'),(3,85,0,3,'Capricciosa'),(4,137,0,2,'4,5,8'),(5,137,0,1,'4,5'),(6,137,0,3,'4,5,6,7'),(7,85,0,4,'Acqua');
 /*!40000 ALTER TABLE `catalog_product_entity_text` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_text_after_insert AFTER INSERT ON catalog_product_entity_text FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_text_after_update AFTER UPDATE ON catalog_product_entity_text FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_text_after_delete AFTER DELETE ON catalog_product_entity_text FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `catalog_product_entity_tier_price`
@@ -1544,6 +2159,63 @@ LOCK TABLES `catalog_product_entity_tier_price` WRITE;
 /*!40000 ALTER TABLE `catalog_product_entity_tier_price` DISABLE KEYS */;
 /*!40000 ALTER TABLE `catalog_product_entity_tier_price` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_tier_price_after_insert AFTER INSERT ON catalog_product_entity_tier_price FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_tier_price_after_update AFTER UPDATE ON catalog_product_entity_tier_price FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`all_groups` <=> OLD.`all_groups`) OR NOT(NEW.`customer_group_id` <=> OLD.`customer_group_id`) OR NOT(NEW.`qty` <=> OLD.`qty`) OR NOT(NEW.`value` <=> OLD.`value`) OR NOT(NEW.`website_id` <=> OLD.`website_id`) OR NOT(NEW.`percentage_value` <=> OLD.`percentage_value`)) THEN INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`all_groups` <=> OLD.`all_groups`) OR NOT(NEW.`customer_group_id` <=> OLD.`customer_group_id`) OR NOT(NEW.`qty` <=> OLD.`qty`) OR NOT(NEW.`value` <=> OLD.`value`) OR NOT(NEW.`website_id` <=> OLD.`website_id`) OR NOT(NEW.`percentage_value` <=> OLD.`percentage_value`)) THEN INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_tier_price_after_delete AFTER DELETE ON catalog_product_entity_tier_price FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `catalog_product_entity_varchar`
@@ -1565,7 +2237,7 @@ CREATE TABLE `catalog_product_entity_varchar` (
   CONSTRAINT `CATALOG_PRODUCT_ENTITY_VARCHAR_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_VCHR_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_ENTT_VCHR_ENTT_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Product Varchar Attribute Backend Table';
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8 COMMENT='Catalog Product Varchar Attribute Backend Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1574,8 +2246,69 @@ CREATE TABLE `catalog_product_entity_varchar` (
 
 LOCK TABLES `catalog_product_entity_varchar` WRITE;
 /*!40000 ALTER TABLE `catalog_product_entity_varchar` DISABLE KEYS */;
+INSERT INTO `catalog_product_entity_varchar` VALUES (1,73,0,1,'Margherita'),(2,84,0,1,'Margherita'),(3,86,0,1,'Margherita '),(4,104,0,1,'product-full-width'),(5,106,0,1,'container2'),(6,120,0,1,'0'),(7,123,0,1,'margherita'),(8,134,0,1,'2'),(9,87,0,1,'/i/m/immagine_2022-07-15_122942073.png'),(10,88,0,1,'/i/m/immagine_2022-07-15_122942073.png'),(11,89,0,1,'/i/m/immagine_2022-07-15_122942073.png'),(12,135,0,1,'/i/m/immagine_2022-07-15_122942073.png'),(21,73,0,2,'Diavola'),(22,84,0,2,'Diavola'),(23,86,0,2,'Diavola '),(24,87,0,2,'/i/m/immagine_2022-07-15_123053994.png'),(25,88,0,2,'/i/m/immagine_2022-07-15_123053994.png'),(26,89,0,2,'/i/m/immagine_2022-07-15_123053994.png'),(27,104,0,2,'product-full-width'),(28,106,0,2,'container2'),(29,120,0,2,'0'),(30,123,0,2,'diavola'),(31,134,0,2,'2'),(32,135,0,2,'/i/m/immagine_2022-07-15_123053994.png'),(37,73,0,3,'Capricciosa'),(38,84,0,3,'Capricciosa'),(39,86,0,3,'Capricciosa '),(40,87,0,3,'/i/m/immagine_2022-07-15_123224027.png'),(41,88,0,3,'/i/m/immagine_2022-07-15_123224027.png'),(42,89,0,3,'/i/m/immagine_2022-07-15_123224027.png'),(43,104,0,3,'product-full-width'),(44,106,0,3,'container2'),(45,120,0,3,'0'),(46,123,0,3,'capricciosa'),(47,134,0,3,'2'),(48,135,0,3,'/i/m/immagine_2022-07-15_123224027.png'),(65,73,0,4,'Acqua'),(66,84,0,4,'Acqua'),(67,86,0,4,'Acqua '),(68,104,0,4,'product-full-width'),(69,106,0,4,'container2'),(70,120,0,4,'0'),(71,123,0,4,'acqua'),(72,134,0,4,'2'),(73,87,0,4,'/i/m/immagine_2022-07-15_123742038.png'),(74,88,0,4,'/i/m/immagine_2022-07-15_123742038.png'),(75,89,0,4,'/i/m/immagine_2022-07-15_123742038.png'),(76,135,0,4,'/i/m/immagine_2022-07-15_123742038.png');
 /*!40000 ALTER TABLE `catalog_product_entity_varchar` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_varchar_after_insert AFTER INSERT ON catalog_product_entity_varchar FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `catalog_product_attribute_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_varchar_after_update AFTER UPDATE ON catalog_product_entity_varchar FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalog_product_attribute_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+IF (NOT(NEW.`value_id` <=> OLD.`value_id`) OR NOT(NEW.`attribute_id` <=> OLD.`attribute_id`) OR NOT(NEW.`store_id` <=> OLD.`store_id`) OR NOT(NEW.`entity_id` <=> OLD.`entity_id`) OR NOT(NEW.`value` <=> OLD.`value`)) THEN INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`entity_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_entity_varchar_after_delete AFTER DELETE ON catalog_product_entity_varchar FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `catalog_product_attribute_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (OLD.`entity_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `catalog_product_frontend_action`
@@ -1635,6 +2368,7 @@ CREATE TABLE `catalog_product_index_eav` (
 
 LOCK TABLES `catalog_product_index_eav` WRITE;
 /*!40000 ALTER TABLE `catalog_product_index_eav` DISABLE KEYS */;
+INSERT INTO `catalog_product_index_eav` VALUES (1,99,1,4,1),(1,137,1,4,1),(1,137,1,5,1),(2,99,1,4,2),(2,137,1,4,2),(2,137,1,5,2),(2,137,1,8,2),(3,99,1,4,3),(3,137,1,4,3),(3,137,1,5,3),(3,137,1,6,3),(3,137,1,7,3),(4,99,1,4,4);
 /*!40000 ALTER TABLE `catalog_product_index_eav` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1809,6 +2543,7 @@ CREATE TABLE `catalog_product_index_eav_replica` (
 
 LOCK TABLES `catalog_product_index_eav_replica` WRITE;
 /*!40000 ALTER TABLE `catalog_product_index_eav_replica` DISABLE KEYS */;
+INSERT INTO `catalog_product_index_eav_replica` VALUES (1,99,1,4,1),(1,137,1,4,1),(1,137,1,5,1),(2,99,1,4,2),(2,137,1,4,2),(2,137,1,5,2),(2,137,1,8,2),(3,99,1,4,3),(3,137,1,4,3),(3,137,1,5,3),(3,137,1,6,3),(3,137,1,7,3);
 /*!40000 ALTER TABLE `catalog_product_index_eav_replica` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1871,6 +2606,7 @@ CREATE TABLE `catalog_product_index_price` (
 
 LOCK TABLES `catalog_product_index_price` WRITE;
 /*!40000 ALTER TABLE `catalog_product_index_price` DISABLE KEYS */;
+INSERT INTO `catalog_product_index_price` VALUES (1,0,1,2,5.000000,5.000000,5.000000,6.500000,NULL),(1,1,1,2,5.000000,5.000000,5.000000,6.500000,NULL),(1,2,1,2,5.000000,5.000000,5.000000,6.500000,NULL),(1,3,1,2,5.000000,5.000000,5.000000,6.500000,NULL),(2,0,1,2,7.000000,7.000000,7.000000,7.000000,NULL),(2,1,1,2,7.000000,7.000000,7.000000,7.000000,NULL),(2,2,1,2,7.000000,7.000000,7.000000,7.000000,NULL),(2,3,1,2,7.000000,7.000000,7.000000,7.000000,NULL),(3,0,1,2,7.000000,7.000000,7.000000,7.000000,NULL),(3,1,1,2,7.000000,7.000000,7.000000,7.000000,NULL),(3,2,1,2,7.000000,7.000000,7.000000,7.000000,NULL),(3,3,1,2,7.000000,7.000000,7.000000,7.000000,NULL),(4,0,1,2,1.000000,1.000000,1.000000,1.000000,NULL),(4,1,1,2,1.000000,1.000000,1.000000,1.000000,NULL),(4,2,1,2,1.000000,1.000000,1.000000,1.000000,NULL),(4,3,1,2,1.000000,1.000000,1.000000,1.000000,NULL);
 /*!40000 ALTER TABLE `catalog_product_index_price` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2457,6 +3193,7 @@ CREATE TABLE `catalog_product_index_price_replica` (
 
 LOCK TABLES `catalog_product_index_price_replica` WRITE;
 /*!40000 ALTER TABLE `catalog_product_index_price_replica` DISABLE KEYS */;
+INSERT INTO `catalog_product_index_price_replica` VALUES (1,0,1,2,5.000000,5.000000,5.000000,5.000000,NULL),(1,1,1,2,5.000000,5.000000,5.000000,5.000000,NULL),(1,2,1,2,5.000000,5.000000,5.000000,5.000000,NULL),(1,3,1,2,5.000000,5.000000,5.000000,5.000000,NULL),(2,0,1,2,7.000000,7.000000,7.000000,7.000000,NULL),(2,1,1,2,7.000000,7.000000,7.000000,7.000000,NULL),(2,2,1,2,7.000000,7.000000,7.000000,7.000000,NULL),(2,3,1,2,7.000000,7.000000,7.000000,7.000000,NULL),(3,0,1,2,7.000000,7.000000,7.000000,7.000000,NULL),(3,1,1,2,7.000000,7.000000,7.000000,7.000000,NULL),(3,2,1,2,7.000000,7.000000,7.000000,7.000000,NULL),(3,3,1,2,7.000000,7.000000,7.000000,7.000000,NULL);
 /*!40000 ALTER TABLE `catalog_product_index_price_replica` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2581,6 +3318,72 @@ LOCK TABLES `catalog_product_link` WRITE;
 /*!40000 ALTER TABLE `catalog_product_link` DISABLE KEYS */;
 /*!40000 ALTER TABLE `catalog_product_link` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_link_after_insert AFTER INSERT ON catalog_product_link FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`product_id`);
+INSERT IGNORE INTO `catalog_product_attribute_cl` (`entity_id`) VALUES (NEW.`product_id`);
+INSERT IGNORE INTO `cataloginventory_stock_cl` (`entity_id`) VALUES (NEW.`product_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`product_id`);
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`product_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_link_after_update AFTER UPDATE ON catalog_product_link FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`link_id` <=> OLD.`link_id`) OR NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`linked_product_id` <=> OLD.`linked_product_id`) OR NOT(NEW.`link_type_id` <=> OLD.`link_type_id`)) THEN INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`product_id`); END IF;
+IF (NOT(NEW.`link_id` <=> OLD.`link_id`) OR NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`linked_product_id` <=> OLD.`linked_product_id`) OR NOT(NEW.`link_type_id` <=> OLD.`link_type_id`)) THEN INSERT IGNORE INTO `catalog_product_attribute_cl` (`entity_id`) VALUES (NEW.`product_id`); END IF;
+IF (NOT(NEW.`link_id` <=> OLD.`link_id`) OR NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`linked_product_id` <=> OLD.`linked_product_id`) OR NOT(NEW.`link_type_id` <=> OLD.`link_type_id`)) THEN INSERT IGNORE INTO `cataloginventory_stock_cl` (`entity_id`) VALUES (NEW.`product_id`); END IF;
+IF (NOT(NEW.`link_id` <=> OLD.`link_id`) OR NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`linked_product_id` <=> OLD.`linked_product_id`) OR NOT(NEW.`link_type_id` <=> OLD.`link_type_id`)) THEN INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (NEW.`product_id`); END IF;
+IF (NOT(NEW.`link_id` <=> OLD.`link_id`) OR NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`linked_product_id` <=> OLD.`linked_product_id`) OR NOT(NEW.`link_type_id` <=> OLD.`link_type_id`)) THEN INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`product_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_link_after_delete AFTER DELETE ON catalog_product_link FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (OLD.`product_id`);
+INSERT IGNORE INTO `catalog_product_attribute_cl` (`entity_id`) VALUES (OLD.`product_id`);
+INSERT IGNORE INTO `cataloginventory_stock_cl` (`entity_id`) VALUES (OLD.`product_id`);
+INSERT IGNORE INTO `catalogrule_product_cl` (`entity_id`) VALUES (OLD.`product_id`);
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (OLD.`product_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `catalog_product_link_attribute`
@@ -2742,7 +3545,7 @@ CREATE TABLE `catalog_product_option` (
   PRIMARY KEY (`option_id`),
   KEY `CATALOG_PRODUCT_OPTION_PRODUCT_ID` (`product_id`),
   CONSTRAINT `CAT_PRD_OPT_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Product Option Table';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Catalog Product Option Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2751,6 +3554,7 @@ CREATE TABLE `catalog_product_option` (
 
 LOCK TABLES `catalog_product_option` WRITE;
 /*!40000 ALTER TABLE `catalog_product_option` DISABLE KEYS */;
+INSERT INTO `catalog_product_option` VALUES (1,1,'multiple',0,NULL,0,NULL,0,0,1),(2,1,'multiple',0,NULL,0,NULL,0,0,2);
 /*!40000 ALTER TABLE `catalog_product_option` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2801,7 +3605,7 @@ CREATE TABLE `catalog_product_option_title` (
   KEY `CATALOG_PRODUCT_OPTION_TITLE_STORE_ID` (`store_id`),
   CONSTRAINT `CATALOG_PRODUCT_OPTION_TITLE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `CAT_PRD_OPT_TTL_OPT_ID_CAT_PRD_OPT_OPT_ID` FOREIGN KEY (`option_id`) REFERENCES `catalog_product_option` (`option_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Product Option Title Table';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Catalog Product Option Title Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2810,6 +3614,7 @@ CREATE TABLE `catalog_product_option_title` (
 
 LOCK TABLES `catalog_product_option_title` WRITE;
 /*!40000 ALTER TABLE `catalog_product_option_title` DISABLE KEYS */;
+INSERT INTO `catalog_product_option_title` VALUES (1,1,0,'ingredienti aggiuntivi'),(2,2,0,'ingredienti rimossi');
 /*!40000 ALTER TABLE `catalog_product_option_title` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2831,7 +3636,7 @@ CREATE TABLE `catalog_product_option_type_price` (
   KEY `CATALOG_PRODUCT_OPTION_TYPE_PRICE_STORE_ID` (`store_id`),
   CONSTRAINT `CATALOG_PRODUCT_OPTION_TYPE_PRICE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_B523E3378E8602F376CC415825576B7F` FOREIGN KEY (`option_type_id`) REFERENCES `catalog_product_option_type_value` (`option_type_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Product Option Type Price Table';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='Catalog Product Option Type Price Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2840,6 +3645,7 @@ CREATE TABLE `catalog_product_option_type_price` (
 
 LOCK TABLES `catalog_product_option_type_price` WRITE;
 /*!40000 ALTER TABLE `catalog_product_option_type_price` DISABLE KEYS */;
+INSERT INTO `catalog_product_option_type_price` VALUES (1,1,0,0.500000,'fixed'),(2,2,0,0.500000,'fixed'),(3,3,0,0.500000,'fixed'),(4,4,0,0.000000,'fixed'),(5,5,0,0.000000,'fixed');
 /*!40000 ALTER TABLE `catalog_product_option_type_price` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2860,7 +3666,7 @@ CREATE TABLE `catalog_product_option_type_title` (
   KEY `CATALOG_PRODUCT_OPTION_TYPE_TITLE_STORE_ID` (`store_id`),
   CONSTRAINT `CATALOG_PRODUCT_OPTION_TYPE_TITLE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_C085B9CF2C2A302E8043FDEA1937D6A2` FOREIGN KEY (`option_type_id`) REFERENCES `catalog_product_option_type_value` (`option_type_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Product Option Type Title Table';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='Catalog Product Option Type Title Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2869,6 +3675,7 @@ CREATE TABLE `catalog_product_option_type_title` (
 
 LOCK TABLES `catalog_product_option_type_title` WRITE;
 /*!40000 ALTER TABLE `catalog_product_option_type_title` DISABLE KEYS */;
+INSERT INTO `catalog_product_option_type_title` VALUES (1,1,0,'funghi'),(2,2,0,'prosciutto'),(3,3,0,'mortadella'),(4,4,0,'pomodoro'),(5,5,0,'mozzarella');
 /*!40000 ALTER TABLE `catalog_product_option_type_title` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2887,7 +3694,7 @@ CREATE TABLE `catalog_product_option_type_value` (
   PRIMARY KEY (`option_type_id`),
   KEY `CATALOG_PRODUCT_OPTION_TYPE_VALUE_OPTION_ID` (`option_id`),
   CONSTRAINT `CAT_PRD_OPT_TYPE_VAL_OPT_ID_CAT_PRD_OPT_OPT_ID` FOREIGN KEY (`option_id`) REFERENCES `catalog_product_option` (`option_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Product Option Type Value Table';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='Catalog Product Option Type Value Table';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2896,7 +3703,32 @@ CREATE TABLE `catalog_product_option_type_value` (
 
 LOCK TABLES `catalog_product_option_type_value` WRITE;
 /*!40000 ALTER TABLE `catalog_product_option_type_value` DISABLE KEYS */;
+INSERT INTO `catalog_product_option_type_value` VALUES (1,1,NULL,1),(2,1,NULL,2),(3,1,NULL,3),(4,2,NULL,1),(5,2,NULL,2);
 /*!40000 ALTER TABLE `catalog_product_option_type_value` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `catalog_product_price_cl`
+--
+
+DROP TABLE IF EXISTS `catalog_product_price_cl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `catalog_product_price_cl` (
+  `version_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Version ID',
+  `entity_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Entity ID',
+  PRIMARY KEY (`version_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='catalog_product_price_cl';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `catalog_product_price_cl`
+--
+
+LOCK TABLES `catalog_product_price_cl` WRITE;
+/*!40000 ALTER TABLE `catalog_product_price_cl` DISABLE KEYS */;
+INSERT INTO `catalog_product_price_cl` VALUES (1,4),(2,4),(3,4),(4,4),(5,4),(6,4),(7,4),(8,4),(9,1),(10,1),(11,1),(12,2),(13,3);
+/*!40000 ALTER TABLE `catalog_product_price_cl` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -3009,6 +3841,60 @@ LOCK TABLES `catalog_product_super_link` WRITE;
 /*!40000 ALTER TABLE `catalog_product_super_link` DISABLE KEYS */;
 /*!40000 ALTER TABLE `catalog_product_super_link` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_super_link_after_insert AFTER INSERT ON catalog_product_super_link FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`product_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_super_link_after_update AFTER UPDATE ON catalog_product_super_link FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`link_id` <=> OLD.`link_id`) OR NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`parent_id` <=> OLD.`parent_id`)) THEN INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`product_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_super_link_after_delete AFTER DELETE ON catalog_product_super_link FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (OLD.`product_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `catalog_product_website`
@@ -3033,8 +3919,66 @@ CREATE TABLE `catalog_product_website` (
 
 LOCK TABLES `catalog_product_website` WRITE;
 /*!40000 ALTER TABLE `catalog_product_website` DISABLE KEYS */;
+INSERT INTO `catalog_product_website` VALUES (1,1),(2,1),(3,1),(4,1);
 /*!40000 ALTER TABLE `catalog_product_website` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_website_after_insert AFTER INSERT ON catalog_product_website FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`product_id`);
+INSERT IGNORE INTO `catalog_product_category_cl` (`entity_id`) VALUES (NEW.`product_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_website_after_update AFTER UPDATE ON catalog_product_website FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`website_id` <=> OLD.`website_id`)) THEN INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`product_id`); END IF;
+IF (NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`website_id` <=> OLD.`website_id`)) THEN INSERT IGNORE INTO `catalog_product_category_cl` (`entity_id`) VALUES (NEW.`product_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalog_product_website_after_delete AFTER DELETE ON catalog_product_website FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (OLD.`product_id`);
+INSERT IGNORE INTO `catalog_product_category_cl` (`entity_id`) VALUES (OLD.`product_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `catalog_url_rewrite_product_category`
@@ -3062,6 +4006,7 @@ CREATE TABLE `catalog_url_rewrite_product_category` (
 
 LOCK TABLES `catalog_url_rewrite_product_category` WRITE;
 /*!40000 ALTER TABLE `catalog_url_rewrite_product_category` DISABLE KEYS */;
+INSERT INTO `catalog_url_rewrite_product_category` VALUES (10,3,4),(14,4,1),(17,4,2),(20,4,3),(15,5,1),(18,5,2),(21,5,3);
 /*!40000 ALTER TABLE `catalog_url_rewrite_product_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3089,6 +4034,30 @@ LOCK TABLES `cataloginventory_stock` WRITE;
 /*!40000 ALTER TABLE `cataloginventory_stock` DISABLE KEYS */;
 INSERT INTO `cataloginventory_stock` VALUES (1,0,'Default');
 /*!40000 ALTER TABLE `cataloginventory_stock` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cataloginventory_stock_cl`
+--
+
+DROP TABLE IF EXISTS `cataloginventory_stock_cl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cataloginventory_stock_cl` (
+  `version_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Version ID',
+  `entity_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Entity ID',
+  PRIMARY KEY (`version_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='cataloginventory_stock_cl';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cataloginventory_stock_cl`
+--
+
+LOCK TABLES `cataloginventory_stock_cl` WRITE;
+/*!40000 ALTER TABLE `cataloginventory_stock_cl` DISABLE KEYS */;
+INSERT INTO `cataloginventory_stock_cl` VALUES (1,4),(2,4),(3,4),(4,4),(5,4),(6,4),(7,1),(8,1),(9,2),(10,3);
+/*!40000 ALTER TABLE `cataloginventory_stock_cl` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -3132,7 +4101,7 @@ CREATE TABLE `cataloginventory_stock_item` (
   KEY `CATALOGINVENTORY_STOCK_ITEM_STOCK_ID` (`stock_id`),
   CONSTRAINT `CATINV_STOCK_ITEM_PRD_ID_CAT_PRD_ENTT_ENTT_ID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `CATINV_STOCK_ITEM_STOCK_ID_CATINV_STOCK_STOCK_ID` FOREIGN KEY (`stock_id`) REFERENCES `cataloginventory_stock` (`stock_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Cataloginventory Stock Item';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Cataloginventory Stock Item';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3141,8 +4110,69 @@ CREATE TABLE `cataloginventory_stock_item` (
 
 LOCK TABLES `cataloginventory_stock_item` WRITE;
 /*!40000 ALTER TABLE `cataloginventory_stock_item` DISABLE KEYS */;
+INSERT INTO `cataloginventory_stock_item` VALUES (1,1,1,0.0000,0.0000,1,0,0,1,1.0000,1,10000.0000,1,1,'2022-07-15 10:40:07',1.0000,1,0,0,0,1,1.0000,1,0,0,0),(2,2,1,0.0000,0.0000,1,0,0,1,1.0000,1,10000.0000,1,1,'2022-07-15 10:40:20',1.0000,1,0,0,0,1,1.0000,1,0,0,0),(3,3,1,0.0000,0.0000,1,0,0,1,1.0000,1,10000.0000,1,1,'2022-07-15 10:40:27',1.0000,1,0,0,0,1,1.0000,1,0,0,0),(4,4,1,0.0000,0.0000,1,0,0,1,1.0000,1,10000.0000,1,1,'2022-07-15 10:37:45',1.0000,1,0,0,0,1,1.0000,1,0,0,0);
 /*!40000 ALTER TABLE `cataloginventory_stock_item` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_cataloginventory_stock_item_after_insert AFTER INSERT ON cataloginventory_stock_item FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`product_id`);
+INSERT IGNORE INTO `cataloginventory_stock_cl` (`entity_id`) VALUES (NEW.`product_id`);
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`product_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_cataloginventory_stock_item_after_update AFTER UPDATE ON cataloginventory_stock_item FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`item_id` <=> OLD.`item_id`) OR NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`stock_id` <=> OLD.`stock_id`) OR NOT(NEW.`qty` <=> OLD.`qty`) OR NOT(NEW.`min_qty` <=> OLD.`min_qty`) OR NOT(NEW.`use_config_min_qty` <=> OLD.`use_config_min_qty`) OR NOT(NEW.`is_qty_decimal` <=> OLD.`is_qty_decimal`) OR NOT(NEW.`backorders` <=> OLD.`backorders`) OR NOT(NEW.`use_config_backorders` <=> OLD.`use_config_backorders`) OR NOT(NEW.`min_sale_qty` <=> OLD.`min_sale_qty`) OR NOT(NEW.`use_config_min_sale_qty` <=> OLD.`use_config_min_sale_qty`) OR NOT(NEW.`max_sale_qty` <=> OLD.`max_sale_qty`) OR NOT(NEW.`use_config_max_sale_qty` <=> OLD.`use_config_max_sale_qty`) OR NOT(NEW.`is_in_stock` <=> OLD.`is_in_stock`) OR NOT(NEW.`low_stock_date` <=> OLD.`low_stock_date`) OR NOT(NEW.`notify_stock_qty` <=> OLD.`notify_stock_qty`) OR NOT(NEW.`use_config_notify_stock_qty` <=> OLD.`use_config_notify_stock_qty`) OR NOT(NEW.`manage_stock` <=> OLD.`manage_stock`) OR NOT(NEW.`use_config_manage_stock` <=> OLD.`use_config_manage_stock`) OR NOT(NEW.`stock_status_changed_auto` <=> OLD.`stock_status_changed_auto`) OR NOT(NEW.`use_config_qty_increments` <=> OLD.`use_config_qty_increments`) OR NOT(NEW.`qty_increments` <=> OLD.`qty_increments`) OR NOT(NEW.`use_config_enable_qty_inc` <=> OLD.`use_config_enable_qty_inc`) OR NOT(NEW.`enable_qty_increments` <=> OLD.`enable_qty_increments`) OR NOT(NEW.`is_decimal_divided` <=> OLD.`is_decimal_divided`) OR NOT(NEW.`website_id` <=> OLD.`website_id`)) THEN INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (NEW.`product_id`); END IF;
+IF (NOT(NEW.`item_id` <=> OLD.`item_id`) OR NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`stock_id` <=> OLD.`stock_id`) OR NOT(NEW.`qty` <=> OLD.`qty`) OR NOT(NEW.`min_qty` <=> OLD.`min_qty`) OR NOT(NEW.`use_config_min_qty` <=> OLD.`use_config_min_qty`) OR NOT(NEW.`is_qty_decimal` <=> OLD.`is_qty_decimal`) OR NOT(NEW.`backorders` <=> OLD.`backorders`) OR NOT(NEW.`use_config_backorders` <=> OLD.`use_config_backorders`) OR NOT(NEW.`min_sale_qty` <=> OLD.`min_sale_qty`) OR NOT(NEW.`use_config_min_sale_qty` <=> OLD.`use_config_min_sale_qty`) OR NOT(NEW.`max_sale_qty` <=> OLD.`max_sale_qty`) OR NOT(NEW.`use_config_max_sale_qty` <=> OLD.`use_config_max_sale_qty`) OR NOT(NEW.`is_in_stock` <=> OLD.`is_in_stock`) OR NOT(NEW.`low_stock_date` <=> OLD.`low_stock_date`) OR NOT(NEW.`notify_stock_qty` <=> OLD.`notify_stock_qty`) OR NOT(NEW.`use_config_notify_stock_qty` <=> OLD.`use_config_notify_stock_qty`) OR NOT(NEW.`manage_stock` <=> OLD.`manage_stock`) OR NOT(NEW.`use_config_manage_stock` <=> OLD.`use_config_manage_stock`) OR NOT(NEW.`stock_status_changed_auto` <=> OLD.`stock_status_changed_auto`) OR NOT(NEW.`use_config_qty_increments` <=> OLD.`use_config_qty_increments`) OR NOT(NEW.`qty_increments` <=> OLD.`qty_increments`) OR NOT(NEW.`use_config_enable_qty_inc` <=> OLD.`use_config_enable_qty_inc`) OR NOT(NEW.`enable_qty_increments` <=> OLD.`enable_qty_increments`) OR NOT(NEW.`is_decimal_divided` <=> OLD.`is_decimal_divided`) OR NOT(NEW.`website_id` <=> OLD.`website_id`)) THEN INSERT IGNORE INTO `cataloginventory_stock_cl` (`entity_id`) VALUES (NEW.`product_id`); END IF;
+IF (NOT(NEW.`item_id` <=> OLD.`item_id`) OR NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`stock_id` <=> OLD.`stock_id`) OR NOT(NEW.`qty` <=> OLD.`qty`) OR NOT(NEW.`min_qty` <=> OLD.`min_qty`) OR NOT(NEW.`use_config_min_qty` <=> OLD.`use_config_min_qty`) OR NOT(NEW.`is_qty_decimal` <=> OLD.`is_qty_decimal`) OR NOT(NEW.`backorders` <=> OLD.`backorders`) OR NOT(NEW.`use_config_backorders` <=> OLD.`use_config_backorders`) OR NOT(NEW.`min_sale_qty` <=> OLD.`min_sale_qty`) OR NOT(NEW.`use_config_min_sale_qty` <=> OLD.`use_config_min_sale_qty`) OR NOT(NEW.`max_sale_qty` <=> OLD.`max_sale_qty`) OR NOT(NEW.`use_config_max_sale_qty` <=> OLD.`use_config_max_sale_qty`) OR NOT(NEW.`is_in_stock` <=> OLD.`is_in_stock`) OR NOT(NEW.`low_stock_date` <=> OLD.`low_stock_date`) OR NOT(NEW.`notify_stock_qty` <=> OLD.`notify_stock_qty`) OR NOT(NEW.`use_config_notify_stock_qty` <=> OLD.`use_config_notify_stock_qty`) OR NOT(NEW.`manage_stock` <=> OLD.`manage_stock`) OR NOT(NEW.`use_config_manage_stock` <=> OLD.`use_config_manage_stock`) OR NOT(NEW.`stock_status_changed_auto` <=> OLD.`stock_status_changed_auto`) OR NOT(NEW.`use_config_qty_increments` <=> OLD.`use_config_qty_increments`) OR NOT(NEW.`qty_increments` <=> OLD.`qty_increments`) OR NOT(NEW.`use_config_enable_qty_inc` <=> OLD.`use_config_enable_qty_inc`) OR NOT(NEW.`enable_qty_increments` <=> OLD.`enable_qty_increments`) OR NOT(NEW.`is_decimal_divided` <=> OLD.`is_decimal_divided`) OR NOT(NEW.`website_id` <=> OLD.`website_id`)) THEN INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`product_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_cataloginventory_stock_item_after_delete AFTER DELETE ON cataloginventory_stock_item FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogsearch_fulltext_cl` (`entity_id`) VALUES (OLD.`product_id`);
+INSERT IGNORE INTO `cataloginventory_stock_cl` (`entity_id`) VALUES (OLD.`product_id`);
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (OLD.`product_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `cataloginventory_stock_status`
@@ -3170,6 +4200,7 @@ CREATE TABLE `cataloginventory_stock_status` (
 
 LOCK TABLES `cataloginventory_stock_status` WRITE;
 /*!40000 ALTER TABLE `cataloginventory_stock_status` DISABLE KEYS */;
+INSERT INTO `cataloginventory_stock_status` VALUES (1,0,1,0.0000,1),(2,0,1,0.0000,1),(3,0,1,0.0000,1),(4,0,1,0.0000,1);
 /*!40000 ALTER TABLE `cataloginventory_stock_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3227,6 +4258,7 @@ CREATE TABLE `cataloginventory_stock_status_replica` (
 
 LOCK TABLES `cataloginventory_stock_status_replica` WRITE;
 /*!40000 ALTER TABLE `cataloginventory_stock_status_replica` DISABLE KEYS */;
+INSERT INTO `cataloginventory_stock_status_replica` VALUES (1,0,1,0.0000,1),(2,0,1,0.0000,1),(3,0,1,0.0000,1);
 /*!40000 ALTER TABLE `cataloginventory_stock_status_replica` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3291,6 +4323,60 @@ LOCK TABLES `catalogrule` WRITE;
 /*!40000 ALTER TABLE `catalogrule` DISABLE KEYS */;
 /*!40000 ALTER TABLE `catalogrule` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalogrule_after_insert AFTER INSERT ON catalogrule FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogrule_rule_cl` (`entity_id`) VALUES (NEW.`rule_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalogrule_after_update AFTER UPDATE ON catalogrule FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`rule_id` <=> OLD.`rule_id`) OR NOT(NEW.`name` <=> OLD.`name`) OR NOT(NEW.`description` <=> OLD.`description`) OR NOT(NEW.`from_date` <=> OLD.`from_date`) OR NOT(NEW.`to_date` <=> OLD.`to_date`) OR NOT(NEW.`is_active` <=> OLD.`is_active`) OR NOT(NEW.`conditions_serialized` <=> OLD.`conditions_serialized`) OR NOT(NEW.`actions_serialized` <=> OLD.`actions_serialized`) OR NOT(NEW.`stop_rules_processing` <=> OLD.`stop_rules_processing`) OR NOT(NEW.`sort_order` <=> OLD.`sort_order`) OR NOT(NEW.`simple_action` <=> OLD.`simple_action`) OR NOT(NEW.`discount_amount` <=> OLD.`discount_amount`)) THEN INSERT IGNORE INTO `catalogrule_rule_cl` (`entity_id`) VALUES (NEW.`rule_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalogrule_after_delete AFTER DELETE ON catalogrule FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalogrule_rule_cl` (`entity_id`) VALUES (OLD.`rule_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `catalogrule_customer_group`
@@ -3409,6 +4495,30 @@ LOCK TABLES `catalogrule_product` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `catalogrule_product_cl`
+--
+
+DROP TABLE IF EXISTS `catalogrule_product_cl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `catalogrule_product_cl` (
+  `version_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Version ID',
+  `entity_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Entity ID',
+  PRIMARY KEY (`version_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='catalogrule_product_cl';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `catalogrule_product_cl`
+--
+
+LOCK TABLES `catalogrule_product_cl` WRITE;
+/*!40000 ALTER TABLE `catalogrule_product_cl` DISABLE KEYS */;
+INSERT INTO `catalogrule_product_cl` VALUES (1,4),(2,4),(3,4),(4,4),(5,4),(6,4),(7,4),(8,4),(9,4),(10,4),(11,4),(12,4),(13,4),(14,4),(15,4),(16,4),(17,4),(18,4),(19,4),(20,4),(21,4),(22,4),(23,4),(24,1),(25,1),(26,1),(27,2),(28,2),(29,3),(30,3);
+/*!40000 ALTER TABLE `catalogrule_product_cl` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `catalogrule_product_price`
 --
 
@@ -3440,6 +4550,60 @@ LOCK TABLES `catalogrule_product_price` WRITE;
 /*!40000 ALTER TABLE `catalogrule_product_price` DISABLE KEYS */;
 /*!40000 ALTER TABLE `catalogrule_product_price` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalogrule_product_price_after_insert AFTER INSERT ON catalogrule_product_price FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`product_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalogrule_product_price_after_update AFTER UPDATE ON catalogrule_product_price FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`rule_product_price_id` <=> OLD.`rule_product_price_id`) OR NOT(NEW.`rule_date` <=> OLD.`rule_date`) OR NOT(NEW.`customer_group_id` <=> OLD.`customer_group_id`) OR NOT(NEW.`product_id` <=> OLD.`product_id`) OR NOT(NEW.`rule_price` <=> OLD.`rule_price`) OR NOT(NEW.`website_id` <=> OLD.`website_id`) OR NOT(NEW.`latest_start_date` <=> OLD.`latest_start_date`) OR NOT(NEW.`earliest_end_date` <=> OLD.`earliest_end_date`)) THEN INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (NEW.`product_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_catalogrule_product_price_after_delete AFTER DELETE ON catalogrule_product_price FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `catalog_product_price_cl` (`entity_id`) VALUES (OLD.`product_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `catalogrule_product_price_replica`
@@ -3513,6 +4677,29 @@ LOCK TABLES `catalogrule_product_replica` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `catalogrule_rule_cl`
+--
+
+DROP TABLE IF EXISTS `catalogrule_rule_cl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `catalogrule_rule_cl` (
+  `version_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Version ID',
+  `entity_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Entity ID',
+  PRIMARY KEY (`version_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='catalogrule_rule_cl';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `catalogrule_rule_cl`
+--
+
+LOCK TABLES `catalogrule_rule_cl` WRITE;
+/*!40000 ALTER TABLE `catalogrule_rule_cl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `catalogrule_rule_cl` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `catalogrule_website`
 --
 
@@ -3536,6 +4723,30 @@ CREATE TABLE `catalogrule_website` (
 LOCK TABLES `catalogrule_website` WRITE;
 /*!40000 ALTER TABLE `catalogrule_website` DISABLE KEYS */;
 /*!40000 ALTER TABLE `catalogrule_website` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `catalogsearch_fulltext_cl`
+--
+
+DROP TABLE IF EXISTS `catalogsearch_fulltext_cl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `catalogsearch_fulltext_cl` (
+  `version_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Version ID',
+  `entity_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Entity ID',
+  PRIMARY KEY (`version_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='catalogsearch_fulltext_cl';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `catalogsearch_fulltext_cl`
+--
+
+LOCK TABLES `catalogsearch_fulltext_cl` WRITE;
+/*!40000 ALTER TABLE `catalogsearch_fulltext_cl` DISABLE KEYS */;
+INSERT INTO `catalogsearch_fulltext_cl` VALUES (1,4),(2,4),(3,4),(4,4),(5,4),(6,4),(7,4),(8,4),(9,4),(10,4),(11,4),(12,4),(13,4),(14,4),(15,4),(16,4),(17,4),(18,4),(19,4),(20,4),(21,4),(22,4),(23,4),(24,4),(25,4),(26,4),(27,4),(28,1),(29,1),(30,1),(31,1),(32,1),(33,2),(34,2),(35,2),(36,3),(37,3),(38,3);
+/*!40000 ALTER TABLE `catalogsearch_fulltext_cl` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -3764,7 +4975,7 @@ CREATE TABLE `core_config_data` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Updated At',
   PRIMARY KEY (`config_id`),
   UNIQUE KEY `CORE_CONFIG_DATA_SCOPE_SCOPE_ID_PATH` (`scope`,`scope_id`,`path`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='Config Data';
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='Config Data';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3773,7 +4984,7 @@ CREATE TABLE `core_config_data` (
 
 LOCK TABLES `core_config_data` WRITE;
 /*!40000 ALTER TABLE `core_config_data` DISABLE KEYS */;
-INSERT INTO `core_config_data` VALUES (1,'default',0,'catalog/search/engine','elasticsearch7','2022-07-15 06:20:36'),(2,'default',0,'catalog/search/elasticsearch7_server_hostname','elasticsearch','2022-07-15 06:20:36'),(3,'default',0,'catalog/search/elasticsearch7_server_port','9200','2022-07-15 06:20:36'),(4,'default',0,'web/seo/use_rewrites','1','2022-07-15 06:20:36'),(5,'default',0,'web/unsecure/base_url','https://magento.fumarola.ovh/','2022-07-15 06:20:36'),(6,'default',0,'web/secure/base_url','https://magento.fumarola.ovh/','2022-07-15 06:20:36'),(7,'default',0,'general/locale/code','en_US','2022-07-15 06:20:36'),(8,'default',0,'general/locale/timezone','Europe/Rome','2022-07-15 06:20:36'),(9,'default',0,'currency/options/base','EUR','2022-07-15 06:20:36'),(10,'default',0,'currency/options/default','EUR','2022-07-15 06:20:36'),(11,'default',0,'currency/options/allow','EUR','2022-07-15 06:20:36'),(12,'default',0,'general/region/display_all','1','2022-07-15 06:20:37'),(13,'default',0,'general/region/state_required','AL,AR,AU,BG,BO,BR,BY,CA,CH,CL,CN,CO,DK,EC,EE,ES,GR,GY,HR,IN,IS,IT,LT,LV,MX,PE,PL,PT,PY,RO,SE,SR,US,UY,VE','2022-07-15 06:20:39'),(14,'default',0,'catalog/category/root_id','2','2022-07-15 06:20:41'),(15,'default',0,'analytics/subscription/enabled','1','2022-07-15 06:20:41'),(16,'default',0,'crontab/default/jobs/analytics_subscribe/schedule/cron_expr','0 * * * *','2022-07-15 06:20:41'),(17,'default',0,'crontab/default/jobs/analytics_collect_data/schedule/cron_expr','00 02 * * *','2022-07-15 06:20:41'),(18,'default',0,'msp_securitysuite_recaptcha/frontend/enabled','0','2022-07-15 06:20:42'),(19,'default',0,'msp_securitysuite_recaptcha/backend/enabled','0','2022-07-15 06:20:42'),(20,'default',0,'twofactorauth/duo/application_key','TNKT2vrhlTIMp9DX7vXEqaL1vhSEAtlmVDWR2KDoN9e80XuJ1DFQbIzUWqVHnLoO','2022-07-15 06:20:42');
+INSERT INTO `core_config_data` VALUES (1,'default',0,'catalog/search/engine','elasticsearch7','2022-07-15 06:20:36'),(2,'default',0,'catalog/search/elasticsearch7_server_hostname','elasticsearch','2022-07-15 06:20:36'),(3,'default',0,'catalog/search/elasticsearch7_server_port','9200','2022-07-15 06:20:36'),(4,'default',0,'web/seo/use_rewrites','1','2022-07-15 06:20:36'),(5,'default',0,'web/unsecure/base_url','https://magento.fumarola.ovh/','2022-07-15 06:20:36'),(6,'default',0,'web/secure/base_url','https://magento.fumarola.ovh/','2022-07-15 06:20:36'),(7,'default',0,'general/locale/code','en_US','2022-07-15 06:20:36'),(8,'default',0,'general/locale/timezone','Europe/Rome','2022-07-15 06:20:36'),(9,'default',0,'currency/options/base','EUR','2022-07-15 06:20:36'),(10,'default',0,'currency/options/default','EUR','2022-07-15 06:20:36'),(11,'default',0,'currency/options/allow','EUR','2022-07-15 06:20:36'),(12,'default',0,'general/region/display_all','1','2022-07-15 06:20:37'),(13,'default',0,'general/region/state_required','AL,AR,AU,BG,BO,BR,BY,CA,CH,CL,CN,CO,DK,EC,EE,ES,GR,GY,HR,IN,IS,IT,LT,LV,MX,PE,PL,PT,PY,RO,SE,SR,US,UY,VE','2022-07-15 06:20:39'),(14,'default',0,'catalog/category/root_id','2','2022-07-15 06:20:41'),(15,'default',0,'analytics/subscription/enabled','1','2022-07-15 06:20:41'),(16,'default',0,'crontab/default/jobs/analytics_subscribe/schedule/cron_expr','0 * * * *','2022-07-15 06:20:41'),(17,'default',0,'crontab/default/jobs/analytics_collect_data/schedule/cron_expr','00 02 * * *','2022-07-15 06:20:41'),(18,'default',0,'msp_securitysuite_recaptcha/frontend/enabled','0','2022-07-15 06:20:42'),(19,'default',0,'msp_securitysuite_recaptcha/backend/enabled','0','2022-07-15 06:20:42'),(20,'default',0,'twofactorauth/duo/application_key','TNKT2vrhlTIMp9DX7vXEqaL1vhSEAtlmVDWR2KDoN9e80XuJ1DFQbIzUWqVHnLoO','2022-07-15 06:20:42'),(21,'default',0,'admin/usage/enabled','1','2022-07-15 06:54:24'),(22,'default',0,'system/full_page_cache/varnish/access_list','localhost','2022-07-15 06:56:47'),(23,'default',0,'system/full_page_cache/varnish/backend_host','localhost','2022-07-15 06:56:47'),(24,'default',0,'system/full_page_cache/varnish/backend_port','8080','2022-07-15 06:56:47'),(25,'default',0,'system/full_page_cache/varnish/grace_period','300','2022-07-15 06:56:47');
 /*!40000 ALTER TABLE `core_config_data` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3795,7 +5006,7 @@ CREATE TABLE `cron_schedule` (
   `finished_at` timestamp NULL DEFAULT NULL COMMENT 'Finished At',
   PRIMARY KEY (`schedule_id`),
   KEY `CRON_SCHEDULE_JOB_CODE_STATUS_SCHEDULED_AT` (`job_code`,`status`,`scheduled_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Cron Schedule';
+) ENGINE=InnoDB AUTO_INCREMENT=528 DEFAULT CHARSET=utf8 COMMENT='Cron Schedule';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3804,6 +5015,7 @@ CREATE TABLE `cron_schedule` (
 
 LOCK TABLES `cron_schedule` WRITE;
 /*!40000 ALTER TABLE `cron_schedule` DISABLE KEYS */;
+INSERT INTO `cron_schedule` VALUES (1,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:02','2022-07-15 12:20:02'),(2,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:21:00','2022-07-15 12:21:02','2022-07-15 12:21:02'),(3,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:22:00','2022-07-15 12:22:02','2022-07-15 12:22:02'),(4,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:23:00','2022-07-15 12:23:02','2022-07-15 12:23:02'),(5,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:24:00','2022-07-15 12:24:01','2022-07-15 12:24:01'),(6,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:25:00','2022-07-15 12:25:02','2022-07-15 12:25:02'),(7,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:26:00','2022-07-15 12:26:01','2022-07-15 12:26:01'),(8,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:27:00','2022-07-15 12:27:02','2022-07-15 12:27:02'),(9,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:28:00','2022-07-15 12:28:09','2022-07-15 12:28:09'),(10,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:29:00','2022-07-15 12:29:05','2022-07-15 12:29:05'),(11,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(12,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:31:00','2022-07-15 12:31:01','2022-07-15 12:31:01'),(13,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(14,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:33:00','2022-07-15 12:33:02','2022-07-15 12:33:02'),(15,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:34:00','2022-07-15 12:34:02','2022-07-15 12:34:02'),(16,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:35:00','2022-07-15 12:35:01','2022-07-15 12:35:01'),(17,'catalog_product_outdated_price_values_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(18,'catalog_product_outdated_price_values_cleanup','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:37:00',NULL,NULL),(19,'catalog_product_outdated_price_values_cleanup','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:38:00',NULL,NULL),(20,'catalog_product_outdated_price_values_cleanup','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:39:00',NULL,NULL),(21,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:02','2022-07-15 12:20:02'),(22,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:21:00','2022-07-15 12:21:02','2022-07-15 12:21:02'),(23,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:22:00','2022-07-15 12:22:02','2022-07-15 12:22:02'),(24,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:23:00','2022-07-15 12:23:02','2022-07-15 12:23:02'),(25,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:24:00','2022-07-15 12:24:01','2022-07-15 12:24:01'),(26,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:25:00','2022-07-15 12:25:02','2022-07-15 12:25:02'),(27,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:26:00','2022-07-15 12:26:01','2022-07-15 12:26:01'),(28,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:27:00','2022-07-15 12:27:02','2022-07-15 12:27:02'),(29,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:28:00','2022-07-15 12:28:09','2022-07-15 12:28:09'),(30,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:29:00','2022-07-15 12:29:05','2022-07-15 12:29:05'),(31,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(32,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:31:00','2022-07-15 12:31:02','2022-07-15 12:31:02'),(33,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(34,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:33:00','2022-07-15 12:33:02','2022-07-15 12:33:02'),(35,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:34:00','2022-07-15 12:34:02','2022-07-15 12:34:02'),(36,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:35:00','2022-07-15 12:35:01','2022-07-15 12:35:01'),(37,'catalog_product_frontend_actions_flush','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(38,'catalog_product_frontend_actions_flush','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:37:00',NULL,NULL),(39,'catalog_product_frontend_actions_flush','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:38:00',NULL,NULL),(40,'catalog_product_frontend_actions_flush','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:39:00',NULL,NULL),(41,'catalog_product_attribute_value_synchronize','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:02','2022-07-15 12:20:02'),(42,'catalog_product_attribute_value_synchronize','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:25:00','2022-07-15 12:25:02','2022-07-15 12:25:02'),(43,'catalog_product_attribute_value_synchronize','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(44,'catalog_product_attribute_value_synchronize','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:35:00','2022-07-15 12:35:01','2022-07-15 12:35:01'),(45,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:02','2022-07-15 12:20:02'),(46,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:21:00','2022-07-15 12:21:02','2022-07-15 12:21:02'),(47,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:22:00','2022-07-15 12:22:02','2022-07-15 12:22:02'),(48,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:23:00','2022-07-15 12:23:02','2022-07-15 12:23:02'),(49,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:24:00','2022-07-15 12:24:01','2022-07-15 12:24:01'),(50,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:25:00','2022-07-15 12:25:02','2022-07-15 12:25:02'),(51,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:26:00','2022-07-15 12:26:01','2022-07-15 12:26:01'),(52,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:27:00','2022-07-15 12:27:02','2022-07-15 12:27:02'),(53,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:28:00','2022-07-15 12:28:09','2022-07-15 12:28:09'),(54,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:29:00','2022-07-15 12:29:05','2022-07-15 12:29:05'),(55,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(56,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:31:00','2022-07-15 12:31:02','2022-07-15 12:31:02'),(57,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(58,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:33:00','2022-07-15 12:33:02','2022-07-15 12:33:02'),(59,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:34:00','2022-07-15 12:34:02','2022-07-15 12:34:02'),(60,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:35:00','2022-07-15 12:35:01','2022-07-15 12:35:01'),(61,'sales_grid_order_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(62,'sales_grid_order_async_insert','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:37:00',NULL,NULL),(63,'sales_grid_order_async_insert','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:38:00',NULL,NULL),(64,'sales_grid_order_async_insert','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:39:00',NULL,NULL),(65,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:03','2022-07-15 12:20:03'),(66,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:21:00','2022-07-15 12:21:02','2022-07-15 12:21:02'),(67,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:22:00','2022-07-15 12:22:02','2022-07-15 12:22:02'),(68,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:23:00','2022-07-15 12:23:02','2022-07-15 12:23:02'),(69,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:24:00','2022-07-15 12:24:01','2022-07-15 12:24:01'),(70,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:25:00','2022-07-15 12:25:02','2022-07-15 12:25:02'),(71,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:26:00','2022-07-15 12:26:01','2022-07-15 12:26:01'),(72,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:27:00','2022-07-15 12:27:02','2022-07-15 12:27:02'),(73,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:28:00','2022-07-15 12:28:09','2022-07-15 12:28:09'),(74,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:29:00','2022-07-15 12:29:05','2022-07-15 12:29:05'),(75,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(76,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:31:00','2022-07-15 12:31:02','2022-07-15 12:31:02'),(77,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(78,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:33:00','2022-07-15 12:33:02','2022-07-15 12:33:02'),(79,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:34:00','2022-07-15 12:34:02','2022-07-15 12:34:02'),(80,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:35:00','2022-07-15 12:35:01','2022-07-15 12:35:01'),(81,'sales_grid_order_invoice_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(82,'sales_grid_order_invoice_async_insert','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:37:00',NULL,NULL),(83,'sales_grid_order_invoice_async_insert','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:38:00',NULL,NULL),(84,'sales_grid_order_invoice_async_insert','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:39:00',NULL,NULL),(85,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:03','2022-07-15 12:20:03'),(86,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:21:00','2022-07-15 12:21:02','2022-07-15 12:21:02'),(87,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:22:00','2022-07-15 12:22:02','2022-07-15 12:22:02'),(88,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:23:00','2022-07-15 12:23:02','2022-07-15 12:23:02'),(89,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:24:00','2022-07-15 12:24:01','2022-07-15 12:24:01'),(90,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:25:00','2022-07-15 12:25:02','2022-07-15 12:25:02'),(91,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:26:00','2022-07-15 12:26:01','2022-07-15 12:26:01'),(92,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:27:00','2022-07-15 12:27:02','2022-07-15 12:27:02'),(93,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:28:00','2022-07-15 12:28:09','2022-07-15 12:28:09'),(94,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:29:00','2022-07-15 12:29:05','2022-07-15 12:29:05'),(95,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(96,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:31:00','2022-07-15 12:31:02','2022-07-15 12:31:02'),(97,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(98,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:33:00','2022-07-15 12:33:02','2022-07-15 12:33:02'),(99,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:34:00','2022-07-15 12:34:02','2022-07-15 12:34:02'),(100,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:35:00','2022-07-15 12:35:01','2022-07-15 12:35:01'),(101,'sales_grid_order_shipment_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(102,'sales_grid_order_shipment_async_insert','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:37:00',NULL,NULL),(103,'sales_grid_order_shipment_async_insert','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:38:00',NULL,NULL),(104,'sales_grid_order_shipment_async_insert','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:39:00',NULL,NULL),(105,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:03','2022-07-15 12:20:03'),(106,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:21:00','2022-07-15 12:21:02','2022-07-15 12:21:02'),(107,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:22:00','2022-07-15 12:22:02','2022-07-15 12:22:02'),(108,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:23:00','2022-07-15 12:23:02','2022-07-15 12:23:02'),(109,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:24:00','2022-07-15 12:24:01','2022-07-15 12:24:01'),(110,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:25:00','2022-07-15 12:25:02','2022-07-15 12:25:02'),(111,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:26:00','2022-07-15 12:26:01','2022-07-15 12:26:01'),(112,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:27:00','2022-07-15 12:27:02','2022-07-15 12:27:02'),(113,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:28:00','2022-07-15 12:28:09','2022-07-15 12:28:09'),(114,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:29:00','2022-07-15 12:29:05','2022-07-15 12:29:05'),(115,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(116,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:31:00','2022-07-15 12:31:02','2022-07-15 12:31:02'),(117,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(118,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:33:00','2022-07-15 12:33:02','2022-07-15 12:33:02'),(119,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:34:00','2022-07-15 12:34:02','2022-07-15 12:34:02'),(120,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:35:00','2022-07-15 12:35:01','2022-07-15 12:35:01'),(121,'sales_grid_order_creditmemo_async_insert','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(122,'sales_grid_order_creditmemo_async_insert','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:37:00',NULL,NULL),(123,'sales_grid_order_creditmemo_async_insert','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:38:00',NULL,NULL),(124,'sales_grid_order_creditmemo_async_insert','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:39:00',NULL,NULL),(125,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:03','2022-07-15 12:20:03'),(126,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:21:00','2022-07-15 12:21:02','2022-07-15 12:21:02'),(127,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:22:00','2022-07-15 12:22:02','2022-07-15 12:22:02'),(128,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:23:00','2022-07-15 12:23:02','2022-07-15 12:23:02'),(129,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:24:00','2022-07-15 12:24:01','2022-07-15 12:24:01'),(130,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:25:00','2022-07-15 12:25:02','2022-07-15 12:25:02'),(131,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:26:00','2022-07-15 12:26:01','2022-07-15 12:26:01'),(132,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:27:00','2022-07-15 12:27:02','2022-07-15 12:27:02'),(133,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:28:00','2022-07-15 12:28:09','2022-07-15 12:28:09'),(134,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:29:00','2022-07-15 12:29:05','2022-07-15 12:29:05'),(135,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(136,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:31:00','2022-07-15 12:31:02','2022-07-15 12:31:02'),(137,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(138,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:33:00','2022-07-15 12:33:02','2022-07-15 12:33:02'),(139,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:34:00','2022-07-15 12:34:02','2022-07-15 12:34:02'),(140,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:35:00','2022-07-15 12:35:01','2022-07-15 12:35:01'),(141,'sales_send_order_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(142,'sales_send_order_emails','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:37:00',NULL,NULL),(143,'sales_send_order_emails','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:38:00',NULL,NULL),(144,'sales_send_order_emails','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:39:00',NULL,NULL),(145,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:03','2022-07-15 12:20:03'),(146,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:21:00','2022-07-15 12:21:02','2022-07-15 12:21:02'),(147,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:22:00','2022-07-15 12:22:02','2022-07-15 12:22:02'),(148,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:23:00','2022-07-15 12:23:02','2022-07-15 12:23:02'),(149,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:24:00','2022-07-15 12:24:01','2022-07-15 12:24:01'),(150,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:25:00','2022-07-15 12:25:02','2022-07-15 12:25:02'),(151,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:26:00','2022-07-15 12:26:01','2022-07-15 12:26:01'),(152,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:27:00','2022-07-15 12:27:02','2022-07-15 12:27:02'),(153,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:28:00','2022-07-15 12:28:09','2022-07-15 12:28:09'),(154,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:29:00','2022-07-15 12:29:05','2022-07-15 12:29:05'),(155,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(156,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:31:00','2022-07-15 12:31:02','2022-07-15 12:31:02'),(157,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(158,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:33:00','2022-07-15 12:33:02','2022-07-15 12:33:02'),(159,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:34:00','2022-07-15 12:34:02','2022-07-15 12:34:02'),(160,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:35:00','2022-07-15 12:35:01','2022-07-15 12:35:02'),(161,'sales_send_order_invoice_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(162,'sales_send_order_invoice_emails','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:37:00',NULL,NULL),(163,'sales_send_order_invoice_emails','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:38:00',NULL,NULL),(164,'sales_send_order_invoice_emails','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:39:00',NULL,NULL),(165,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:03','2022-07-15 12:20:03'),(166,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:21:00','2022-07-15 12:21:02','2022-07-15 12:21:02'),(167,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:22:00','2022-07-15 12:22:02','2022-07-15 12:22:02'),(168,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:23:00','2022-07-15 12:23:02','2022-07-15 12:23:02'),(169,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:24:00','2022-07-15 12:24:01','2022-07-15 12:24:01'),(170,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:25:00','2022-07-15 12:25:02','2022-07-15 12:25:02'),(171,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:26:00','2022-07-15 12:26:01','2022-07-15 12:26:01'),(172,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:27:00','2022-07-15 12:27:02','2022-07-15 12:27:02'),(173,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:28:00','2022-07-15 12:28:09','2022-07-15 12:28:09'),(174,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:29:00','2022-07-15 12:29:05','2022-07-15 12:29:05'),(175,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(176,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:31:00','2022-07-15 12:31:02','2022-07-15 12:31:02'),(177,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(178,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:33:00','2022-07-15 12:33:02','2022-07-15 12:33:02'),(179,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:34:00','2022-07-15 12:34:02','2022-07-15 12:34:02'),(180,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:35:00','2022-07-15 12:35:02','2022-07-15 12:35:02'),(181,'sales_send_order_shipment_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(182,'sales_send_order_shipment_emails','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:37:00',NULL,NULL),(183,'sales_send_order_shipment_emails','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:38:00',NULL,NULL),(184,'sales_send_order_shipment_emails','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:39:00',NULL,NULL),(185,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:03','2022-07-15 12:20:03'),(186,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:21:00','2022-07-15 12:21:02','2022-07-15 12:21:02'),(187,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:22:00','2022-07-15 12:22:02','2022-07-15 12:22:02'),(188,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:23:00','2022-07-15 12:23:02','2022-07-15 12:23:02'),(189,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:24:00','2022-07-15 12:24:01','2022-07-15 12:24:01'),(190,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:25:00','2022-07-15 12:25:02','2022-07-15 12:25:02'),(191,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:26:00','2022-07-15 12:26:01','2022-07-15 12:26:01'),(192,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:27:00','2022-07-15 12:27:02','2022-07-15 12:27:02'),(193,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:28:00','2022-07-15 12:28:09','2022-07-15 12:28:09'),(194,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:29:00','2022-07-15 12:29:05','2022-07-15 12:29:05'),(195,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(196,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:31:00','2022-07-15 12:31:02','2022-07-15 12:31:02'),(197,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(198,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:33:00','2022-07-15 12:33:02','2022-07-15 12:33:02'),(199,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:34:00','2022-07-15 12:34:02','2022-07-15 12:34:02'),(200,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:35:00','2022-07-15 12:35:02','2022-07-15 12:35:02'),(201,'sales_send_order_creditmemo_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(202,'sales_send_order_creditmemo_emails','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:37:00',NULL,NULL),(203,'sales_send_order_creditmemo_emails','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:38:00',NULL,NULL),(204,'sales_send_order_creditmemo_emails','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:39:00',NULL,NULL),(205,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:03','2022-07-15 12:20:03'),(206,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:21:00','2022-07-15 12:21:02','2022-07-15 12:21:02'),(207,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:22:00','2022-07-15 12:22:02','2022-07-15 12:22:02'),(208,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:23:00','2022-07-15 12:23:02','2022-07-15 12:23:02'),(209,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:24:00','2022-07-15 12:24:01','2022-07-15 12:24:01'),(210,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:25:00','2022-07-15 12:25:02','2022-07-15 12:25:02'),(211,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:26:00','2022-07-15 12:26:02','2022-07-15 12:26:02'),(212,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:27:00','2022-07-15 12:27:02','2022-07-15 12:27:02'),(213,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:28:00','2022-07-15 12:28:09','2022-07-15 12:28:09'),(214,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:29:00','2022-07-15 12:29:05','2022-07-15 12:29:05'),(215,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(216,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:31:00','2022-07-15 12:31:02','2022-07-15 12:31:02'),(217,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(218,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:33:00','2022-07-15 12:33:02','2022-07-15 12:33:02'),(219,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:34:00','2022-07-15 12:34:02','2022-07-15 12:34:02'),(220,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:35:00','2022-07-15 12:35:02','2022-07-15 12:35:02'),(221,'outdated_authentication_failures_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(222,'outdated_authentication_failures_cleanup','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:37:00',NULL,NULL),(223,'outdated_authentication_failures_cleanup','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:38:00',NULL,NULL),(224,'outdated_authentication_failures_cleanup','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:39:00',NULL,NULL),(225,'captcha_delete_old_attempts','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(226,'captcha_delete_expired_images','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:03','2022-07-15 12:20:03'),(227,'captcha_delete_expired_images','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(228,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:03','2022-07-15 12:20:03'),(229,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:21:00','2022-07-15 12:21:02','2022-07-15 12:21:02'),(230,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:22:00','2022-07-15 12:22:02','2022-07-15 12:22:02'),(231,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:23:00','2022-07-15 12:23:02','2022-07-15 12:23:02'),(232,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:24:00','2022-07-15 12:24:01','2022-07-15 12:24:01'),(233,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:25:00','2022-07-15 12:25:02','2022-07-15 12:25:02'),(234,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:26:00','2022-07-15 12:26:02','2022-07-15 12:26:02'),(235,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:27:00','2022-07-15 12:27:02','2022-07-15 12:27:02'),(236,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:28:00','2022-07-15 12:28:09','2022-07-15 12:28:09'),(237,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:29:00','2022-07-15 12:29:05','2022-07-15 12:29:05'),(238,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(239,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:31:00','2022-07-15 12:31:02','2022-07-15 12:31:02'),(240,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(241,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:33:00','2022-07-15 12:33:02','2022-07-15 12:33:02'),(242,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:34:00','2022-07-15 12:34:02','2022-07-15 12:34:02'),(243,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:35:00','2022-07-15 12:35:02','2022-07-15 12:35:02'),(244,'inventory_in_store_pickup_sales_send_order_notified_emails','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(245,'inventory_in_store_pickup_sales_send_order_notified_emails','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:37:00',NULL,NULL),(246,'inventory_in_store_pickup_sales_send_order_notified_emails','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:38:00',NULL,NULL),(247,'inventory_in_store_pickup_sales_send_order_notified_emails','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:39:00',NULL,NULL),(248,'magento_newrelicreporting_cron','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:03','2022-07-15 12:20:03'),(249,'magento_newrelicreporting_cron','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:22:00','2022-07-15 12:22:02','2022-07-15 12:22:02'),(250,'magento_newrelicreporting_cron','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:24:00','2022-07-15 12:24:01','2022-07-15 12:24:01'),(251,'magento_newrelicreporting_cron','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:26:00','2022-07-15 12:26:02','2022-07-15 12:26:02'),(252,'magento_newrelicreporting_cron','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:28:00','2022-07-15 12:28:09','2022-07-15 12:28:09'),(253,'magento_newrelicreporting_cron','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(254,'magento_newrelicreporting_cron','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(255,'magento_newrelicreporting_cron','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:34:00','2022-07-15 12:34:02','2022-07-15 12:34:02'),(256,'magento_newrelicreporting_cron','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(257,'magento_newrelicreporting_cron','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:38:00',NULL,NULL),(258,'newsletter_send_all','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:03','2022-07-15 12:20:03'),(259,'newsletter_send_all','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:25:00','2022-07-15 12:25:02','2022-07-15 12:25:02'),(260,'newsletter_send_all','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(261,'newsletter_send_all','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:35:00','2022-07-15 12:35:02','2022-07-15 12:35:02'),(262,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:03','2022-07-15 12:20:03'),(263,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:21:00','2022-07-15 12:21:02','2022-07-15 12:21:02'),(264,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:22:00','2022-07-15 12:22:02','2022-07-15 12:22:02'),(265,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:23:00','2022-07-15 12:23:02','2022-07-15 12:23:02'),(266,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:24:00','2022-07-15 12:24:01','2022-07-15 12:24:01'),(267,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:25:00','2022-07-15 12:25:02','2022-07-15 12:25:02'),(268,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:26:00','2022-07-15 12:26:02','2022-07-15 12:26:02'),(269,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:27:00','2022-07-15 12:27:02','2022-07-15 12:27:02'),(270,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:28:00','2022-07-15 12:28:09','2022-07-15 12:28:09'),(271,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:29:00','2022-07-15 12:29:05','2022-07-15 12:29:05'),(272,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(273,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:31:00','2022-07-15 12:31:02','2022-07-15 12:31:02'),(274,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(275,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:33:00','2022-07-15 12:33:02','2022-07-15 12:33:02'),(276,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:34:00','2022-07-15 12:34:02','2022-07-15 12:34:02'),(277,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:35:00','2022-07-15 12:35:02','2022-07-15 12:35:02'),(278,'bulk_cleanup','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(279,'bulk_cleanup','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:37:00',NULL,NULL),(280,'bulk_cleanup','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:38:00',NULL,NULL),(281,'bulk_cleanup','pending',NULL,'2022-07-15 12:20:02','2022-07-15 12:39:00',NULL,NULL),(282,'bulk_mark_incomplete_operations_as_failed','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:20:00','2022-07-15 12:20:03','2022-07-15 12:20:03'),(283,'bulk_mark_incomplete_operations_as_failed','success',NULL,'2022-07-15 12:20:02','2022-07-15 12:30:00','2022-07-15 12:30:02','2022-07-15 12:30:02'),(284,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:20:03','2022-07-15 12:20:00','2022-07-15 12:20:03','2022-07-15 12:20:04'),(285,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:20:03','2022-07-15 12:21:00','2022-07-15 12:21:02','2022-07-15 12:21:02'),(286,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:20:03','2022-07-15 12:22:00','2022-07-15 12:22:03','2022-07-15 12:22:03'),(287,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:20:03','2022-07-15 12:23:00','2022-07-15 12:23:02','2022-07-15 12:23:02'),(288,'indexer_update_all_views','success',NULL,'2022-07-15 12:20:03','2022-07-15 12:20:00','2022-07-15 12:20:04','2022-07-15 12:20:04'),(289,'indexer_update_all_views','success',NULL,'2022-07-15 12:20:03','2022-07-15 12:21:00','2022-07-15 12:21:02','2022-07-15 12:21:02'),(290,'indexer_update_all_views','success',NULL,'2022-07-15 12:20:03','2022-07-15 12:22:00','2022-07-15 12:22:03','2022-07-15 12:22:03'),(291,'indexer_update_all_views','success',NULL,'2022-07-15 12:20:03','2022-07-15 12:23:00','2022-07-15 12:23:02','2022-07-15 12:23:03'),(292,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:20:00','2022-07-15 12:20:03',NULL),(293,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:21:00','2022-07-15 12:21:02',NULL),(294,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:22:00','2022-07-15 12:22:03',NULL),(295,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:23:00','2022-07-15 12:23:02',NULL),(296,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:24:00','2022-07-15 12:24:02',NULL),(297,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:25:00','2022-07-15 12:25:03',NULL),(298,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:26:00','2022-07-15 12:26:02',NULL),(299,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:27:00','2022-07-15 12:27:03',NULL),(300,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:28:00','2022-07-15 12:28:15',NULL),(301,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:29:00','2022-07-15 12:29:06',NULL),(302,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:30:00','2022-07-15 12:30:03',NULL),(303,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:31:00','2022-07-15 12:31:02',NULL),(304,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:32:00','2022-07-15 12:32:03',NULL),(305,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:33:00','2022-07-15 12:33:03',NULL),(306,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:34:00','2022-07-15 12:34:02',NULL),(307,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:35:00','2022-07-15 12:35:02',NULL),(308,'consumers_runner','error','Deprecated Functionality: trim(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/vendor/magento/framework-amqp/Config.php on line 143','2022-07-15 12:20:03','2022-07-15 12:36:00','2022-07-15 12:36:02',NULL),(309,'consumers_runner','pending',NULL,'2022-07-15 12:20:03','2022-07-15 12:37:00',NULL,NULL),(310,'consumers_runner','pending',NULL,'2022-07-15 12:20:03','2022-07-15 12:38:00',NULL,NULL),(311,'consumers_runner','pending',NULL,'2022-07-15 12:20:03','2022-07-15 12:39:00',NULL,NULL),(312,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:22:03','2022-07-15 12:24:00','2022-07-15 12:24:02','2022-07-15 12:24:02'),(313,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:22:03','2022-07-15 12:25:00','2022-07-15 12:25:03','2022-07-15 12:25:03'),(314,'indexer_update_all_views','success',NULL,'2022-07-15 12:22:03','2022-07-15 12:24:00','2022-07-15 12:24:02','2022-07-15 12:24:02'),(315,'indexer_update_all_views','success',NULL,'2022-07-15 12:22:03','2022-07-15 12:25:00','2022-07-15 12:25:03','2022-07-15 12:25:03'),(316,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:24:02','2022-07-15 12:26:00','2022-07-15 12:26:02','2022-07-15 12:26:02'),(317,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:24:02','2022-07-15 12:27:00','2022-07-15 12:27:03','2022-07-15 12:27:03'),(318,'indexer_update_all_views','success',NULL,'2022-07-15 12:24:02','2022-07-15 12:26:00','2022-07-15 12:26:02','2022-07-15 12:26:02'),(319,'indexer_update_all_views','success',NULL,'2022-07-15 12:24:02','2022-07-15 12:27:00','2022-07-15 12:27:03','2022-07-15 12:27:03'),(320,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:25:03','2022-07-15 12:28:00','2022-07-15 12:28:15','2022-07-15 12:28:15'),(321,'indexer_update_all_views','success',NULL,'2022-07-15 12:25:03','2022-07-15 12:28:00','2022-07-15 12:28:15','2022-07-15 12:28:15'),(322,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:27:03','2022-07-15 12:29:00','2022-07-15 12:29:06','2022-07-15 12:29:06'),(323,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:27:03','2022-07-15 12:30:00','2022-07-15 12:30:03','2022-07-15 12:30:03'),(324,'indexer_update_all_views','success',NULL,'2022-07-15 12:27:03','2022-07-15 12:29:00','2022-07-15 12:29:06','2022-07-15 12:29:06'),(325,'indexer_update_all_views','success',NULL,'2022-07-15 12:27:03','2022-07-15 12:30:00','2022-07-15 12:30:03','2022-07-15 12:30:03'),(326,'catalog_product_outdated_price_values_cleanup','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:40:00',NULL,NULL),(327,'catalog_product_outdated_price_values_cleanup','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:41:00',NULL,NULL),(328,'catalog_product_outdated_price_values_cleanup','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:42:00',NULL,NULL),(329,'catalog_product_outdated_price_values_cleanup','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:43:00',NULL,NULL),(330,'catalog_product_outdated_price_values_cleanup','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:44:00',NULL,NULL),(331,'catalog_product_outdated_price_values_cleanup','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:45:00',NULL,NULL),(332,'catalog_product_outdated_price_values_cleanup','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:46:00',NULL,NULL),(333,'catalog_product_outdated_price_values_cleanup','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:47:00',NULL,NULL),(334,'catalog_product_frontend_actions_flush','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:40:00',NULL,NULL),(335,'catalog_product_frontend_actions_flush','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:41:00',NULL,NULL),(336,'catalog_product_frontend_actions_flush','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:42:00',NULL,NULL),(337,'catalog_product_frontend_actions_flush','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:43:00',NULL,NULL),(338,'catalog_product_frontend_actions_flush','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:44:00',NULL,NULL),(339,'catalog_product_frontend_actions_flush','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:45:00',NULL,NULL),(340,'catalog_product_frontend_actions_flush','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:46:00',NULL,NULL),(341,'catalog_product_frontend_actions_flush','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:47:00',NULL,NULL),(342,'catalog_product_attribute_value_synchronize','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:40:00',NULL,NULL),(343,'catalog_product_attribute_value_synchronize','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:45:00',NULL,NULL),(344,'sales_grid_order_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:40:00',NULL,NULL),(345,'sales_grid_order_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:41:00',NULL,NULL),(346,'sales_grid_order_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:42:00',NULL,NULL),(347,'sales_grid_order_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:43:00',NULL,NULL),(348,'sales_grid_order_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:44:00',NULL,NULL),(349,'sales_grid_order_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:45:00',NULL,NULL),(350,'sales_grid_order_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:46:00',NULL,NULL),(351,'sales_grid_order_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:47:00',NULL,NULL),(352,'sales_grid_order_invoice_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:40:00',NULL,NULL),(353,'sales_grid_order_invoice_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:41:00',NULL,NULL),(354,'sales_grid_order_invoice_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:42:00',NULL,NULL),(355,'sales_grid_order_invoice_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:43:00',NULL,NULL),(356,'sales_grid_order_invoice_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:44:00',NULL,NULL),(357,'sales_grid_order_invoice_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:45:00',NULL,NULL),(358,'sales_grid_order_invoice_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:46:00',NULL,NULL),(359,'sales_grid_order_invoice_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:47:00',NULL,NULL),(360,'sales_grid_order_shipment_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:40:00',NULL,NULL),(361,'sales_grid_order_shipment_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:41:00',NULL,NULL),(362,'sales_grid_order_shipment_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:42:00',NULL,NULL),(363,'sales_grid_order_shipment_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:43:00',NULL,NULL),(364,'sales_grid_order_shipment_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:44:00',NULL,NULL),(365,'sales_grid_order_shipment_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:45:00',NULL,NULL),(366,'sales_grid_order_shipment_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:46:00',NULL,NULL),(367,'sales_grid_order_shipment_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:47:00',NULL,NULL),(368,'sales_grid_order_creditmemo_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:40:00',NULL,NULL),(369,'sales_grid_order_creditmemo_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:41:00',NULL,NULL),(370,'sales_grid_order_creditmemo_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:42:00',NULL,NULL),(371,'sales_grid_order_creditmemo_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:43:00',NULL,NULL),(372,'sales_grid_order_creditmemo_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:44:00',NULL,NULL),(373,'sales_grid_order_creditmemo_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:45:00',NULL,NULL),(374,'sales_grid_order_creditmemo_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:46:00',NULL,NULL),(375,'sales_grid_order_creditmemo_async_insert','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:47:00',NULL,NULL),(376,'sales_send_order_emails','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:40:00',NULL,NULL),(377,'sales_send_order_emails','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:41:00',NULL,NULL),(378,'sales_send_order_emails','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:42:00',NULL,NULL),(379,'sales_send_order_emails','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:43:00',NULL,NULL),(380,'sales_send_order_emails','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:44:00',NULL,NULL),(381,'sales_send_order_emails','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:45:00',NULL,NULL),(382,'sales_send_order_emails','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:46:00',NULL,NULL),(383,'sales_send_order_emails','pending',NULL,'2022-07-15 12:28:08','2022-07-15 12:47:00',NULL,NULL),(384,'sales_send_order_invoice_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:40:00',NULL,NULL),(385,'sales_send_order_invoice_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:41:00',NULL,NULL),(386,'sales_send_order_invoice_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:42:00',NULL,NULL),(387,'sales_send_order_invoice_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:43:00',NULL,NULL),(388,'sales_send_order_invoice_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:44:00',NULL,NULL),(389,'sales_send_order_invoice_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:45:00',NULL,NULL),(390,'sales_send_order_invoice_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:46:00',NULL,NULL),(391,'sales_send_order_invoice_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:47:00',NULL,NULL),(392,'sales_send_order_shipment_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:40:00',NULL,NULL),(393,'sales_send_order_shipment_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:41:00',NULL,NULL),(394,'sales_send_order_shipment_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:42:00',NULL,NULL),(395,'sales_send_order_shipment_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:43:00',NULL,NULL),(396,'sales_send_order_shipment_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:44:00',NULL,NULL),(397,'sales_send_order_shipment_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:45:00',NULL,NULL),(398,'sales_send_order_shipment_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:46:00',NULL,NULL),(399,'sales_send_order_shipment_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:47:00',NULL,NULL),(400,'sales_send_order_creditmemo_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:40:00',NULL,NULL),(401,'sales_send_order_creditmemo_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:41:00',NULL,NULL),(402,'sales_send_order_creditmemo_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:42:00',NULL,NULL),(403,'sales_send_order_creditmemo_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:43:00',NULL,NULL),(404,'sales_send_order_creditmemo_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:44:00',NULL,NULL),(405,'sales_send_order_creditmemo_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:45:00',NULL,NULL),(406,'sales_send_order_creditmemo_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:46:00',NULL,NULL),(407,'sales_send_order_creditmemo_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:47:00',NULL,NULL),(408,'outdated_authentication_failures_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:40:00',NULL,NULL),(409,'outdated_authentication_failures_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:41:00',NULL,NULL),(410,'outdated_authentication_failures_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:42:00',NULL,NULL),(411,'outdated_authentication_failures_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:43:00',NULL,NULL),(412,'outdated_authentication_failures_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:44:00',NULL,NULL),(413,'outdated_authentication_failures_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:45:00',NULL,NULL),(414,'outdated_authentication_failures_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:46:00',NULL,NULL),(415,'outdated_authentication_failures_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:47:00',NULL,NULL),(416,'captcha_delete_expired_images','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:40:00',NULL,NULL),(417,'inventory_in_store_pickup_sales_send_order_notified_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:40:00',NULL,NULL),(418,'inventory_in_store_pickup_sales_send_order_notified_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:41:00',NULL,NULL),(419,'inventory_in_store_pickup_sales_send_order_notified_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:42:00',NULL,NULL),(420,'inventory_in_store_pickup_sales_send_order_notified_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:43:00',NULL,NULL),(421,'inventory_in_store_pickup_sales_send_order_notified_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:44:00',NULL,NULL),(422,'inventory_in_store_pickup_sales_send_order_notified_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:45:00',NULL,NULL),(423,'inventory_in_store_pickup_sales_send_order_notified_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:46:00',NULL,NULL),(424,'inventory_in_store_pickup_sales_send_order_notified_emails','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:47:00',NULL,NULL),(425,'magento_newrelicreporting_cron','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:40:00',NULL,NULL),(426,'magento_newrelicreporting_cron','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:42:00',NULL,NULL),(427,'magento_newrelicreporting_cron','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:44:00',NULL,NULL),(428,'magento_newrelicreporting_cron','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:46:00',NULL,NULL),(429,'newsletter_send_all','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:40:00',NULL,NULL),(430,'newsletter_send_all','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:45:00',NULL,NULL),(431,'bulk_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:40:00',NULL,NULL),(432,'bulk_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:41:00',NULL,NULL),(433,'bulk_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:42:00',NULL,NULL),(434,'bulk_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:43:00',NULL,NULL),(435,'bulk_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:44:00',NULL,NULL),(436,'bulk_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:45:00',NULL,NULL),(437,'bulk_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:46:00',NULL,NULL),(438,'bulk_cleanup','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:47:00',NULL,NULL),(439,'bulk_mark_incomplete_operations_as_failed','pending',NULL,'2022-07-15 12:28:09','2022-07-15 12:40:00',NULL,NULL),(440,'consumers_runner','pending',NULL,'2022-07-15 12:28:15','2022-07-15 12:40:00',NULL,NULL),(441,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:28:15','2022-07-15 12:31:00','2022-07-15 12:31:02','2022-07-15 12:31:02'),(442,'consumers_runner','pending',NULL,'2022-07-15 12:28:15','2022-07-15 12:41:00',NULL,NULL),(443,'indexer_update_all_views','success',NULL,'2022-07-15 12:28:15','2022-07-15 12:31:00','2022-07-15 12:31:02','2022-07-15 12:31:02'),(444,'consumers_runner','pending',NULL,'2022-07-15 12:28:15','2022-07-15 12:42:00',NULL,NULL),(445,'consumers_runner','pending',NULL,'2022-07-15 12:28:15','2022-07-15 12:43:00',NULL,NULL),(446,'consumers_runner','pending',NULL,'2022-07-15 12:28:15','2022-07-15 12:44:00',NULL,NULL),(447,'consumers_runner','pending',NULL,'2022-07-15 12:28:15','2022-07-15 12:45:00',NULL,NULL),(448,'consumers_runner','pending',NULL,'2022-07-15 12:28:15','2022-07-15 12:46:00',NULL,NULL),(449,'consumers_runner','pending',NULL,'2022-07-15 12:28:15','2022-07-15 12:47:00',NULL,NULL),(450,'catalog_product_outdated_price_values_cleanup','pending',NULL,'2022-07-15 12:29:04','2022-07-15 12:48:00',NULL,NULL),(451,'catalog_product_frontend_actions_flush','pending',NULL,'2022-07-15 12:29:04','2022-07-15 12:48:00',NULL,NULL),(452,'sales_grid_order_async_insert','pending',NULL,'2022-07-15 12:29:04','2022-07-15 12:48:00',NULL,NULL),(453,'sales_grid_order_invoice_async_insert','pending',NULL,'2022-07-15 12:29:04','2022-07-15 12:48:00',NULL,NULL),(454,'sales_grid_order_shipment_async_insert','pending',NULL,'2022-07-15 12:29:04','2022-07-15 12:48:00',NULL,NULL),(455,'sales_grid_order_creditmemo_async_insert','pending',NULL,'2022-07-15 12:29:04','2022-07-15 12:48:00',NULL,NULL),(456,'sales_send_order_emails','pending',NULL,'2022-07-15 12:29:04','2022-07-15 12:48:00',NULL,NULL),(457,'sales_send_order_invoice_emails','pending',NULL,'2022-07-15 12:29:04','2022-07-15 12:48:00',NULL,NULL),(458,'sales_send_order_shipment_emails','pending',NULL,'2022-07-15 12:29:04','2022-07-15 12:48:00',NULL,NULL),(459,'sales_send_order_creditmemo_emails','pending',NULL,'2022-07-15 12:29:04','2022-07-15 12:48:00',NULL,NULL),(460,'outdated_authentication_failures_cleanup','pending',NULL,'2022-07-15 12:29:05','2022-07-15 12:48:00',NULL,NULL),(461,'inventory_in_store_pickup_sales_send_order_notified_emails','pending',NULL,'2022-07-15 12:29:05','2022-07-15 12:48:00',NULL,NULL),(462,'magento_newrelicreporting_cron','pending',NULL,'2022-07-15 12:29:05','2022-07-15 12:48:00',NULL,NULL),(463,'bulk_cleanup','pending',NULL,'2022-07-15 12:29:05','2022-07-15 12:48:00',NULL,NULL),(464,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:29:06','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(465,'indexer_update_all_views','success',NULL,'2022-07-15 12:29:06','2022-07-15 12:32:00','2022-07-15 12:32:03','2022-07-15 12:32:03'),(466,'consumers_runner','pending',NULL,'2022-07-15 12:29:06','2022-07-15 12:48:00',NULL,NULL),(467,'catalog_product_outdated_price_values_cleanup','pending',NULL,'2022-07-15 12:30:02','2022-07-15 12:49:00',NULL,NULL),(468,'catalog_product_frontend_actions_flush','pending',NULL,'2022-07-15 12:30:02','2022-07-15 12:49:00',NULL,NULL),(469,'sales_grid_order_async_insert','pending',NULL,'2022-07-15 12:30:02','2022-07-15 12:49:00',NULL,NULL),(470,'sales_grid_order_invoice_async_insert','pending',NULL,'2022-07-15 12:30:02','2022-07-15 12:49:00',NULL,NULL),(471,'sales_grid_order_shipment_async_insert','pending',NULL,'2022-07-15 12:30:02','2022-07-15 12:49:00',NULL,NULL),(472,'sales_grid_order_creditmemo_async_insert','pending',NULL,'2022-07-15 12:30:02','2022-07-15 12:49:00',NULL,NULL),(473,'sales_send_order_emails','pending',NULL,'2022-07-15 12:30:02','2022-07-15 12:49:00',NULL,NULL),(474,'sales_send_order_invoice_emails','pending',NULL,'2022-07-15 12:30:02','2022-07-15 12:49:00',NULL,NULL),(475,'sales_send_order_shipment_emails','pending',NULL,'2022-07-15 12:30:02','2022-07-15 12:49:00',NULL,NULL),(476,'sales_send_order_creditmemo_emails','pending',NULL,'2022-07-15 12:30:02','2022-07-15 12:49:00',NULL,NULL),(477,'outdated_authentication_failures_cleanup','pending',NULL,'2022-07-15 12:30:02','2022-07-15 12:49:00',NULL,NULL),(478,'inventory_in_store_pickup_sales_send_order_notified_emails','pending',NULL,'2022-07-15 12:30:02','2022-07-15 12:49:00',NULL,NULL),(479,'bulk_cleanup','pending',NULL,'2022-07-15 12:30:02','2022-07-15 12:49:00',NULL,NULL),(480,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:31:02','2022-07-15 12:33:00','2022-07-15 12:33:03','2022-07-15 12:33:03'),(481,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:31:02','2022-07-15 12:34:00','2022-07-15 12:34:02','2022-07-15 12:34:02'),(482,'indexer_update_all_views','success',NULL,'2022-07-15 12:31:02','2022-07-15 12:33:00','2022-07-15 12:33:03','2022-07-15 12:33:03'),(483,'indexer_update_all_views','success',NULL,'2022-07-15 12:31:02','2022-07-15 12:34:00','2022-07-15 12:34:03','2022-07-15 12:34:03'),(484,'catalog_product_outdated_price_values_cleanup','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:50:00',NULL,NULL),(485,'catalog_product_outdated_price_values_cleanup','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:51:00',NULL,NULL),(486,'catalog_product_frontend_actions_flush','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:50:00',NULL,NULL),(487,'catalog_product_frontend_actions_flush','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:51:00',NULL,NULL),(488,'catalog_product_attribute_value_synchronize','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:50:00',NULL,NULL),(489,'sales_grid_order_async_insert','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:50:00',NULL,NULL),(490,'sales_grid_order_async_insert','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:51:00',NULL,NULL),(491,'sales_grid_order_invoice_async_insert','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:50:00',NULL,NULL),(492,'sales_grid_order_invoice_async_insert','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:51:00',NULL,NULL),(493,'sales_grid_order_shipment_async_insert','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:50:00',NULL,NULL),(494,'sales_grid_order_shipment_async_insert','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:51:00',NULL,NULL),(495,'sales_grid_order_creditmemo_async_insert','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:50:00',NULL,NULL),(496,'sales_grid_order_creditmemo_async_insert','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:51:00',NULL,NULL),(497,'sales_send_order_emails','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:50:00',NULL,NULL),(498,'sales_send_order_emails','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:51:00',NULL,NULL),(499,'sales_send_order_invoice_emails','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:50:00',NULL,NULL),(500,'sales_send_order_invoice_emails','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:51:00',NULL,NULL),(501,'sales_send_order_shipment_emails','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:50:00',NULL,NULL),(502,'sales_send_order_shipment_emails','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:51:00',NULL,NULL),(503,'sales_send_order_creditmemo_emails','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:50:00',NULL,NULL),(504,'sales_send_order_creditmemo_emails','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:51:00',NULL,NULL),(505,'outdated_authentication_failures_cleanup','pending',NULL,'2022-07-15 12:32:02','2022-07-15 12:50:00',NULL,NULL),(506,'outdated_authentication_failures_cleanup','pending',NULL,'2022-07-15 12:32:03','2022-07-15 12:51:00',NULL,NULL),(507,'captcha_delete_expired_images','pending',NULL,'2022-07-15 12:32:03','2022-07-15 12:50:00',NULL,NULL),(508,'inventory_in_store_pickup_sales_send_order_notified_emails','pending',NULL,'2022-07-15 12:32:03','2022-07-15 12:50:00',NULL,NULL),(509,'inventory_in_store_pickup_sales_send_order_notified_emails','pending',NULL,'2022-07-15 12:32:03','2022-07-15 12:51:00',NULL,NULL),(510,'magento_newrelicreporting_cron','pending',NULL,'2022-07-15 12:32:03','2022-07-15 12:50:00',NULL,NULL),(511,'newsletter_send_all','pending',NULL,'2022-07-15 12:32:03','2022-07-15 12:50:00',NULL,NULL),(512,'bulk_cleanup','pending',NULL,'2022-07-15 12:32:03','2022-07-15 12:50:00',NULL,NULL),(513,'bulk_cleanup','pending',NULL,'2022-07-15 12:32:03','2022-07-15 12:51:00',NULL,NULL),(514,'bulk_mark_incomplete_operations_as_failed','pending',NULL,'2022-07-15 12:32:03','2022-07-15 12:50:00',NULL,NULL),(515,'consumers_runner','pending',NULL,'2022-07-15 12:32:03','2022-07-15 12:49:00',NULL,NULL),(516,'consumers_runner','pending',NULL,'2022-07-15 12:32:03','2022-07-15 12:50:00',NULL,NULL),(517,'consumers_runner','pending',NULL,'2022-07-15 12:32:03','2022-07-15 12:51:00',NULL,NULL),(518,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:32:03','2022-07-15 12:35:00','2022-07-15 12:35:02','2022-07-15 12:35:02'),(519,'indexer_update_all_views','success',NULL,'2022-07-15 12:32:03','2022-07-15 12:35:00','2022-07-15 12:35:02','2022-07-15 12:35:02'),(520,'indexer_reindex_all_invalid','success',NULL,'2022-07-15 12:33:03','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(521,'indexer_update_all_views','success',NULL,'2022-07-15 12:33:03','2022-07-15 12:36:00','2022-07-15 12:36:02','2022-07-15 12:36:02'),(522,'indexer_reindex_all_invalid','pending',NULL,'2022-07-15 12:35:02','2022-07-15 12:37:00',NULL,NULL),(523,'indexer_reindex_all_invalid','pending',NULL,'2022-07-15 12:35:02','2022-07-15 12:38:00',NULL,NULL),(524,'indexer_update_all_views','pending',NULL,'2022-07-15 12:35:02','2022-07-15 12:37:00',NULL,NULL),(525,'indexer_update_all_views','pending',NULL,'2022-07-15 12:35:02','2022-07-15 12:38:00',NULL,NULL),(526,'indexer_reindex_all_invalid','pending',NULL,'2022-07-15 12:36:02','2022-07-15 12:39:00',NULL,NULL),(527,'indexer_update_all_views','pending',NULL,'2022-07-15 12:36:02','2022-07-15 12:39:00',NULL,NULL);
 /*!40000 ALTER TABLE `cron_schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4002,6 +5214,29 @@ CREATE TABLE `customer_address_entity_varchar` (
 LOCK TABLES `customer_address_entity_varchar` WRITE;
 /*!40000 ALTER TABLE `customer_address_entity_varchar` DISABLE KEYS */;
 /*!40000 ALTER TABLE `customer_address_entity_varchar` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customer_dummy_cl`
+--
+
+DROP TABLE IF EXISTS `customer_dummy_cl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer_dummy_cl` (
+  `version_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Version ID',
+  `entity_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Entity ID',
+  PRIMARY KEY (`version_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='customer_dummy_cl';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer_dummy_cl`
+--
+
+LOCK TABLES `customer_dummy_cl` WRITE;
+/*!40000 ALTER TABLE `customer_dummy_cl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customer_dummy_cl` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -4491,6 +5726,29 @@ LOCK TABLES `design_change` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `design_config_dummy_cl`
+--
+
+DROP TABLE IF EXISTS `design_config_dummy_cl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `design_config_dummy_cl` (
+  `version_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Version ID',
+  `entity_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Entity ID',
+  PRIMARY KEY (`version_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='design_config_dummy_cl';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `design_config_dummy_cl`
+--
+
+LOCK TABLES `design_config_dummy_cl` WRITE;
+/*!40000 ALTER TABLE `design_config_dummy_cl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `design_config_dummy_cl` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `design_config_grid_flat`
 --
 
@@ -4909,7 +6167,7 @@ CREATE TABLE `eav_attribute` (
   UNIQUE KEY `EAV_ATTRIBUTE_ENTITY_TYPE_ID_ATTRIBUTE_CODE` (`entity_type_id`,`attribute_code`),
   KEY `EAV_ATTRIBUTE_FRONTEND_INPUT_ENTITY_TYPE_ID_IS_USER_DEFINED` (`frontend_input`,`entity_type_id`,`is_user_defined`),
   CONSTRAINT `EAV_ATTRIBUTE_ENTITY_TYPE_ID_EAV_ENTITY_TYPE_ENTITY_TYPE_ID` FOREIGN KEY (`entity_type_id`) REFERENCES `eav_entity_type` (`entity_type_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8 COMMENT='Eav Attribute';
+) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8 COMMENT='Eav Attribute';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4918,7 +6176,7 @@ CREATE TABLE `eav_attribute` (
 
 LOCK TABLES `eav_attribute` WRITE;
 /*!40000 ALTER TABLE `eav_attribute` DISABLE KEYS */;
-INSERT INTO `eav_attribute` VALUES (1,1,'website_id',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Backend\\Website','static',NULL,NULL,'select','Associate to Website',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Source\\Website',1,0,NULL,0,NULL),(2,1,'store_id',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Backend\\Store','static',NULL,NULL,'select','Create In',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Source\\Store',1,0,NULL,0,NULL),(3,1,'created_in',NULL,NULL,'static',NULL,NULL,'text','Created From',NULL,NULL,0,0,NULL,0,NULL),(4,1,'prefix',NULL,NULL,'static',NULL,NULL,'text','Name Prefix',NULL,NULL,0,0,NULL,0,NULL),(5,1,'firstname',NULL,NULL,'static',NULL,NULL,'text','First Name',NULL,NULL,1,0,NULL,0,NULL),(6,1,'middlename',NULL,NULL,'static',NULL,NULL,'text','Middle Name/Initial',NULL,NULL,0,0,NULL,0,NULL),(7,1,'lastname',NULL,NULL,'static',NULL,NULL,'text','Last Name',NULL,NULL,1,0,NULL,0,NULL),(8,1,'suffix',NULL,NULL,'static',NULL,NULL,'text','Name Suffix',NULL,NULL,0,0,NULL,0,NULL),(9,1,'email',NULL,NULL,'static',NULL,NULL,'text','Email',NULL,NULL,1,0,NULL,0,NULL),(10,1,'group_id',NULL,NULL,'static',NULL,NULL,'select','Group',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Source\\Group',1,0,NULL,0,NULL),(11,1,'dob',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Backend\\Datetime','static',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Frontend\\Datetime','date','Date of Birth',NULL,NULL,0,0,NULL,0,NULL),(12,1,'password_hash',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Backend\\Password','static',NULL,NULL,'hidden',NULL,NULL,NULL,0,0,NULL,0,NULL),(13,1,'rp_token',NULL,NULL,'static',NULL,NULL,'hidden',NULL,NULL,NULL,0,0,NULL,0,NULL),(14,1,'rp_token_created_at',NULL,NULL,'static',NULL,NULL,'date',NULL,NULL,NULL,0,0,NULL,0,NULL),(15,1,'default_billing',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Backend\\Billing','static',NULL,NULL,'text','Default Billing Address',NULL,NULL,0,0,NULL,0,NULL),(16,1,'default_shipping',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Backend\\Shipping','static',NULL,NULL,'text','Default Shipping Address',NULL,NULL,0,0,NULL,0,NULL),(17,1,'taxvat',NULL,NULL,'static',NULL,NULL,'text','Tax/VAT Number',NULL,NULL,0,0,NULL,0,NULL),(18,1,'confirmation',NULL,NULL,'static',NULL,NULL,'text','Is Confirmed',NULL,NULL,0,0,NULL,0,NULL),(19,1,'created_at',NULL,NULL,'static',NULL,NULL,'date','Created At',NULL,NULL,0,0,NULL,0,NULL),(20,1,'gender',NULL,NULL,'static',NULL,NULL,'select','Gender',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Table',0,0,NULL,0,NULL),(21,1,'disable_auto_group_change','Magento\\Customer\\Model\\Attribute','Magento\\Customer\\Model\\Attribute\\Backend\\Data\\Boolean','static',NULL,NULL,'boolean','Disable Automatic Group Change Based on VAT ID',NULL,NULL,0,0,NULL,0,NULL),(22,2,'prefix',NULL,NULL,'static',NULL,NULL,'text','Name Prefix',NULL,NULL,0,0,NULL,0,NULL),(23,2,'firstname',NULL,NULL,'static',NULL,NULL,'text','First Name',NULL,NULL,1,0,NULL,0,NULL),(24,2,'middlename',NULL,NULL,'static',NULL,NULL,'text','Middle Name/Initial',NULL,NULL,0,0,NULL,0,NULL),(25,2,'lastname',NULL,NULL,'static',NULL,NULL,'text','Last Name',NULL,NULL,1,0,NULL,0,NULL),(26,2,'suffix',NULL,NULL,'static',NULL,NULL,'text','Name Suffix',NULL,NULL,0,0,NULL,0,NULL),(27,2,'company',NULL,NULL,'static',NULL,NULL,'text','Company',NULL,NULL,0,0,NULL,0,NULL),(28,2,'street',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Backend\\DefaultBackend','static',NULL,NULL,'multiline','Street Address',NULL,NULL,1,0,NULL,0,NULL),(29,2,'city',NULL,NULL,'static',NULL,NULL,'text','City',NULL,NULL,1,0,NULL,0,NULL),(30,2,'country_id',NULL,NULL,'static',NULL,NULL,'select','Country',NULL,'Magento\\Customer\\Model\\ResourceModel\\Address\\Attribute\\Source\\Country',1,0,NULL,0,NULL),(31,2,'region',NULL,'Magento\\Customer\\Model\\ResourceModel\\Address\\Attribute\\Backend\\Region','static',NULL,NULL,'text','State/Province',NULL,NULL,0,0,NULL,0,NULL),(32,2,'region_id',NULL,NULL,'static',NULL,NULL,'hidden','State/Province',NULL,'Magento\\Customer\\Model\\ResourceModel\\Address\\Attribute\\Source\\Region',0,0,NULL,0,NULL),(33,2,'postcode',NULL,NULL,'static',NULL,NULL,'text','Zip/Postal Code',NULL,NULL,0,0,NULL,0,NULL),(34,2,'telephone',NULL,NULL,'static',NULL,NULL,'text','Phone Number',NULL,NULL,1,0,NULL,0,NULL),(35,2,'fax',NULL,NULL,'static',NULL,NULL,'text','Fax',NULL,NULL,0,0,NULL,0,NULL),(36,2,'vat_id','Magento\\Customer\\Model\\Attribute',NULL,'static',NULL,NULL,'text','VAT Number',NULL,NULL,0,0,NULL,0,NULL),(37,2,'vat_is_valid',NULL,NULL,'static',NULL,NULL,'text','VAT number validity',NULL,NULL,0,0,NULL,0,NULL),(38,2,'vat_request_id',NULL,NULL,'static',NULL,NULL,'text','VAT number validation request ID',NULL,NULL,0,0,NULL,0,NULL),(39,2,'vat_request_date',NULL,NULL,'static',NULL,NULL,'text','VAT number validation request date',NULL,NULL,0,0,NULL,0,NULL),(40,2,'vat_request_success',NULL,NULL,'static',NULL,NULL,'text','VAT number validation request success',NULL,NULL,0,0,NULL,0,NULL),(41,1,'updated_at',NULL,NULL,'static',NULL,NULL,'date','Updated At',NULL,NULL,0,0,NULL,0,NULL),(42,1,'failures_num',NULL,NULL,'static',NULL,NULL,'hidden','Failures Number',NULL,NULL,0,0,NULL,0,NULL),(43,1,'first_failure',NULL,NULL,'static',NULL,NULL,'date','First Failure Date',NULL,NULL,0,0,NULL,0,NULL),(44,1,'lock_expires',NULL,NULL,'static',NULL,NULL,'date','Failures Number',NULL,NULL,0,0,NULL,0,NULL),(45,3,'name',NULL,NULL,'varchar',NULL,NULL,'text','Name',NULL,NULL,1,0,NULL,0,NULL),(46,3,'is_active',NULL,NULL,'int',NULL,NULL,'select','Is Active',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Boolean',1,0,NULL,0,NULL),(47,3,'description',NULL,NULL,'text',NULL,NULL,'textarea','Description',NULL,NULL,0,0,NULL,0,NULL),(48,3,'image',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Image','varchar',NULL,NULL,'image','Image',NULL,NULL,0,0,NULL,0,NULL),(49,3,'meta_title',NULL,NULL,'varchar',NULL,NULL,'text','Page Title',NULL,NULL,0,0,NULL,0,NULL),(50,3,'meta_keywords',NULL,NULL,'text',NULL,NULL,'textarea','Meta Keywords',NULL,NULL,0,0,NULL,0,NULL),(51,3,'meta_description',NULL,NULL,'text',NULL,NULL,'textarea','Meta Description',NULL,NULL,0,0,NULL,0,NULL),(52,3,'display_mode',NULL,NULL,'varchar',NULL,NULL,'select','Display Mode',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\Mode',0,0,NULL,0,NULL),(53,3,'landing_page',NULL,NULL,'int',NULL,NULL,'select','CMS Block',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\Page',0,0,NULL,0,NULL),(54,3,'is_anchor',NULL,NULL,'int',NULL,NULL,'select','Is Anchor',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Boolean',0,0,'1',0,NULL),(55,3,'path',NULL,NULL,'static',NULL,NULL,'text','Path',NULL,NULL,0,0,NULL,0,NULL),(56,3,'position',NULL,NULL,'static',NULL,NULL,'text','Position',NULL,NULL,0,0,NULL,0,NULL),(57,3,'all_children',NULL,NULL,'text',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(58,3,'path_in_store',NULL,NULL,'text',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(59,3,'children',NULL,NULL,'text',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(60,3,'custom_design',NULL,NULL,'varchar',NULL,NULL,'select','Custom Design',NULL,'Magento\\Theme\\Model\\Theme\\Source\\Theme',0,0,NULL,0,NULL),(61,3,'custom_design_from','Magento\\Catalog\\Model\\ResourceModel\\Eav\\Attribute','Magento\\Catalog\\Model\\Attribute\\Backend\\Startdate','datetime',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Frontend\\Datetime','date','Active From',NULL,NULL,0,0,NULL,0,NULL),(62,3,'custom_design_to',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Backend\\Datetime','datetime',NULL,NULL,'date','Active To',NULL,NULL,0,0,NULL,0,NULL),(63,3,'page_layout',NULL,NULL,'varchar',NULL,NULL,'select','Page Layout',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\Layout',0,0,NULL,0,NULL),(64,3,'custom_layout_update',NULL,'Magento\\Catalog\\Model\\Attribute\\Backend\\Customlayoutupdate','text',NULL,NULL,'textarea','Custom Layout Update',NULL,NULL,0,0,NULL,0,NULL),(65,3,'level',NULL,NULL,'static',NULL,NULL,'text','Level',NULL,NULL,0,0,NULL,0,NULL),(66,3,'children_count',NULL,NULL,'static',NULL,NULL,'text','Children Count',NULL,NULL,0,0,NULL,0,NULL),(67,3,'available_sort_by',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Sortby','text',NULL,NULL,'multiselect','Available Product Listing Sort By',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\Sortby',1,0,NULL,0,NULL),(68,3,'default_sort_by',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Sortby','varchar',NULL,NULL,'select','Default Product Listing Sort By',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\Sortby',1,0,NULL,0,NULL),(69,3,'include_in_menu',NULL,NULL,'int',NULL,NULL,'select','Include in Navigation Menu',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Boolean',1,0,'1',0,NULL),(70,3,'custom_use_parent_settings',NULL,NULL,'int',NULL,NULL,'select','Use Parent Category Settings',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Boolean',0,0,NULL,0,NULL),(71,3,'custom_apply_to_products',NULL,NULL,'int',NULL,NULL,'select','Apply To Products',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Boolean',0,0,NULL,0,NULL),(72,3,'filter_price_range',NULL,NULL,'decimal',NULL,NULL,'text','Layered Navigation Price Step',NULL,NULL,0,0,NULL,0,NULL),(73,4,'name','Magento\\Catalog\\Model\\ResourceModel\\Eav\\Attribute',NULL,'varchar',NULL,NULL,'text','Product Name','validate-length maximum-length-255',NULL,1,0,NULL,0,NULL),(74,4,'sku','Magento\\Catalog\\Model\\ResourceModel\\Eav\\Attribute','Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Sku','static',NULL,NULL,'text','SKU','validate-length maximum-length-64',NULL,1,0,NULL,1,NULL),(75,4,'description',NULL,NULL,'text',NULL,NULL,'textarea','Description',NULL,NULL,0,0,NULL,0,NULL),(76,4,'short_description',NULL,NULL,'text',NULL,NULL,'textarea','Short Description',NULL,NULL,0,0,NULL,0,NULL),(77,4,'price',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Price','decimal',NULL,NULL,'price','Price',NULL,NULL,1,0,NULL,0,NULL),(78,4,'special_price',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Price','decimal',NULL,NULL,'price','Special Price',NULL,NULL,0,0,NULL,0,NULL),(79,4,'special_from_date',NULL,'Magento\\Catalog\\Model\\Attribute\\Backend\\Startdate','datetime',NULL,NULL,'date','Special Price From Date',NULL,NULL,0,0,NULL,0,NULL),(80,4,'special_to_date',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Backend\\Datetime','datetime',NULL,NULL,'date','Special Price To Date',NULL,NULL,0,0,NULL,0,NULL),(81,4,'cost',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Price','decimal',NULL,NULL,'price','Cost',NULL,NULL,0,1,NULL,0,NULL),(82,4,'weight',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Weight','decimal',NULL,NULL,'weight','Weight',NULL,NULL,0,0,NULL,0,NULL),(83,4,'manufacturer',NULL,NULL,'int',NULL,NULL,'select','Manufacturer',NULL,NULL,0,1,NULL,0,NULL),(84,4,'meta_title',NULL,NULL,'varchar',NULL,NULL,'text','Meta Title',NULL,NULL,0,0,NULL,0,NULL),(85,4,'meta_keyword',NULL,NULL,'text',NULL,NULL,'textarea','Meta Keywords',NULL,NULL,0,0,NULL,0,NULL),(86,4,'meta_description',NULL,NULL,'varchar',NULL,NULL,'textarea','Meta Description',NULL,NULL,0,0,NULL,0,'Maximum 255 chars. Meta Description should optimally be between 150-160 characters'),(87,4,'image',NULL,NULL,'varchar',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Frontend\\Image','media_image','Base',NULL,NULL,0,0,NULL,0,NULL),(88,4,'small_image',NULL,NULL,'varchar',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Frontend\\Image','media_image','Small',NULL,NULL,0,0,NULL,0,NULL),(89,4,'thumbnail',NULL,NULL,'varchar',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Frontend\\Image','media_image','Thumbnail',NULL,NULL,0,0,NULL,0,NULL),(90,4,'media_gallery',NULL,NULL,'static',NULL,NULL,'gallery','Media Gallery',NULL,NULL,0,0,NULL,0,NULL),(91,4,'old_id',NULL,NULL,'int',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(92,4,'tier_price',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Tierprice','decimal',NULL,NULL,'text','Tier Price',NULL,NULL,0,0,NULL,0,NULL),(93,4,'color',NULL,NULL,'int',NULL,NULL,'select','Color',NULL,NULL,0,1,NULL,0,NULL),(94,4,'news_from_date',NULL,'Magento\\Catalog\\Model\\Attribute\\Backend\\Startdate','datetime',NULL,NULL,'date','Set Product as New from Date',NULL,NULL,0,0,NULL,0,NULL),(95,4,'news_to_date',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Backend\\Datetime','datetime',NULL,NULL,'date','Set Product as New to Date',NULL,NULL,0,0,NULL,0,NULL),(96,4,'gallery',NULL,NULL,'varchar',NULL,NULL,'gallery','Image Gallery',NULL,NULL,0,0,NULL,0,NULL),(97,4,'status',NULL,NULL,'int',NULL,NULL,'select','Enable Product',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Source\\Status',0,0,'1',0,NULL),(98,4,'minimal_price',NULL,NULL,'decimal',NULL,NULL,'price','Minimal Price',NULL,NULL,0,0,NULL,0,NULL),(99,4,'visibility',NULL,NULL,'int',NULL,NULL,'select','Visibility',NULL,'Magento\\Catalog\\Model\\Product\\Visibility',0,0,'4',0,NULL),(100,4,'custom_design',NULL,NULL,'varchar',NULL,NULL,'select','New Theme',NULL,'Magento\\Theme\\Model\\Theme\\Source\\Theme',0,0,NULL,0,NULL),(101,4,'custom_design_from',NULL,'Magento\\Catalog\\Model\\Attribute\\Backend\\Startdate','datetime',NULL,NULL,'date','Active From',NULL,NULL,0,0,NULL,0,NULL),(102,4,'custom_design_to',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Backend\\Datetime','datetime',NULL,NULL,'date','Active To',NULL,NULL,0,0,NULL,0,NULL),(103,4,'custom_layout_update',NULL,'Magento\\Catalog\\Model\\Attribute\\Backend\\Customlayoutupdate','text',NULL,NULL,'textarea','Layout Update XML',NULL,NULL,0,0,NULL,0,NULL),(104,4,'page_layout',NULL,NULL,'varchar',NULL,NULL,'select','Layout',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Source\\Layout',0,0,NULL,0,NULL),(105,4,'category_ids',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Category','static',NULL,NULL,'text','Categories',NULL,NULL,0,0,NULL,0,NULL),(106,4,'options_container',NULL,NULL,'varchar',NULL,NULL,'select','Display Product Options In',NULL,'Magento\\Catalog\\Model\\Entity\\Product\\Attribute\\Design\\Options\\Container',0,0,'container2',0,NULL),(107,4,'required_options',NULL,NULL,'static',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(108,4,'has_options',NULL,NULL,'static',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(109,4,'image_label',NULL,NULL,'varchar',NULL,NULL,'text','Image Label',NULL,NULL,0,0,NULL,0,NULL),(110,4,'small_image_label',NULL,NULL,'varchar',NULL,NULL,'text','Small Image Label',NULL,NULL,0,0,NULL,0,NULL),(111,4,'thumbnail_label',NULL,NULL,'varchar',NULL,NULL,'text','Thumbnail Label',NULL,NULL,0,0,NULL,0,NULL),(112,4,'created_at',NULL,NULL,'static',NULL,NULL,'date',NULL,NULL,NULL,1,0,NULL,0,NULL),(113,4,'updated_at',NULL,NULL,'static',NULL,NULL,'date',NULL,NULL,NULL,1,0,NULL,0,NULL),(114,4,'country_of_manufacture',NULL,NULL,'varchar',NULL,NULL,'select','Country of Manufacture',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Source\\Countryofmanufacture',0,0,NULL,0,NULL),(115,4,'quantity_and_stock_status',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Stock','int',NULL,NULL,'select','Quantity',NULL,'Magento\\CatalogInventory\\Model\\Source\\Stock',0,0,'1',0,NULL),(116,4,'custom_layout',NULL,NULL,'varchar',NULL,NULL,'select','New Layout',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Source\\Layout',0,0,NULL,0,NULL),(117,4,'custom_layout_update_file',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\LayoutUpdate','varchar',NULL,NULL,'select','Custom Layout Update',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Source\\LayoutUpdate',0,0,NULL,0,NULL),(118,3,'custom_layout_update_file',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\LayoutUpdate','varchar',NULL,NULL,'select','Custom Layout Update',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\LayoutUpdate',0,0,NULL,0,NULL),(119,4,'msrp',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Price','decimal',NULL,NULL,'price','Minimum Advertised Price',NULL,NULL,0,0,NULL,0,NULL),(120,4,'msrp_display_actual_price_type',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Boolean','varchar',NULL,NULL,'select','Display Actual Price',NULL,'Magento\\Msrp\\Model\\Product\\Attribute\\Source\\Type\\Price',0,0,'0',0,NULL),(121,3,'url_key',NULL,NULL,'varchar',NULL,NULL,'text','URL Key',NULL,NULL,0,0,NULL,0,NULL),(122,3,'url_path',NULL,NULL,'varchar',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(123,4,'url_key',NULL,NULL,'varchar',NULL,NULL,'text','URL Key',NULL,NULL,0,0,NULL,0,NULL),(124,4,'url_path',NULL,NULL,'varchar',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(125,4,'links_purchased_separately',NULL,NULL,'int',NULL,NULL,NULL,'Links can be purchased separately',NULL,NULL,1,0,NULL,0,NULL),(126,4,'samples_title',NULL,NULL,'varchar',NULL,NULL,NULL,'Samples title',NULL,NULL,1,0,NULL,0,NULL),(127,4,'links_title',NULL,NULL,'varchar',NULL,NULL,NULL,'Links title',NULL,NULL,1,0,NULL,0,NULL),(128,4,'links_exist',NULL,NULL,'int',NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,0,NULL),(129,4,'price_type',NULL,NULL,'int',NULL,NULL,'boolean','Dynamic Price',NULL,NULL,1,0,'0',0,NULL),(130,4,'sku_type',NULL,NULL,'int',NULL,NULL,'boolean','Dynamic SKU',NULL,NULL,1,0,'0',0,NULL),(131,4,'weight_type',NULL,NULL,'int',NULL,NULL,'boolean','Dynamic Weight',NULL,NULL,1,0,'0',0,NULL),(132,4,'price_view',NULL,NULL,'int',NULL,NULL,'select','Price View',NULL,'Magento\\Bundle\\Model\\Product\\Attribute\\Source\\Price\\View',1,0,NULL,0,NULL),(133,4,'shipment_type',NULL,NULL,'int',NULL,NULL,'select','Ship Bundle Items',NULL,'Magento\\Bundle\\Model\\Product\\Attribute\\Source\\Shipment\\Type',1,0,'0',0,NULL),(134,4,'gift_message_available',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Boolean','varchar',NULL,NULL,'select','Allow Gift Message',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Source\\Boolean',0,0,NULL,0,NULL),(135,4,'swatch_image',NULL,NULL,'varchar',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Frontend\\Image','media_image','Swatch',NULL,NULL,0,0,NULL,0,NULL),(136,4,'tax_class_id',NULL,NULL,'int',NULL,NULL,'select','Tax Class',NULL,'Magento\\Tax\\Model\\TaxClass\\Source\\Product',0,0,'2',0,NULL);
+INSERT INTO `eav_attribute` VALUES (1,1,'website_id',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Backend\\Website','static',NULL,NULL,'select','Associate to Website',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Source\\Website',1,0,NULL,0,NULL),(2,1,'store_id',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Backend\\Store','static',NULL,NULL,'select','Create In',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Source\\Store',1,0,NULL,0,NULL),(3,1,'created_in',NULL,NULL,'static',NULL,NULL,'text','Created From',NULL,NULL,0,0,NULL,0,NULL),(4,1,'prefix',NULL,NULL,'static',NULL,NULL,'text','Name Prefix',NULL,NULL,0,0,NULL,0,NULL),(5,1,'firstname',NULL,NULL,'static',NULL,NULL,'text','First Name',NULL,NULL,1,0,NULL,0,NULL),(6,1,'middlename',NULL,NULL,'static',NULL,NULL,'text','Middle Name/Initial',NULL,NULL,0,0,NULL,0,NULL),(7,1,'lastname',NULL,NULL,'static',NULL,NULL,'text','Last Name',NULL,NULL,1,0,NULL,0,NULL),(8,1,'suffix',NULL,NULL,'static',NULL,NULL,'text','Name Suffix',NULL,NULL,0,0,NULL,0,NULL),(9,1,'email',NULL,NULL,'static',NULL,NULL,'text','Email',NULL,NULL,1,0,NULL,0,NULL),(10,1,'group_id',NULL,NULL,'static',NULL,NULL,'select','Group',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Source\\Group',1,0,NULL,0,NULL),(11,1,'dob',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Backend\\Datetime','static',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Frontend\\Datetime','date','Date of Birth',NULL,NULL,0,0,NULL,0,NULL),(12,1,'password_hash',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Backend\\Password','static',NULL,NULL,'hidden',NULL,NULL,NULL,0,0,NULL,0,NULL),(13,1,'rp_token',NULL,NULL,'static',NULL,NULL,'hidden',NULL,NULL,NULL,0,0,NULL,0,NULL),(14,1,'rp_token_created_at',NULL,NULL,'static',NULL,NULL,'date',NULL,NULL,NULL,0,0,NULL,0,NULL),(15,1,'default_billing',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Backend\\Billing','static',NULL,NULL,'text','Default Billing Address',NULL,NULL,0,0,NULL,0,NULL),(16,1,'default_shipping',NULL,'Magento\\Customer\\Model\\Customer\\Attribute\\Backend\\Shipping','static',NULL,NULL,'text','Default Shipping Address',NULL,NULL,0,0,NULL,0,NULL),(17,1,'taxvat',NULL,NULL,'static',NULL,NULL,'text','Tax/VAT Number',NULL,NULL,0,0,NULL,0,NULL),(18,1,'confirmation',NULL,NULL,'static',NULL,NULL,'text','Is Confirmed',NULL,NULL,0,0,NULL,0,NULL),(19,1,'created_at',NULL,NULL,'static',NULL,NULL,'date','Created At',NULL,NULL,0,0,NULL,0,NULL),(20,1,'gender',NULL,NULL,'static',NULL,NULL,'select','Gender',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Table',0,0,NULL,0,NULL),(21,1,'disable_auto_group_change','Magento\\Customer\\Model\\Attribute','Magento\\Customer\\Model\\Attribute\\Backend\\Data\\Boolean','static',NULL,NULL,'boolean','Disable Automatic Group Change Based on VAT ID',NULL,NULL,0,0,NULL,0,NULL),(22,2,'prefix',NULL,NULL,'static',NULL,NULL,'text','Name Prefix',NULL,NULL,0,0,NULL,0,NULL),(23,2,'firstname',NULL,NULL,'static',NULL,NULL,'text','First Name',NULL,NULL,1,0,NULL,0,NULL),(24,2,'middlename',NULL,NULL,'static',NULL,NULL,'text','Middle Name/Initial',NULL,NULL,0,0,NULL,0,NULL),(25,2,'lastname',NULL,NULL,'static',NULL,NULL,'text','Last Name',NULL,NULL,1,0,NULL,0,NULL),(26,2,'suffix',NULL,NULL,'static',NULL,NULL,'text','Name Suffix',NULL,NULL,0,0,NULL,0,NULL),(27,2,'company',NULL,NULL,'static',NULL,NULL,'text','Company',NULL,NULL,0,0,NULL,0,NULL),(28,2,'street',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Backend\\DefaultBackend','static',NULL,NULL,'multiline','Street Address',NULL,NULL,1,0,NULL,0,NULL),(29,2,'city',NULL,NULL,'static',NULL,NULL,'text','City',NULL,NULL,1,0,NULL,0,NULL),(30,2,'country_id',NULL,NULL,'static',NULL,NULL,'select','Country',NULL,'Magento\\Customer\\Model\\ResourceModel\\Address\\Attribute\\Source\\Country',1,0,NULL,0,NULL),(31,2,'region',NULL,'Magento\\Customer\\Model\\ResourceModel\\Address\\Attribute\\Backend\\Region','static',NULL,NULL,'text','State/Province',NULL,NULL,0,0,NULL,0,NULL),(32,2,'region_id',NULL,NULL,'static',NULL,NULL,'hidden','State/Province',NULL,'Magento\\Customer\\Model\\ResourceModel\\Address\\Attribute\\Source\\Region',0,0,NULL,0,NULL),(33,2,'postcode',NULL,NULL,'static',NULL,NULL,'text','Zip/Postal Code',NULL,NULL,0,0,NULL,0,NULL),(34,2,'telephone',NULL,NULL,'static',NULL,NULL,'text','Phone Number',NULL,NULL,1,0,NULL,0,NULL),(35,2,'fax',NULL,NULL,'static',NULL,NULL,'text','Fax',NULL,NULL,0,0,NULL,0,NULL),(36,2,'vat_id','Magento\\Customer\\Model\\Attribute',NULL,'static',NULL,NULL,'text','VAT Number',NULL,NULL,0,0,NULL,0,NULL),(37,2,'vat_is_valid',NULL,NULL,'static',NULL,NULL,'text','VAT number validity',NULL,NULL,0,0,NULL,0,NULL),(38,2,'vat_request_id',NULL,NULL,'static',NULL,NULL,'text','VAT number validation request ID',NULL,NULL,0,0,NULL,0,NULL),(39,2,'vat_request_date',NULL,NULL,'static',NULL,NULL,'text','VAT number validation request date',NULL,NULL,0,0,NULL,0,NULL),(40,2,'vat_request_success',NULL,NULL,'static',NULL,NULL,'text','VAT number validation request success',NULL,NULL,0,0,NULL,0,NULL),(41,1,'updated_at',NULL,NULL,'static',NULL,NULL,'date','Updated At',NULL,NULL,0,0,NULL,0,NULL),(42,1,'failures_num',NULL,NULL,'static',NULL,NULL,'hidden','Failures Number',NULL,NULL,0,0,NULL,0,NULL),(43,1,'first_failure',NULL,NULL,'static',NULL,NULL,'date','First Failure Date',NULL,NULL,0,0,NULL,0,NULL),(44,1,'lock_expires',NULL,NULL,'static',NULL,NULL,'date','Failures Number',NULL,NULL,0,0,NULL,0,NULL),(45,3,'name',NULL,NULL,'varchar',NULL,NULL,'text','Name',NULL,NULL,1,0,NULL,0,NULL),(46,3,'is_active',NULL,NULL,'int',NULL,NULL,'select','Is Active',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Boolean',1,0,NULL,0,NULL),(47,3,'description',NULL,NULL,'text',NULL,NULL,'textarea','Description',NULL,NULL,0,0,NULL,0,NULL),(48,3,'image',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Image','varchar',NULL,NULL,'image','Image',NULL,NULL,0,0,NULL,0,NULL),(49,3,'meta_title',NULL,NULL,'varchar',NULL,NULL,'text','Page Title',NULL,NULL,0,0,NULL,0,NULL),(50,3,'meta_keywords',NULL,NULL,'text',NULL,NULL,'textarea','Meta Keywords',NULL,NULL,0,0,NULL,0,NULL),(51,3,'meta_description',NULL,NULL,'text',NULL,NULL,'textarea','Meta Description',NULL,NULL,0,0,NULL,0,NULL),(52,3,'display_mode',NULL,NULL,'varchar',NULL,NULL,'select','Display Mode',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\Mode',0,0,NULL,0,NULL),(53,3,'landing_page',NULL,NULL,'int',NULL,NULL,'select','CMS Block',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\Page',0,0,NULL,0,NULL),(54,3,'is_anchor',NULL,NULL,'int',NULL,NULL,'select','Is Anchor',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Boolean',0,0,'1',0,NULL),(55,3,'path',NULL,NULL,'static',NULL,NULL,'text','Path',NULL,NULL,0,0,NULL,0,NULL),(56,3,'position',NULL,NULL,'static',NULL,NULL,'text','Position',NULL,NULL,0,0,NULL,0,NULL),(57,3,'all_children',NULL,NULL,'text',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(58,3,'path_in_store',NULL,NULL,'text',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(59,3,'children',NULL,NULL,'text',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(60,3,'custom_design',NULL,NULL,'varchar',NULL,NULL,'select','Custom Design',NULL,'Magento\\Theme\\Model\\Theme\\Source\\Theme',0,0,NULL,0,NULL),(61,3,'custom_design_from','Magento\\Catalog\\Model\\ResourceModel\\Eav\\Attribute','Magento\\Catalog\\Model\\Attribute\\Backend\\Startdate','datetime',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Frontend\\Datetime','date','Active From',NULL,NULL,0,0,NULL,0,NULL),(62,3,'custom_design_to',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Backend\\Datetime','datetime',NULL,NULL,'date','Active To',NULL,NULL,0,0,NULL,0,NULL),(63,3,'page_layout',NULL,NULL,'varchar',NULL,NULL,'select','Page Layout',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\Layout',0,0,NULL,0,NULL),(64,3,'custom_layout_update',NULL,'Magento\\Catalog\\Model\\Attribute\\Backend\\Customlayoutupdate','text',NULL,NULL,'textarea','Custom Layout Update',NULL,NULL,0,0,NULL,0,NULL),(65,3,'level',NULL,NULL,'static',NULL,NULL,'text','Level',NULL,NULL,0,0,NULL,0,NULL),(66,3,'children_count',NULL,NULL,'static',NULL,NULL,'text','Children Count',NULL,NULL,0,0,NULL,0,NULL),(67,3,'available_sort_by',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Sortby','text',NULL,NULL,'multiselect','Available Product Listing Sort By',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\Sortby',1,0,NULL,0,NULL),(68,3,'default_sort_by',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Sortby','varchar',NULL,NULL,'select','Default Product Listing Sort By',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\Sortby',1,0,NULL,0,NULL),(69,3,'include_in_menu',NULL,NULL,'int',NULL,NULL,'select','Include in Navigation Menu',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Boolean',1,0,'1',0,NULL),(70,3,'custom_use_parent_settings',NULL,NULL,'int',NULL,NULL,'select','Use Parent Category Settings',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Boolean',0,0,NULL,0,NULL),(71,3,'custom_apply_to_products',NULL,NULL,'int',NULL,NULL,'select','Apply To Products',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Source\\Boolean',0,0,NULL,0,NULL),(72,3,'filter_price_range',NULL,NULL,'decimal',NULL,NULL,'text','Layered Navigation Price Step',NULL,NULL,0,0,NULL,0,NULL),(73,4,'name','Magento\\Catalog\\Model\\ResourceModel\\Eav\\Attribute',NULL,'varchar',NULL,NULL,'text','Product Name','validate-length maximum-length-255',NULL,1,0,NULL,0,NULL),(74,4,'sku','Magento\\Catalog\\Model\\ResourceModel\\Eav\\Attribute','Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Sku','static',NULL,NULL,'text','SKU','validate-length maximum-length-64',NULL,1,0,NULL,1,NULL),(75,4,'description',NULL,NULL,'text',NULL,NULL,'textarea','Description',NULL,NULL,0,0,NULL,0,NULL),(76,4,'short_description',NULL,NULL,'text',NULL,NULL,'textarea','Short Description',NULL,NULL,0,0,NULL,0,NULL),(77,4,'price',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Price','decimal',NULL,NULL,'price','Price',NULL,NULL,1,0,NULL,0,NULL),(78,4,'special_price',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Price','decimal',NULL,NULL,'price','Special Price',NULL,NULL,0,0,NULL,0,NULL),(79,4,'special_from_date',NULL,'Magento\\Catalog\\Model\\Attribute\\Backend\\Startdate','datetime',NULL,NULL,'date','Special Price From Date',NULL,NULL,0,0,NULL,0,NULL),(80,4,'special_to_date',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Backend\\Datetime','datetime',NULL,NULL,'date','Special Price To Date',NULL,NULL,0,0,NULL,0,NULL),(81,4,'cost',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Price','decimal',NULL,NULL,'price','Cost',NULL,NULL,0,1,NULL,0,NULL),(82,4,'weight',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Weight','decimal',NULL,NULL,'weight','Weight',NULL,NULL,0,0,NULL,0,NULL),(83,4,'manufacturer',NULL,NULL,'int',NULL,NULL,'select','Manufacturer',NULL,NULL,0,1,NULL,0,NULL),(84,4,'meta_title',NULL,NULL,'varchar',NULL,NULL,'text','Meta Title',NULL,NULL,0,0,NULL,0,NULL),(85,4,'meta_keyword',NULL,NULL,'text',NULL,NULL,'textarea','Meta Keywords',NULL,NULL,0,0,NULL,0,NULL),(86,4,'meta_description',NULL,NULL,'varchar',NULL,NULL,'textarea','Meta Description',NULL,NULL,0,0,NULL,0,'Maximum 255 chars. Meta Description should optimally be between 150-160 characters'),(87,4,'image',NULL,NULL,'varchar',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Frontend\\Image','media_image','Base',NULL,NULL,0,0,NULL,0,NULL),(88,4,'small_image',NULL,NULL,'varchar',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Frontend\\Image','media_image','Small',NULL,NULL,0,0,NULL,0,NULL),(89,4,'thumbnail',NULL,NULL,'varchar',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Frontend\\Image','media_image','Thumbnail',NULL,NULL,0,0,NULL,0,NULL),(90,4,'media_gallery',NULL,NULL,'static',NULL,NULL,'gallery','Media Gallery',NULL,NULL,0,0,NULL,0,NULL),(91,4,'old_id',NULL,NULL,'int',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(92,4,'tier_price',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Tierprice','decimal',NULL,NULL,'text','Tier Price',NULL,NULL,0,0,NULL,0,NULL),(93,4,'color',NULL,NULL,'int',NULL,NULL,'select','Color',NULL,NULL,0,1,NULL,0,NULL),(94,4,'news_from_date',NULL,'Magento\\Catalog\\Model\\Attribute\\Backend\\Startdate','datetime',NULL,NULL,'date','Set Product as New from Date',NULL,NULL,0,0,NULL,0,NULL),(95,4,'news_to_date',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Backend\\Datetime','datetime',NULL,NULL,'date','Set Product as New to Date',NULL,NULL,0,0,NULL,0,NULL),(96,4,'gallery',NULL,NULL,'varchar',NULL,NULL,'gallery','Image Gallery',NULL,NULL,0,0,NULL,0,NULL),(97,4,'status',NULL,NULL,'int',NULL,NULL,'select','Enable Product',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Source\\Status',0,0,'1',0,NULL),(98,4,'minimal_price',NULL,NULL,'decimal',NULL,NULL,'price','Minimal Price',NULL,NULL,0,0,NULL,0,NULL),(99,4,'visibility',NULL,NULL,'int',NULL,NULL,'select','Visibility',NULL,'Magento\\Catalog\\Model\\Product\\Visibility',0,0,'4',0,NULL),(100,4,'custom_design',NULL,NULL,'varchar',NULL,NULL,'select','New Theme',NULL,'Magento\\Theme\\Model\\Theme\\Source\\Theme',0,0,NULL,0,NULL),(101,4,'custom_design_from',NULL,'Magento\\Catalog\\Model\\Attribute\\Backend\\Startdate','datetime',NULL,NULL,'date','Active From',NULL,NULL,0,0,NULL,0,NULL),(102,4,'custom_design_to',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Backend\\Datetime','datetime',NULL,NULL,'date','Active To',NULL,NULL,0,0,NULL,0,NULL),(103,4,'custom_layout_update',NULL,'Magento\\Catalog\\Model\\Attribute\\Backend\\Customlayoutupdate','text',NULL,NULL,'textarea','Layout Update XML',NULL,NULL,0,0,NULL,0,NULL),(104,4,'page_layout',NULL,NULL,'varchar',NULL,NULL,'select','Layout',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Source\\Layout',0,0,NULL,0,NULL),(105,4,'category_ids',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Category','static',NULL,NULL,'text','Categories',NULL,NULL,0,0,NULL,0,NULL),(106,4,'options_container',NULL,NULL,'varchar',NULL,NULL,'select','Display Product Options In',NULL,'Magento\\Catalog\\Model\\Entity\\Product\\Attribute\\Design\\Options\\Container',0,0,'container2',0,NULL),(107,4,'required_options',NULL,NULL,'static',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(108,4,'has_options',NULL,NULL,'static',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(109,4,'image_label',NULL,NULL,'varchar',NULL,NULL,'text','Image Label',NULL,NULL,0,0,NULL,0,NULL),(110,4,'small_image_label',NULL,NULL,'varchar',NULL,NULL,'text','Small Image Label',NULL,NULL,0,0,NULL,0,NULL),(111,4,'thumbnail_label',NULL,NULL,'varchar',NULL,NULL,'text','Thumbnail Label',NULL,NULL,0,0,NULL,0,NULL),(112,4,'created_at',NULL,NULL,'static',NULL,NULL,'date',NULL,NULL,NULL,1,0,NULL,0,NULL),(113,4,'updated_at',NULL,NULL,'static',NULL,NULL,'date',NULL,NULL,NULL,1,0,NULL,0,NULL),(114,4,'country_of_manufacture',NULL,NULL,'varchar',NULL,NULL,'select','Country of Manufacture',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Source\\Countryofmanufacture',0,0,NULL,0,NULL),(115,4,'quantity_and_stock_status',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Stock','int',NULL,NULL,'select','Quantity',NULL,'Magento\\CatalogInventory\\Model\\Source\\Stock',0,0,'1',0,NULL),(116,4,'custom_layout',NULL,NULL,'varchar',NULL,NULL,'select','New Layout',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Source\\Layout',0,0,NULL,0,NULL),(117,4,'custom_layout_update_file',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\LayoutUpdate','varchar',NULL,NULL,'select','Custom Layout Update',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Source\\LayoutUpdate',0,0,NULL,0,NULL),(118,3,'custom_layout_update_file',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\LayoutUpdate','varchar',NULL,NULL,'select','Custom Layout Update',NULL,'Magento\\Catalog\\Model\\Category\\Attribute\\Source\\LayoutUpdate',0,0,NULL,0,NULL),(119,4,'msrp',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Price','decimal',NULL,NULL,'price','Minimum Advertised Price',NULL,NULL,0,0,NULL,0,NULL),(120,4,'msrp_display_actual_price_type',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Boolean','varchar',NULL,NULL,'select','Display Actual Price',NULL,'Magento\\Msrp\\Model\\Product\\Attribute\\Source\\Type\\Price',0,0,'0',0,NULL),(121,3,'url_key',NULL,NULL,'varchar',NULL,NULL,'text','URL Key',NULL,NULL,0,0,NULL,0,NULL),(122,3,'url_path',NULL,NULL,'varchar',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(123,4,'url_key',NULL,NULL,'varchar',NULL,NULL,'text','URL Key',NULL,NULL,0,0,NULL,0,NULL),(124,4,'url_path',NULL,NULL,'varchar',NULL,NULL,'text',NULL,NULL,NULL,0,0,NULL,0,NULL),(125,4,'links_purchased_separately',NULL,NULL,'int',NULL,NULL,NULL,'Links can be purchased separately',NULL,NULL,1,0,NULL,0,NULL),(126,4,'samples_title',NULL,NULL,'varchar',NULL,NULL,NULL,'Samples title',NULL,NULL,1,0,NULL,0,NULL),(127,4,'links_title',NULL,NULL,'varchar',NULL,NULL,NULL,'Links title',NULL,NULL,1,0,NULL,0,NULL),(128,4,'links_exist',NULL,NULL,'int',NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,0,NULL),(129,4,'price_type',NULL,NULL,'int',NULL,NULL,'boolean','Dynamic Price',NULL,NULL,1,0,'0',0,NULL),(130,4,'sku_type',NULL,NULL,'int',NULL,NULL,'boolean','Dynamic SKU',NULL,NULL,1,0,'0',0,NULL),(131,4,'weight_type',NULL,NULL,'int',NULL,NULL,'boolean','Dynamic Weight',NULL,NULL,1,0,'0',0,NULL),(132,4,'price_view',NULL,NULL,'int',NULL,NULL,'select','Price View',NULL,'Magento\\Bundle\\Model\\Product\\Attribute\\Source\\Price\\View',1,0,NULL,0,NULL),(133,4,'shipment_type',NULL,NULL,'int',NULL,NULL,'select','Ship Bundle Items',NULL,'Magento\\Bundle\\Model\\Product\\Attribute\\Source\\Shipment\\Type',1,0,'0',0,NULL),(134,4,'gift_message_available',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Boolean','varchar',NULL,NULL,'select','Allow Gift Message',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Source\\Boolean',0,0,NULL,0,NULL),(135,4,'swatch_image',NULL,NULL,'varchar',NULL,'Magento\\Catalog\\Model\\Product\\Attribute\\Frontend\\Image','media_image','Swatch',NULL,NULL,0,0,NULL,0,NULL),(136,4,'tax_class_id',NULL,NULL,'int',NULL,NULL,'select','Tax Class',NULL,'Magento\\Tax\\Model\\TaxClass\\Source\\Product',0,0,'2',0,NULL),(137,4,'ingredienti',NULL,'Magento\\Eav\\Model\\Entity\\Attribute\\Backend\\ArrayBackend','text',NULL,NULL,'multiselect','ingredienti',NULL,NULL,0,1,'',0,NULL);
 /*!40000 ALTER TABLE `eav_attribute` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4942,7 +6200,7 @@ CREATE TABLE `eav_attribute_group` (
   UNIQUE KEY `EAV_ATTRIBUTE_GROUP_ATTRIBUTE_SET_ID_ATTRIBUTE_GROUP_NAME` (`attribute_set_id`,`attribute_group_name`),
   KEY `EAV_ATTRIBUTE_GROUP_ATTRIBUTE_SET_ID_SORT_ORDER` (`attribute_set_id`,`sort_order`),
   CONSTRAINT `EAV_ATTR_GROUP_ATTR_SET_ID_EAV_ATTR_SET_ATTR_SET_ID` FOREIGN KEY (`attribute_set_id`) REFERENCES `eav_attribute_set` (`attribute_set_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='Eav Attribute Group';
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='Eav Attribute Group';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4951,7 +6209,7 @@ CREATE TABLE `eav_attribute_group` (
 
 LOCK TABLES `eav_attribute_group` WRITE;
 /*!40000 ALTER TABLE `eav_attribute_group` DISABLE KEYS */;
-INSERT INTO `eav_attribute_group` VALUES (1,1,'General',1,1,'general',NULL),(2,2,'General',1,1,'general',NULL),(3,3,'General',10,1,'general',NULL),(4,3,'General Information',2,0,'general-information',NULL),(5,3,'Display Settings',20,0,'display-settings',NULL),(6,3,'Custom Design',30,0,'custom-design',NULL),(7,4,'Product Details',10,1,'product-details','basic'),(8,4,'Advanced Pricing',40,0,'advanced-pricing','advanced'),(9,4,'Search Engine Optimization',30,0,'search-engine-optimization','basic'),(10,4,'Images',20,0,'image-management','basic'),(11,4,'Design',50,0,'design','advanced'),(12,4,'Autosettings',60,0,'autosettings','advanced'),(13,4,'Content',15,0,'content','basic'),(14,4,'Schedule Design Update',55,0,'schedule-design-update','advanced'),(15,5,'General',1,1,'general',NULL),(16,6,'General',1,1,'general',NULL),(17,7,'General',1,1,'general',NULL),(18,8,'General',1,1,'general',NULL),(19,4,'Bundle Items',16,0,'bundle-items',NULL),(20,4,'Gift Options',61,0,'gift-options',NULL);
+INSERT INTO `eav_attribute_group` VALUES (1,1,'General',1,1,'general',NULL),(2,2,'General',1,1,'general',NULL),(3,3,'General',10,1,'general',NULL),(4,3,'General Information',2,0,'general-information',NULL),(5,3,'Display Settings',20,0,'display-settings',NULL),(6,3,'Custom Design',30,0,'custom-design',NULL),(7,4,'Product Details',10,1,'product-details','basic'),(8,4,'Advanced Pricing',40,0,'advanced-pricing','advanced'),(9,4,'Search Engine Optimization',30,0,'search-engine-optimization','basic'),(10,4,'Images',20,0,'image-management','basic'),(11,4,'Design',50,0,'design','advanced'),(12,4,'Autosettings',60,0,'autosettings','advanced'),(13,4,'Content',15,0,'content','basic'),(14,4,'Schedule Design Update',55,0,'schedule-design-update','advanced'),(15,5,'General',1,1,'general',NULL),(16,6,'General',1,1,'general',NULL),(17,7,'General',1,1,'general',NULL),(18,8,'General',1,1,'general',NULL),(19,4,'Bundle Items',16,0,'bundle-items',NULL),(20,4,'Gift Options',61,0,'gift-options',NULL),(21,9,'Gift Options',10,0,'gift-options',NULL),(22,9,'Autosettings',9,0,'autosettings','advanced'),(23,9,'Schedule Design Update',8,0,'schedule-design-update','advanced'),(24,9,'Design',7,0,'design','advanced'),(25,9,'Advanced Pricing',6,0,'advanced-pricing','advanced'),(26,9,'Search Engine Optimization',5,0,'search-engine-optimization','basic'),(27,9,'Images',4,0,'image-management','basic'),(28,9,'Bundle Items',3,0,'bundle-items',NULL),(29,9,'Content',2,0,'content','basic'),(30,9,'Product Details',1,1,'product-details','basic');
 /*!40000 ALTER TABLE `eav_attribute_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4998,7 +6256,7 @@ CREATE TABLE `eav_attribute_option` (
   PRIMARY KEY (`option_id`),
   KEY `EAV_ATTRIBUTE_OPTION_ATTRIBUTE_ID` (`attribute_id`),
   CONSTRAINT `EAV_ATTRIBUTE_OPTION_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Eav Attribute Option';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='Eav Attribute Option';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5007,7 +6265,7 @@ CREATE TABLE `eav_attribute_option` (
 
 LOCK TABLES `eav_attribute_option` WRITE;
 /*!40000 ALTER TABLE `eav_attribute_option` DISABLE KEYS */;
-INSERT INTO `eav_attribute_option` VALUES (1,20,0),(2,20,1),(3,20,3);
+INSERT INTO `eav_attribute_option` VALUES (1,20,0),(2,20,1),(3,20,3),(4,137,1),(5,137,2),(6,137,3),(7,137,4),(8,137,5);
 /*!40000 ALTER TABLE `eav_attribute_option` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5059,7 +6317,7 @@ CREATE TABLE `eav_attribute_option_value` (
   KEY `EAV_ATTRIBUTE_OPTION_VALUE_STORE_ID` (`store_id`),
   CONSTRAINT `EAV_ATTRIBUTE_OPTION_VALUE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ATTR_OPT_VAL_OPT_ID_EAV_ATTR_OPT_OPT_ID` FOREIGN KEY (`option_id`) REFERENCES `eav_attribute_option` (`option_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Eav Attribute Option Value';
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COMMENT='Eav Attribute Option Value';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5068,7 +6326,7 @@ CREATE TABLE `eav_attribute_option_value` (
 
 LOCK TABLES `eav_attribute_option_value` WRITE;
 /*!40000 ALTER TABLE `eav_attribute_option_value` DISABLE KEYS */;
-INSERT INTO `eav_attribute_option_value` VALUES (1,1,0,'Male'),(2,2,0,'Female'),(3,3,0,'Not Specified');
+INSERT INTO `eav_attribute_option_value` VALUES (1,1,0,'Male'),(2,2,0,'Female'),(3,3,0,'Not Specified'),(39,4,0,'pomodoro'),(40,5,0,'mozzarella'),(41,6,0,'funghi'),(42,7,0,'prosciutto'),(43,8,0,'salame piccante');
 /*!40000 ALTER TABLE `eav_attribute_option_value` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5088,7 +6346,7 @@ CREATE TABLE `eav_attribute_set` (
   UNIQUE KEY `EAV_ATTRIBUTE_SET_ENTITY_TYPE_ID_ATTRIBUTE_SET_NAME` (`entity_type_id`,`attribute_set_name`),
   KEY `EAV_ATTRIBUTE_SET_ENTITY_TYPE_ID_SORT_ORDER` (`entity_type_id`,`sort_order`),
   CONSTRAINT `EAV_ATTRIBUTE_SET_ENTITY_TYPE_ID_EAV_ENTITY_TYPE_ENTITY_TYPE_ID` FOREIGN KEY (`entity_type_id`) REFERENCES `eav_entity_type` (`entity_type_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='Eav Attribute Set';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='Eav Attribute Set';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5097,7 +6355,7 @@ CREATE TABLE `eav_attribute_set` (
 
 LOCK TABLES `eav_attribute_set` WRITE;
 /*!40000 ALTER TABLE `eav_attribute_set` DISABLE KEYS */;
-INSERT INTO `eav_attribute_set` VALUES (1,1,'Default',2),(2,2,'Default',2),(3,3,'Default',1),(4,4,'Default',1),(5,5,'Default',1),(6,6,'Default',1),(7,7,'Default',1),(8,8,'Default',1);
+INSERT INTO `eav_attribute_set` VALUES (1,1,'Default',2),(2,2,'Default',2),(3,3,'Default',1),(4,4,'Default',1),(5,5,'Default',1),(6,6,'Default',1),(7,7,'Default',1),(8,8,'Default',1),(9,4,'Pizze',0);
 /*!40000 ALTER TABLE `eav_attribute_set` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5156,7 +6414,7 @@ CREATE TABLE `eav_entity_attribute` (
   KEY `EAV_ENTITY_ATTRIBUTE_ATTRIBUTE_ID` (`attribute_id`),
   CONSTRAINT `EAV_ENTITY_ATTRIBUTE_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
   CONSTRAINT `EAV_ENTT_ATTR_ATTR_GROUP_ID_EAV_ATTR_GROUP_ATTR_GROUP_ID` FOREIGN KEY (`attribute_group_id`) REFERENCES `eav_attribute_group` (`attribute_group_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=utf8 COMMENT='Eav Entity Attributes';
+) ENGINE=InnoDB AUTO_INCREMENT=239 DEFAULT CHARSET=utf8 COMMENT='Eav Entity Attributes';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5165,7 +6423,7 @@ CREATE TABLE `eav_entity_attribute` (
 
 LOCK TABLES `eav_entity_attribute` WRITE;
 /*!40000 ALTER TABLE `eav_entity_attribute` DISABLE KEYS */;
-INSERT INTO `eav_entity_attribute` VALUES (1,1,1,1,1,10),(2,1,1,1,2,20),(3,1,1,1,3,20),(4,1,1,1,4,30),(5,1,1,1,5,40),(6,1,1,1,6,50),(7,1,1,1,7,60),(8,1,1,1,8,70),(9,1,1,1,9,80),(10,1,1,1,10,25),(11,1,1,1,11,90),(12,1,1,1,12,81),(13,1,1,1,13,115),(14,1,1,1,14,120),(15,1,1,1,15,82),(16,1,1,1,16,83),(17,1,1,1,17,100),(18,1,1,1,18,0),(19,1,1,1,19,0),(20,1,1,1,20,110),(21,1,1,1,21,28),(22,2,2,2,22,10),(23,2,2,2,23,20),(24,2,2,2,24,30),(25,2,2,2,25,40),(26,2,2,2,26,50),(27,2,2,2,27,60),(28,2,2,2,28,70),(29,2,2,2,29,100),(30,2,2,2,30,80),(31,2,2,2,31,90),(32,2,2,2,32,90),(33,2,2,2,33,110),(34,2,2,2,34,120),(35,2,2,2,35,130),(36,2,2,2,36,140),(37,2,2,2,37,132),(38,2,2,2,38,133),(39,2,2,2,39,134),(40,2,2,2,40,135),(41,1,1,1,41,87),(42,1,1,1,42,100),(43,1,1,1,43,110),(44,1,1,1,44,120),(45,3,3,4,45,1),(46,3,3,4,46,2),(47,3,3,4,47,4),(48,3,3,4,48,5),(49,3,3,4,49,6),(50,3,3,4,50,7),(51,3,3,4,51,8),(52,3,3,5,52,10),(53,3,3,5,53,20),(54,3,3,5,54,30),(55,3,3,4,55,12),(56,3,3,4,56,13),(57,3,3,4,57,14),(58,3,3,4,58,15),(59,3,3,4,59,16),(60,3,3,6,60,10),(61,3,3,6,61,30),(62,3,3,6,62,40),(63,3,3,6,63,50),(64,3,3,6,64,60),(65,3,3,4,65,24),(66,3,3,4,66,25),(67,3,3,5,67,40),(68,3,3,5,68,50),(69,3,3,4,69,10),(70,3,3,6,70,5),(71,3,3,6,71,6),(72,3,3,5,72,51),(73,4,4,7,73,10),(74,4,4,7,74,20),(75,4,4,13,75,110),(76,4,4,13,76,100),(77,4,4,7,77,30),(78,4,4,8,78,3),(79,4,4,8,79,4),(80,4,4,8,80,5),(81,4,4,8,81,6),(82,4,4,7,82,70),(83,4,4,9,84,20),(84,4,4,9,85,30),(85,4,4,9,86,40),(86,4,4,10,87,1),(87,4,4,10,88,2),(88,4,4,10,89,3),(89,4,4,10,90,4),(90,4,4,7,91,6),(91,4,4,8,92,7),(92,4,4,7,94,90),(93,4,4,7,95,100),(94,4,4,10,96,5),(95,4,4,7,97,5),(96,4,4,8,98,8),(97,4,4,7,99,80),(98,4,4,14,100,40),(99,4,4,14,101,20),(100,4,4,14,102,30),(101,4,4,11,103,10),(102,4,4,11,104,5),(103,4,4,7,105,80),(104,4,4,11,106,6),(105,4,4,7,107,14),(106,4,4,7,108,15),(107,4,4,7,109,16),(108,4,4,7,110,17),(109,4,4,7,111,18),(110,4,4,7,112,19),(111,4,4,7,113,20),(112,4,4,7,114,110),(113,4,4,7,115,60),(114,4,4,14,116,50),(115,4,4,11,117,51),(116,3,3,6,118,51),(117,4,4,8,119,9),(118,4,4,8,120,10),(119,3,3,4,121,3),(120,3,3,4,122,17),(121,4,4,9,123,10),(122,4,4,7,124,11),(123,4,4,7,125,111),(124,4,4,7,126,112),(125,4,4,7,127,113),(126,4,4,7,128,114),(127,4,4,7,129,31),(128,4,4,7,130,21),(129,4,4,7,131,71),(130,4,4,8,132,11),(131,4,4,19,133,1),(132,4,4,20,134,10),(133,4,4,10,135,3),(134,4,4,7,136,40);
+INSERT INTO `eav_entity_attribute` VALUES (1,1,1,1,1,10),(2,1,1,1,2,20),(3,1,1,1,3,20),(4,1,1,1,4,30),(5,1,1,1,5,40),(6,1,1,1,6,50),(7,1,1,1,7,60),(8,1,1,1,8,70),(9,1,1,1,9,80),(10,1,1,1,10,25),(11,1,1,1,11,90),(12,1,1,1,12,81),(13,1,1,1,13,115),(14,1,1,1,14,120),(15,1,1,1,15,82),(16,1,1,1,16,83),(17,1,1,1,17,100),(18,1,1,1,18,0),(19,1,1,1,19,0),(20,1,1,1,20,110),(21,1,1,1,21,28),(22,2,2,2,22,10),(23,2,2,2,23,20),(24,2,2,2,24,30),(25,2,2,2,25,40),(26,2,2,2,26,50),(27,2,2,2,27,60),(28,2,2,2,28,70),(29,2,2,2,29,100),(30,2,2,2,30,80),(31,2,2,2,31,90),(32,2,2,2,32,90),(33,2,2,2,33,110),(34,2,2,2,34,120),(35,2,2,2,35,130),(36,2,2,2,36,140),(37,2,2,2,37,132),(38,2,2,2,38,133),(39,2,2,2,39,134),(40,2,2,2,40,135),(41,1,1,1,41,87),(42,1,1,1,42,100),(43,1,1,1,43,110),(44,1,1,1,44,120),(45,3,3,4,45,1),(46,3,3,4,46,2),(47,3,3,4,47,4),(48,3,3,4,48,5),(49,3,3,4,49,6),(50,3,3,4,50,7),(51,3,3,4,51,8),(52,3,3,5,52,10),(53,3,3,5,53,20),(54,3,3,5,54,30),(55,3,3,4,55,12),(56,3,3,4,56,13),(57,3,3,4,57,14),(58,3,3,4,58,15),(59,3,3,4,59,16),(60,3,3,6,60,10),(61,3,3,6,61,30),(62,3,3,6,62,40),(63,3,3,6,63,50),(64,3,3,6,64,60),(65,3,3,4,65,24),(66,3,3,4,66,25),(67,3,3,5,67,40),(68,3,3,5,68,50),(69,3,3,4,69,10),(70,3,3,6,70,5),(71,3,3,6,71,6),(72,3,3,5,72,51),(73,4,4,7,73,10),(74,4,4,7,74,20),(75,4,4,13,75,110),(76,4,4,13,76,100),(77,4,4,7,77,30),(78,4,4,8,78,3),(79,4,4,8,79,4),(80,4,4,8,80,5),(81,4,4,8,81,6),(82,4,4,7,82,70),(83,4,4,9,84,20),(84,4,4,9,85,30),(85,4,4,9,86,40),(86,4,4,10,87,1),(87,4,4,10,88,2),(88,4,4,10,89,3),(89,4,4,10,90,4),(90,4,4,7,91,6),(91,4,4,8,92,7),(92,4,4,7,94,90),(93,4,4,7,95,100),(94,4,4,10,96,5),(95,4,4,7,97,5),(96,4,4,8,98,8),(97,4,4,7,99,80),(98,4,4,14,100,40),(99,4,4,14,101,20),(100,4,4,14,102,30),(101,4,4,11,103,10),(102,4,4,11,104,5),(103,4,4,7,105,80),(104,4,4,11,106,6),(105,4,4,7,107,14),(106,4,4,7,108,15),(107,4,4,7,109,16),(108,4,4,7,110,17),(109,4,4,7,111,18),(110,4,4,7,112,19),(111,4,4,7,113,20),(112,4,4,7,114,110),(113,4,4,7,115,60),(114,4,4,14,116,50),(115,4,4,11,117,51),(116,3,3,6,118,51),(117,4,4,8,119,9),(118,4,4,8,120,10),(119,3,3,4,121,3),(120,3,3,4,122,17),(121,4,4,9,123,10),(122,4,4,7,124,11),(123,4,4,7,125,111),(124,4,4,7,126,112),(125,4,4,7,127,113),(126,4,4,7,128,114),(127,4,4,7,129,31),(128,4,4,7,130,21),(129,4,4,7,131,71),(130,4,4,8,132,11),(131,4,4,19,133,1),(132,4,4,20,134,10),(133,4,4,10,135,3),(134,4,4,7,136,40),(142,4,9,24,103,10),(149,4,9,25,98,8),(167,4,9,30,91,6),(169,4,9,30,124,11),(170,4,9,30,107,14),(171,4,9,30,108,15),(172,4,9,30,109,16),(173,4,9,30,110,17),(174,4,9,30,111,18),(175,4,9,30,112,19),(177,4,9,30,113,20),(190,4,9,30,125,111),(191,4,9,30,126,112),(192,4,9,30,127,113),(193,4,9,30,128,114),(194,4,9,30,73,2),(195,4,9,30,74,3),(196,4,9,30,77,5),(197,4,9,30,82,10),(198,4,9,30,94,14),(199,4,9,30,95,15),(200,4,9,30,97,1),(201,4,9,30,99,12),(202,4,9,30,105,13),(203,4,9,30,114,16),(204,4,9,30,115,9),(205,4,9,30,129,7),(206,4,9,30,130,4),(207,4,9,30,131,11),(208,4,9,30,136,8),(209,4,9,30,137,6),(210,4,9,29,75,2),(211,4,9,29,76,1),(212,4,9,28,133,1),(213,4,9,27,87,1),(214,4,9,27,88,2),(215,4,9,27,89,3),(216,4,9,27,90,5),(217,4,9,27,96,6),(218,4,9,27,135,4),(219,4,9,26,84,2),(220,4,9,26,85,3),(221,4,9,26,86,4),(222,4,9,26,123,1),(223,4,9,25,78,1),(224,4,9,25,79,2),(225,4,9,25,80,3),(226,4,9,25,81,4),(227,4,9,25,92,5),(228,4,9,25,119,6),(229,4,9,25,120,7),(230,4,9,25,132,8),(231,4,9,24,104,1),(232,4,9,24,106,2),(233,4,9,24,117,3),(234,4,9,23,100,3),(235,4,9,23,101,1),(236,4,9,23,102,2),(237,4,9,23,116,4),(238,4,9,21,134,1);
 /*!40000 ALTER TABLE `eav_entity_attribute` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5605,7 +6863,7 @@ CREATE TABLE `flag` (
   `last_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Date of Last Flag Update',
   PRIMARY KEY (`flag_id`),
   KEY `FLAG_LAST_UPDATE` (`last_update`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Flag';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Flag';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5614,7 +6872,7 @@ CREATE TABLE `flag` (
 
 LOCK TABLES `flag` WRITE;
 /*!40000 ALTER TABLE `flag` DISABLE KEYS */;
-INSERT INTO `flag` VALUES (1,'analytics_link_attempts_reverse_counter',0,'24','2022-07-15 06:20:41'),(2,'config_hash',0,'{\"system\":\"2be88ca4242c76e8253ac62474851065032d6833\"}','2022-07-15 06:21:17');
+INSERT INTO `flag` VALUES (1,'analytics_link_attempts_reverse_counter',0,'24','2022-07-15 06:20:41'),(2,'config_hash',0,'{\"system\":\"df1ddd634ed8f544be82eabeb5d72e8501e0343c\"}','2022-07-15 06:49:02'),(3,'system_config_snapshot',0,'{\"default\":{\"web\":{\"graphql\":{\"cors_max_age\":86400,\"cors_allow_credentials\":1,\"cors_allowed_methods\":\"POST, OPTIONS, GET\",\"cors_allowed_headers\":\"Content-Currency, Store, X-Magento-Cache-Id, X-Captcha, Content-Type, Authorization, DNT, TE\",\"cors_allowed_origins\":\"https:\\/\\/storefront.fumarola.ovh, http:\\/\\/localhost:3000, https:\\/\\/localhost:3000\"},\"unsecure\":{\"base_url\":\"http:\\/\\/magento.fumarola.ovh\\/\",\"base_link_url\":\"{{unsecure_base_url}}\"},\"secure\":{\"base_url\":\"https:\\/\\/magento.fumarola.ovh\\/\",\"base_link_url\":\"{{secure_base_url}}\"}}}}','2022-07-15 06:49:02');
 /*!40000 ALTER TABLE `flag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5749,7 +7007,7 @@ CREATE TABLE `indexer_state` (
 
 LOCK TABLES `indexer_state` WRITE;
 /*!40000 ALTER TABLE `indexer_state` DISABLE KEYS */;
-INSERT INTO `indexer_state` VALUES (1,'design_config_grid','valid','2022-07-15 06:21:11','aef6981f130333352968d5b4ec89ee90'),(2,'customer_grid','valid','2022-07-15 06:21:11','b6ef6e58c0a1ceb1212932b55636d50a'),(3,'catalog_category_product','valid','2022-07-15 06:21:11','a28171a5961fb09970397ea39a48edce'),(4,'catalog_product_category','valid','2022-07-15 06:21:11','9914570d5669990e549a54a12bf46cb8'),(5,'catalogrule_rule','valid','2022-07-15 06:21:11','0d8f6bb82025b715e8c5c583b40d8a0d'),(6,'catalog_product_attribute','valid','2022-07-15 06:21:11','9dd9e8c989b954e9e0d9fcf72e2a7574'),(7,'cataloginventory_stock','valid','2022-07-15 06:21:12','7dd26aff854dcac6b00350645e75f275'),(8,'inventory','valid','2022-07-15 06:21:12','4e79ebc678881aebcaf121799f3786a5'),(9,'catalogrule_product','valid','2022-07-15 06:21:11','ee51392643f857a895658c44b556f064'),(10,'catalog_product_price','valid','2022-07-15 06:21:12','53cb4a3396839831b9c684c10d9bad9d'),(11,'catalogsearch_fulltext','valid','2022-07-15 06:21:12','c0338c4c8fd0c293a328fd5e62d9df28');
+INSERT INTO `indexer_state` VALUES (1,'design_config_grid','valid','2022-07-15 12:28:14','a6ae2cfb80c3182d02a4532b1472c128'),(2,'customer_grid','valid','2022-07-15 10:36:25','6edc8ca0528c219193a2636697a8ee0c'),(3,'catalog_category_product','valid','2022-07-15 12:20:03','0305dfc43a333a0579bc00c6388020dc'),(4,'catalog_product_category','valid','2022-07-15 12:20:03','3d9c0980a089315a4832cf709f34fe23'),(5,'catalogrule_rule','valid','2022-07-15 12:20:03','67eebb9bc0652b4cc0fb78dd9d624eda'),(6,'catalog_product_attribute','valid','2022-07-15 10:36:25','9bea16ac6680d0761fbf13e6a74831f8'),(7,'cataloginventory_stock','valid','2022-07-15 12:20:03','34048ec44f05c34a2798f1475cf570ba'),(8,'inventory','valid','2022-07-15 12:20:03','e6273d91ed7d2b64fefacf1ce22f7e7c'),(9,'catalogrule_product','valid','2022-07-15 12:20:03','1c90b3f545b34a8568a70b1469c0f995'),(10,'catalog_product_price','valid','2022-07-15 12:20:03','9f6cb1aaed865d1aadcb6ca3aaecc33d'),(11,'catalogsearch_fulltext','valid','2022-07-15 12:20:04','38f84bdaf40a1c755d6a1b9da12b7b33');
 /*!40000 ALTER TABLE `indexer_state` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5785,6 +7043,30 @@ CREATE TABLE `integration` (
 LOCK TABLES `integration` WRITE;
 /*!40000 ALTER TABLE `integration` DISABLE KEYS */;
 /*!40000 ALTER TABLE `integration` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `inventory_cl`
+--
+
+DROP TABLE IF EXISTS `inventory_cl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `inventory_cl` (
+  `version_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Version ID',
+  `entity_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT 'Entity ID',
+  PRIMARY KEY (`version_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='inventory_cl';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `inventory_cl`
+--
+
+LOCK TABLES `inventory_cl` WRITE;
+/*!40000 ALTER TABLE `inventory_cl` DISABLE KEYS */;
+INSERT INTO `inventory_cl` VALUES (1,17);
+/*!40000 ALTER TABLE `inventory_cl` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -5837,6 +7119,7 @@ CREATE TABLE `inventory_low_stock_notification_configuration` (
 
 LOCK TABLES `inventory_low_stock_notification_configuration` WRITE;
 /*!40000 ALTER TABLE `inventory_low_stock_notification_configuration` DISABLE KEYS */;
+INSERT INTO `inventory_low_stock_notification_configuration` VALUES ('default','Acqua',NULL),('default','Capricciosa',NULL),('default','Diavola',NULL),('default','Margherita',NULL);
 /*!40000 ALTER TABLE `inventory_low_stock_notification_configuration` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -6049,7 +7332,7 @@ CREATE TABLE `inventory_source_item` (
   UNIQUE KEY `INVENTORY_SOURCE_ITEM_SOURCE_CODE_SKU` (`source_code`,`sku`),
   KEY `INVENTORY_SOURCE_ITEM_SKU_SOURCE_CODE_QUANTITY` (`sku`,`source_code`,`quantity`),
   CONSTRAINT `INVENTORY_SOURCE_ITEM_SOURCE_CODE_INVENTORY_SOURCE_SOURCE_CODE` FOREIGN KEY (`source_code`) REFERENCES `inventory_source` (`source_code`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6058,8 +7341,63 @@ CREATE TABLE `inventory_source_item` (
 
 LOCK TABLES `inventory_source_item` WRITE;
 /*!40000 ALTER TABLE `inventory_source_item` DISABLE KEYS */;
+INSERT INTO `inventory_source_item` VALUES (1,'default','Margherita',0.0000,1),(7,'default','Diavola',0.0000,1),(9,'default','Capricciosa',0.0000,1),(17,'default','Acqua',0.0000,1);
 /*!40000 ALTER TABLE `inventory_source_item` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_inventory_source_item_after_insert AFTER INSERT ON inventory_source_item FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `inventory_cl` (`entity_id`) VALUES (NEW.`source_item_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_inventory_source_item_after_update AFTER UPDATE ON inventory_source_item FOR EACH ROW
+BEGIN
+IF (NOT(NEW.`source_item_id` <=> OLD.`source_item_id`) OR NOT(NEW.`source_code` <=> OLD.`source_code`) OR NOT(NEW.`sku` <=> OLD.`sku`) OR NOT(NEW.`quantity` <=> OLD.`quantity`) OR NOT(NEW.`status` <=> OLD.`status`)) THEN INSERT IGNORE INTO `inventory_cl` (`entity_id`) VALUES (NEW.`source_item_id`); END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`magento`@`%`*/ /*!50003 TRIGGER trg_inventory_source_item_after_delete AFTER DELETE ON inventory_source_item FOR EACH ROW
+BEGIN
+INSERT IGNORE INTO `inventory_cl` (`entity_id`) VALUES (OLD.`source_item_id`);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `inventory_source_stock_link`
@@ -6541,7 +7879,7 @@ CREATE TABLE `mview_state` (
   PRIMARY KEY (`state_id`),
   KEY `MVIEW_STATE_VIEW_ID` (`view_id`),
   KEY `MVIEW_STATE_MODE` (`mode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='View State';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='View State';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6550,6 +7888,7 @@ CREATE TABLE `mview_state` (
 
 LOCK TABLES `mview_state` WRITE;
 /*!40000 ALTER TABLE `mview_state` DISABLE KEYS */;
+INSERT INTO `mview_state` VALUES (1,'design_config_dummy','enabled','idle','2022-07-15 12:36:02',0),(2,'customer_dummy','enabled','idle','2022-07-15 12:36:02',0),(3,'catalog_category_product','enabled','idle','2022-07-15 12:36:02',22),(4,'catalog_product_category','enabled','idle','2022-07-15 12:36:02',11),(5,'catalogrule_rule','enabled','idle','2022-07-15 12:36:02',0),(6,'catalog_product_attribute','enabled','idle','2022-07-15 12:36:02',20),(7,'cataloginventory_stock','enabled','idle','2022-07-15 12:36:02',10),(8,'inventory','enabled','idle','2022-07-15 12:36:02',1),(9,'catalogrule_product','enabled','idle','2022-07-15 12:36:02',30),(10,'catalog_product_price','enabled','idle','2022-07-15 12:36:02',13),(11,'catalogsearch_fulltext','enabled','idle','2022-07-15 12:36:02',38);
 /*!40000 ALTER TABLE `mview_state` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7366,7 +8705,7 @@ CREATE TABLE `queue_poison_pill` (
 
 LOCK TABLES `queue_poison_pill` WRITE;
 /*!40000 ALTER TABLE `queue_poison_pill` DISABLE KEYS */;
-INSERT INTO `queue_poison_pill` VALUES ('version-62d1075f592df');
+INSERT INTO `queue_poison_pill` VALUES ('version-62d10f2076680');
 /*!40000 ALTER TABLE `queue_poison_pill` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7433,7 +8772,7 @@ CREATE TABLE `quote` (
   KEY `QUOTE_CUSTOMER_ID_STORE_ID_IS_ACTIVE` (`customer_id`,`store_id`,`is_active`),
   KEY `QUOTE_STORE_ID` (`store_id`),
   CONSTRAINT `QUOTE_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Sales Flat Quote';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Sales Flat Quote';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7442,6 +8781,7 @@ CREATE TABLE `quote` (
 
 LOCK TABLES `quote` WRITE;
 /*!40000 ALTER TABLE `quote` DISABLE KEYS */;
+INSERT INTO `quote` VALUES (1,1,'2022-07-15 11:55:29','2022-07-15 11:55:30',NULL,1,0,0,1,1.0000,0,0.0000,0.0000,'EUR','EUR','EUR',5.0000,5.0000,NULL,NULL,3,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,NULL,NULL,NULL,NULL,NULL,'EUR',1.0000,1.0000,NULL,NULL,5.0000,5.0000,5.0000,5.0000,1,0,NULL,NULL,0);
 /*!40000 ALTER TABLE `quote` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7520,7 +8860,7 @@ CREATE TABLE `quote_address` (
   PRIMARY KEY (`address_id`),
   KEY `QUOTE_ADDRESS_QUOTE_ID` (`quote_id`),
   CONSTRAINT `QUOTE_ADDRESS_QUOTE_ID_QUOTE_ENTITY_ID` FOREIGN KEY (`quote_id`) REFERENCES `quote` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Sales Flat Quote Address';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Sales Flat Quote Address';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7529,6 +8869,7 @@ CREATE TABLE `quote_address` (
 
 LOCK TABLES `quote_address` WRITE;
 /*!40000 ALTER TABLE `quote_address` DISABLE KEYS */;
+INSERT INTO `quote_address` VALUES (1,1,'2022-07-15 11:55:29','2022-07-15 11:55:29',NULL,0,NULL,'billing',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,NULL,'null',NULL,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),(2,1,'2022-07-15 11:55:29','2022-07-15 11:55:29',NULL,0,NULL,'shipping',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,0,NULL,NULL,0.0000,5.0000,5.0000,5.0000,5.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,5.0000,5.0000,NULL,'[]',NULL,0.0000,0.0000,5.0000,5.0000,0.0000,0.0000,0.0000,NULL,0.0000,0.0000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0);
 /*!40000 ALTER TABLE `quote_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7616,7 +8957,7 @@ CREATE TABLE `quote_id_mask` (
   KEY `QUOTE_ID_MASK_QUOTE_ID` (`quote_id`),
   KEY `QUOTE_ID_MASK_MASKED_ID` (`masked_id`),
   CONSTRAINT `QUOTE_ID_MASK_QUOTE_ID_QUOTE_ENTITY_ID` FOREIGN KEY (`quote_id`) REFERENCES `quote` (`entity_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Quote ID and masked ID mapping';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Quote ID and masked ID mapping';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7625,6 +8966,7 @@ CREATE TABLE `quote_id_mask` (
 
 LOCK TABLES `quote_id_mask` WRITE;
 /*!40000 ALTER TABLE `quote_id_mask` DISABLE KEYS */;
+INSERT INTO `quote_id_mask` VALUES (1,1,'Os9I5OH5UPHELEaNpmnv2v5mxxqrXBuI');
 /*!40000 ALTER TABLE `quote_id_mask` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7697,7 +9039,7 @@ CREATE TABLE `quote_item` (
   CONSTRAINT `QUOTE_ITEM_PARENT_ITEM_ID_QUOTE_ITEM_ITEM_ID` FOREIGN KEY (`parent_item_id`) REFERENCES `quote_item` (`item_id`) ON DELETE CASCADE,
   CONSTRAINT `QUOTE_ITEM_QUOTE_ID_QUOTE_ENTITY_ID` FOREIGN KEY (`quote_id`) REFERENCES `quote` (`entity_id`) ON DELETE CASCADE,
   CONSTRAINT `QUOTE_ITEM_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Sales Flat Quote Item';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Sales Flat Quote Item';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7706,6 +9048,7 @@ CREATE TABLE `quote_item` (
 
 LOCK TABLES `quote_item` WRITE;
 /*!40000 ALTER TABLE `quote_item` DISABLE KEYS */;
+INSERT INTO `quote_item` VALUES (1,1,'2022-07-15 11:55:30','2022-07-15 11:55:30',1,1,NULL,0,'Margherita','Margherita',NULL,NULL,NULL,0,0,NULL,1.0000,5.0000,5.0000,NULL,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,5.0000,5.0000,0.0000,0.0000,'simple',NULL,NULL,NULL,NULL,NULL,5.0000,5.0000,5.0000,5.0000,0.0000,0.0000,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `quote_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7725,7 +9068,7 @@ CREATE TABLE `quote_item_option` (
   PRIMARY KEY (`option_id`),
   KEY `QUOTE_ITEM_OPTION_ITEM_ID` (`item_id`),
   CONSTRAINT `QUOTE_ITEM_OPTION_ITEM_ID_QUOTE_ITEM_ITEM_ID` FOREIGN KEY (`item_id`) REFERENCES `quote_item` (`item_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Sales Flat Quote Item Option';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Sales Flat Quote Item Option';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7734,6 +9077,7 @@ CREATE TABLE `quote_item_option` (
 
 LOCK TABLES `quote_item_option` WRITE;
 /*!40000 ALTER TABLE `quote_item_option` DISABLE KEYS */;
+INSERT INTO `quote_item_option` VALUES (1,1,1,'info_buyRequest','{\"qty\":1,\"options\":[],\"super_attribute\":[],\"links\":[]}');
 /*!40000 ALTER TABLE `quote_item_option` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -11034,7 +12378,7 @@ CREATE TABLE `setup_module` (
 
 LOCK TABLES `setup_module` WRITE;
 /*!40000 ALTER TABLE `setup_module` DISABLE KEYS */;
-INSERT INTO `setup_module` VALUES ('Magento_GoogleShoppingAds','4.0.1','4.0.1'),('Magento_Securitytxt','1.0.0','1.0.0'),('PayPal_Braintree','4.0.3','4.0.3');
+INSERT INTO `setup_module` VALUES ('Abelbm_DisableFrontend','1.1.0','1.1.0'),('Graycore_Cors','1.0.0','1.0.0'),('Magento_GoogleShoppingAds','4.0.1','4.0.1'),('Magento_Securitytxt','1.0.0','1.0.0'),('Mageplaza_Core','1.0.0','1.0.0'),('PayPal_Braintree','4.0.3','4.0.3');
 /*!40000 ALTER TABLE `setup_module` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -11411,61 +12755,6 @@ LOCK TABLES `tax_order_aggregated_updated` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tfa_country_codes`
---
-
-DROP TABLE IF EXISTS `tfa_country_codes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tfa_country_codes` (
-  `country_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'TFA admin user ID',
-  `code` varchar(2) NOT NULL COMMENT 'Country code',
-  `name` varchar(255) NOT NULL COMMENT 'Country name',
-  `dial_code` varchar(255) NOT NULL COMMENT 'Prefix',
-  PRIMARY KEY (`country_id`),
-  KEY `TFA_COUNTRY_CODES_CODE` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=242 DEFAULT CHARSET=utf8 COMMENT='tfa_country_codes';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tfa_country_codes`
---
-
-LOCK TABLES `tfa_country_codes` WRITE;
-/*!40000 ALTER TABLE `tfa_country_codes` DISABLE KEYS */;
-INSERT INTO `tfa_country_codes` VALUES (1,'IL','Israel','+972'),(2,'AF','Afghanistan','+93'),(3,'AL','Albania','+355'),(4,'DZ','Algeria','+213'),(5,'AS','AmericanSamoa','+1 684'),(6,'AD','Andorra','+376'),(7,'AO','Angola','+244'),(8,'AI','Anguilla','+1 264'),(9,'AG','Antigua and Barbuda','+1268'),(10,'AR','Argentina','+54'),(11,'AM','Armenia','+374'),(12,'AW','Aruba','+297'),(13,'AU','Australia','+61'),(14,'AT','Austria','+43'),(15,'AZ','Azerbaijan','+994'),(16,'BS','Bahamas','+1 242'),(17,'BH','Bahrain','+973'),(18,'BD','Bangladesh','+880'),(19,'BB','Barbados','+1 246'),(20,'BY','Belarus','+375'),(21,'BE','Belgium','+32'),(22,'BZ','Belize','+501'),(23,'BJ','Benin','+229'),(24,'BM','Bermuda','+1 441'),(25,'BT','Bhutan','+975'),(26,'BA','Bosnia and Herzegovina','+387'),(27,'BW','Botswana','+267'),(28,'BR','Brazil','+55'),(29,'IO','British Indian Ocean Territory','+246'),(30,'BG','Bulgaria','+359'),(31,'BF','Burkina Faso','+226'),(32,'BI','Burundi','+257'),(33,'KH','Cambodia','+855'),(34,'CM','Cameroon','+237'),(35,'CA','Canada','+1'),(36,'CV','Cape Verde','+238'),(37,'KY','Cayman Islands','+ 345'),(38,'CF','Central African Republic','+236'),(39,'TD','Chad','+235'),(40,'CL','Chile','+56'),(41,'CN','China','+86'),(42,'CX','Christmas Island','+61'),(43,'CO','Colombia','+57'),(44,'KM','Comoros','+269'),(45,'CG','Congo','+242'),(46,'CK','Cook Islands','+682'),(47,'CR','Costa Rica','+506'),(48,'HR','Croatia','+385'),(49,'CU','Cuba','+53'),(50,'CY','Cyprus','+537'),(51,'CZ','Czech Republic','+420'),(52,'DK','Denmark','+45'),(53,'DJ','Djibouti','+253'),(54,'DM','Dominica','+1 767'),(55,'DO','Dominican Republic','+1 849'),(56,'EC','Ecuador','+593'),(57,'EG','Egypt','+20'),(58,'SV','El Salvador','+503'),(59,'GQ','Equatorial Guinea','+240'),(60,'ER','Eritrea','+291'),(61,'EE','Estonia','+372'),(62,'ET','Ethiopia','+251'),(63,'FO','Faroe Islands','+298'),(64,'FJ','Fiji','+679'),(65,'FI','Finland','+358'),(66,'FR','France','+33'),(67,'GF','French Guiana','+594'),(68,'PF','French Polynesia','+689'),(69,'GA','Gabon','+241'),(70,'GM','Gambia','+220'),(71,'GE','Georgia','+995'),(72,'DE','Germany','+49'),(73,'GH','Ghana','+233'),(74,'GI','Gibraltar','+350'),(75,'GR','Greece','+30'),(76,'GL','Greenland','+299'),(77,'GD','Grenada','+1 473'),(78,'GP','Guadeloupe','+590'),(79,'GU','Guam','+1 671'),(80,'GT','Guatemala','+502'),(81,'GN','Guinea','+224'),(82,'GW','Guinea-Bissau','+245'),(83,'GY','Guyana','+595'),(84,'HT','Haiti','+509'),(85,'HN','Honduras','+504'),(86,'HU','Hungary','+36'),(87,'IS','Iceland','+354'),(88,'IN','India','+91'),(89,'ID','Indonesia','+62'),(90,'IQ','Iraq','+964'),(91,'IE','Ireland','+353'),(92,'IL','Israel','+972'),(93,'IT','Italy','+39'),(94,'JM','Jamaica','+1 876'),(95,'JP','Japan','+81'),(96,'JO','Jordan','+962'),(97,'KZ','Kazakhstan','+7 7'),(98,'KE','Kenya','+254'),(99,'KI','Kiribati','+686'),(100,'KW','Kuwait','+965'),(101,'KG','Kyrgyzstan','+996'),(102,'LV','Latvia','+371'),(103,'LB','Lebanon','+961'),(104,'LS','Lesotho','+266'),(105,'LR','Liberia','+231'),(106,'LI','Liechtenstein','+423'),(107,'LT','Lithuania','+370'),(108,'LU','Luxembourg','+352'),(109,'MG','Madagascar','+261'),(110,'MW','Malawi','+265'),(111,'MY','Malaysia','+60'),(112,'MV','Maldives','+960'),(113,'ML','Mali','+223'),(114,'MT','Malta','+356'),(115,'MH','Marshall Islands','+692'),(116,'MQ','Martinique','+596'),(117,'MR','Mauritania','+222'),(118,'MU','Mauritius','+230'),(119,'YT','Mayotte','+262'),(120,'MX','Mexico','+52'),(121,'MC','Monaco','+377'),(122,'MN','Mongolia','+976'),(123,'ME','Montenegro','+382'),(124,'MS','Montserrat','+1664'),(125,'MA','Morocco','+212'),(126,'MM','Myanmar','+95'),(127,'NA','Namibia','+264'),(128,'NR','Nauru','+674'),(129,'NP','Nepal','+977'),(130,'NL','Netherlands','+31'),(131,'AN','Netherlands Antilles','+599'),(132,'NC','New Caledonia','+687'),(133,'NZ','New Zealand','+64'),(134,'NI','Nicaragua','+505'),(135,'NE','Niger','+227'),(136,'NG','Nigeria','+234'),(137,'NU','Niue','+683'),(138,'NF','Norfolk Island','+672'),(139,'MP','Northern Mariana Islands','+1 670'),(140,'NO','Norway','+47'),(141,'OM','Oman','+968'),(142,'PK','Pakistan','+92'),(143,'PW','Palau','+680'),(144,'PA','Panama','+507'),(145,'PG','Papua New Guinea','+675'),(146,'PY','Paraguay','+595'),(147,'PE','Peru','+51'),(148,'PH','Philippines','+63'),(149,'PL','Poland','+48'),(150,'PT','Portugal','+351'),(151,'PR','Puerto Rico','+1 939'),(152,'QA','Qatar','+974'),(153,'RO','Romania','+40'),(154,'RW','Rwanda','+250'),(155,'WS','Samoa','+685'),(156,'SM','San Marino','+378'),(157,'SA','Saudi Arabia','+966'),(158,'SN','Senegal','+221'),(159,'RS','Serbia','+381'),(160,'SC','Seychelles','+248'),(161,'SL','Sierra Leone','+232'),(162,'SG','Singapore','+65'),(163,'SK','Slovakia','+421'),(164,'SI','Slovenia','+386'),(165,'SB','Solomon Islands','+677'),(166,'ZA','South Africa','+27'),(167,'GS','South Georgia and the South Sandwich Islands','+500'),(168,'ES','Spain','+34'),(169,'LK','Sri Lanka','+94'),(170,'SD','Sudan','+249'),(171,'SR','Suriname','+597'),(172,'SZ','Swaziland','+268'),(173,'SE','Sweden','+46'),(174,'CH','Switzerland','+41'),(175,'TJ','Tajikistan','+992'),(176,'TH','Thailand','+66'),(177,'TG','Togo','+228'),(178,'TK','Tokelau','+690'),(179,'TO','Tonga','+676'),(180,'TT','Trinidad and Tobago','+1 868'),(181,'TN','Tunisia','+216'),(182,'TR','Turkey','+90'),(183,'TM','Turkmenistan','+993'),(184,'TC','Turks and Caicos Islands','+1 649'),(185,'TV','Tuvalu','+688'),(186,'UG','Uganda','+256'),(187,'UA','Ukraine','+380'),(188,'AE','United Arab Emirates','+971'),(189,'GB','United Kingdom','+44'),(190,'US','United States','+1'),(191,'UY','Uruguay','+598'),(192,'UZ','Uzbekistan','+998'),(193,'VU','Vanuatu','+678'),(194,'WF','Wallis and Futuna','+681'),(195,'YE','Yemen','+967'),(196,'ZM','Zambia','+260'),(197,'ZW','Zimbabwe','+263'),(198,'AX','land Islands',''),(199,'BO','Bolivia, Plurinational State of','+591'),(200,'BN','Brunei Darussalam','+673'),(201,'CC','Cocos (Keeling) Islands','+61'),(202,'CD','Congo, The Democratic Republic of the','+243'),(203,'CI','Cote d\'Ivoire','+225'),(204,'FK','Falkland Islands (Malvinas)','+500'),(205,'GG','Guernsey','+44'),(206,'VA','Holy See (Vatican City State)','+379'),(207,'HK','Hong Kong','+852'),(208,'IR','Iran, Islamic Republic of','+98'),(209,'IM','Isle of Man','+44'),(210,'JE','Jersey','+44'),(211,'KP','Korea, Democratic People\'s Republic of','+850'),(212,'KR','Korea, Republic of','+82'),(213,'LA','Lao People\'s Democratic Republic','+856'),(214,'LY','Libyan Arab Jamahiriya','+218'),(215,'MO','Macao','+853'),(216,'MK','Macedonia, The Former Yugoslav Republic of','+389'),(217,'FM','Micronesia, Federated States of','+691'),(218,'MD','Moldova, Republic of','+373'),(219,'MZ','Mozambique','+258'),(220,'PS','Palestinian Territory, Occupied','+970'),(221,'PN','Pitcairn','+872'),(222,'RE','Réunion','+262'),(223,'RU','Russia','+7'),(224,'BL','Saint Barthélemy','+590'),(225,'SH','Saint Helena, Ascension and Tristan Da Cunha','+290'),(226,'KN','Saint Kitts and Nevis','+1 869'),(227,'LC','Saint Lucia','+1 758'),(228,'MF','Saint Martin','+590'),(229,'PM','Saint Pierre and Miquelon','+508'),(230,'VC','Saint Vincent and the Grenadines','+1 784'),(231,'ST','Sao Tome and Principe','+239'),(232,'SO','Somalia','+252'),(233,'SJ','Svalbard and Jan Mayen','+47'),(234,'SY','Syrian Arab Republic','+963'),(235,'TW','Taiwan, Province of China','+886'),(236,'TZ','Tanzania, United Republic of','+255'),(237,'TL','Timor-Leste','+670'),(238,'VE','Venezuela, Bolivarian Republic of','+58'),(239,'VN','Viet Nam','+84'),(240,'VG','Virgin Islands, British','+1 284'),(241,'VI','Virgin Islands, U.S.','+1 340');
-/*!40000 ALTER TABLE `tfa_country_codes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tfa_user_config`
---
-
-DROP TABLE IF EXISTS `tfa_user_config`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tfa_user_config` (
-  `config_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'TFA admin user ID',
-  `user_id` int(10) unsigned NOT NULL COMMENT 'User ID',
-  `encoded_providers` text DEFAULT NULL COMMENT 'Encoded providers list',
-  `encoded_config` text DEFAULT NULL COMMENT 'Encoded providers configuration',
-  `default_provider` varchar(255) DEFAULT NULL COMMENT 'Default provider',
-  PRIMARY KEY (`config_id`),
-  KEY `TFA_USER_CONFIG_USER_ID_ADMIN_USER_USER_ID` (`user_id`),
-  CONSTRAINT `TFA_USER_CONFIG_USER_ID_ADMIN_USER_USER_ID` FOREIGN KEY (`user_id`) REFERENCES `admin_user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='tfa_user_config';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tfa_user_config`
---
-
-LOCK TABLES `tfa_user_config` WRITE;
-/*!40000 ALTER TABLE `tfa_user_config` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tfa_user_config` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `theme`
 --
 
@@ -11575,7 +12864,7 @@ CREATE TABLE `ui_bookmark` (
   PRIMARY KEY (`bookmark_id`),
   KEY `UI_BOOKMARK_USER_ID_NAMESPACE_IDENTIFIER` (`user_id`,`namespace`,`identifier`),
   CONSTRAINT `UI_BOOKMARK_USER_ID_ADMIN_USER_USER_ID` FOREIGN KEY (`user_id`) REFERENCES `admin_user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Bookmark';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Bookmark';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -11584,6 +12873,7 @@ CREATE TABLE `ui_bookmark` (
 
 LOCK TABLES `ui_bookmark` WRITE;
 /*!40000 ALTER TABLE `ui_bookmark` DISABLE KEYS */;
+INSERT INTO `ui_bookmark` VALUES (1,1,'product_listing','default',1,'Default View','{\"views\":{\"default\":{\"label\":\"Default View\",\"index\":\"default\",\"editable\":false,\"data\":{\"columns\":{\"entity_id\":{\"visible\":true,\"sorting\":\"asc\"},\"name\":{\"visible\":true,\"sorting\":false},\"sku\":{\"visible\":true,\"sorting\":false},\"price\":{\"visible\":true,\"sorting\":false},\"websites\":{\"visible\":true,\"sorting\":false},\"qty\":{\"visible\":true,\"sorting\":false},\"short_description\":{\"visible\":false,\"sorting\":false},\"special_price\":{\"visible\":false,\"sorting\":false},\"cost\":{\"visible\":false,\"sorting\":false},\"weight\":{\"visible\":false,\"sorting\":false},\"meta_title\":{\"visible\":false,\"sorting\":false},\"meta_keyword\":{\"visible\":false,\"sorting\":false},\"meta_description\":{\"visible\":false,\"sorting\":false},\"msrp\":{\"visible\":false,\"sorting\":false},\"url_key\":{\"visible\":false,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false},\"ids\":{\"visible\":true,\"sorting\":false},\"type_id\":{\"visible\":true,\"sorting\":false},\"attribute_set_id\":{\"visible\":true,\"sorting\":false},\"visibility\":{\"visible\":true,\"sorting\":false},\"status\":{\"visible\":true,\"sorting\":false},\"manufacturer\":{\"visible\":false,\"sorting\":false},\"color\":{\"visible\":false,\"sorting\":false},\"custom_design\":{\"visible\":false,\"sorting\":false},\"page_layout\":{\"visible\":false,\"sorting\":false},\"country_of_manufacture\":{\"visible\":false,\"sorting\":false},\"custom_layout\":{\"visible\":false,\"sorting\":false},\"gift_message_available\":{\"visible\":false,\"sorting\":false},\"tax_class_id\":{\"visible\":false,\"sorting\":false},\"salable_quantity\":{\"visible\":true,\"sorting\":false},\"thumbnail\":{\"visible\":true,\"sorting\":false},\"special_from_date\":{\"visible\":false,\"sorting\":false},\"special_to_date\":{\"visible\":false,\"sorting\":false},\"news_from_date\":{\"visible\":false,\"sorting\":false},\"news_to_date\":{\"visible\":false,\"sorting\":false},\"custom_design_from\":{\"visible\":false,\"sorting\":false},\"custom_design_to\":{\"visible\":false,\"sorting\":false}},\"displayMode\":\"grid\",\"filters\":{\"applied\":{\"placeholder\":true}},\"paging\":{\"pageSize\":20,\"current\":1,\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20},\"search\":{\"value\":\"\"},\"positions\":{\"ids\":0,\"entity_id\":1,\"thumbnail\":2,\"name\":3,\"type_id\":4,\"attribute_set_id\":5,\"sku\":6,\"price\":7,\"qty\":8,\"salable_quantity\":9,\"visibility\":10,\"status\":11,\"websites\":12,\"short_description\":13,\"special_price\":14,\"special_from_date\":15,\"special_to_date\":16,\"cost\":17,\"weight\":18,\"manufacturer\":19,\"meta_title\":20,\"meta_keyword\":21,\"meta_description\":22,\"color\":23,\"news_from_date\":24,\"news_to_date\":25,\"custom_design\":26,\"custom_design_from\":27,\"custom_design_to\":28,\"page_layout\":29,\"country_of_manufacture\":30,\"custom_layout\":31,\"msrp\":32,\"url_key\":33,\"gift_message_available\":34,\"tax_class_id\":35,\"actions\":36}},\"value\":\"Default View\"}}}','2022-07-15 06:56:30','2022-07-15 06:56:30'),(2,1,'product_listing','current',0,NULL,'{\"current\":{\"columns\":{\"entity_id\":{\"visible\":true,\"sorting\":\"asc\"},\"name\":{\"visible\":true,\"sorting\":false},\"sku\":{\"visible\":true,\"sorting\":false},\"price\":{\"visible\":true,\"sorting\":false},\"websites\":{\"visible\":true,\"sorting\":false},\"qty\":{\"visible\":true,\"sorting\":false},\"short_description\":{\"visible\":false,\"sorting\":false},\"special_price\":{\"visible\":false,\"sorting\":false},\"cost\":{\"visible\":false,\"sorting\":false},\"weight\":{\"visible\":false,\"sorting\":false},\"meta_title\":{\"visible\":false,\"sorting\":false},\"meta_keyword\":{\"visible\":false,\"sorting\":false},\"meta_description\":{\"visible\":false,\"sorting\":false},\"msrp\":{\"visible\":false,\"sorting\":false},\"url_key\":{\"visible\":false,\"sorting\":false},\"actions\":{\"visible\":true,\"sorting\":false},\"ids\":{\"visible\":true,\"sorting\":false},\"type_id\":{\"visible\":true,\"sorting\":false},\"attribute_set_id\":{\"visible\":true,\"sorting\":false},\"visibility\":{\"visible\":true,\"sorting\":false},\"status\":{\"visible\":true,\"sorting\":false},\"manufacturer\":{\"visible\":false,\"sorting\":false},\"color\":{\"visible\":false,\"sorting\":false},\"custom_design\":{\"visible\":false,\"sorting\":false},\"page_layout\":{\"visible\":false,\"sorting\":false},\"country_of_manufacture\":{\"visible\":false,\"sorting\":false},\"custom_layout\":{\"visible\":false,\"sorting\":false},\"gift_message_available\":{\"visible\":false,\"sorting\":false},\"tax_class_id\":{\"visible\":false,\"sorting\":false},\"salable_quantity\":{\"visible\":true,\"sorting\":false},\"thumbnail\":{\"visible\":true,\"sorting\":false},\"special_from_date\":{\"visible\":false,\"sorting\":false},\"special_to_date\":{\"visible\":false,\"sorting\":false},\"news_from_date\":{\"visible\":false,\"sorting\":false},\"news_to_date\":{\"visible\":false,\"sorting\":false},\"custom_design_from\":{\"visible\":false,\"sorting\":false},\"custom_design_to\":{\"visible\":false,\"sorting\":false},\"ingredienti\":{\"visible\":true,\"sorting\":false}},\"displayMode\":\"grid\",\"filters\":{\"applied\":{\"placeholder\":true}},\"paging\":{\"pageSize\":20,\"current\":1,\"options\":{\"20\":{\"value\":20,\"label\":20},\"30\":{\"value\":30,\"label\":30},\"50\":{\"value\":50,\"label\":50},\"100\":{\"value\":100,\"label\":100},\"200\":{\"value\":200,\"label\":200}},\"value\":20},\"search\":{\"value\":\"\"},\"positions\":{\"ids\":0,\"entity_id\":1,\"thumbnail\":2,\"name\":3,\"type_id\":4,\"attribute_set_id\":5,\"sku\":6,\"price\":7,\"qty\":8,\"salable_quantity\":9,\"visibility\":10,\"status\":11,\"websites\":12,\"short_description\":13,\"special_price\":14,\"special_from_date\":15,\"special_to_date\":16,\"cost\":17,\"weight\":18,\"manufacturer\":19,\"meta_title\":20,\"meta_keyword\":21,\"meta_description\":22,\"color\":23,\"news_from_date\":24,\"news_to_date\":25,\"custom_design\":26,\"custom_design_from\":27,\"custom_design_to\":28,\"page_layout\":29,\"country_of_manufacture\":30,\"custom_layout\":31,\"msrp\":32,\"url_key\":33,\"gift_message_available\":34,\"tax_class_id\":35,\"actions\":36,\"ingredienti\":37}}}','2022-07-15 06:56:30','2022-07-15 10:29:29');
 /*!40000 ALTER TABLE `ui_bookmark` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -11611,7 +12901,7 @@ CREATE TABLE `url_rewrite` (
   KEY `URL_REWRITE_STORE_ID_ENTITY_ID` (`store_id`,`entity_id`),
   KEY `URL_REWRITE_ENTITY_ID` (`entity_id`),
   KEY `URL_REWRITE_IS_AUTOGENERATED_METADATA` (`is_autogenerated`,`metadata`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Url Rewrites';
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='Url Rewrites';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -11620,7 +12910,7 @@ CREATE TABLE `url_rewrite` (
 
 LOCK TABLES `url_rewrite` WRITE;
 /*!40000 ALTER TABLE `url_rewrite` DISABLE KEYS */;
-INSERT INTO `url_rewrite` VALUES (1,'cms-page',1,'no-route','cms/page/view/page_id/1',0,1,NULL,1,NULL),(2,'cms-page',2,'home','cms/page/view/page_id/2',0,1,NULL,1,NULL),(3,'cms-page',3,'enable-cookies','cms/page/view/page_id/3',0,1,NULL,1,NULL),(4,'cms-page',4,'privacy-policy-cookie-restriction-mode','cms/page/view/page_id/4',0,1,NULL,1,NULL);
+INSERT INTO `url_rewrite` VALUES (1,'cms-page',1,'no-route','cms/page/view/page_id/1',0,1,NULL,1,NULL),(2,'cms-page',2,'home','cms/page/view/page_id/2',0,1,NULL,1,NULL),(3,'cms-page',3,'enable-cookies','cms/page/view/page_id/3',0,1,NULL,1,NULL),(4,'cms-page',4,'privacy-policy-cookie-restriction-mode','cms/page/view/page_id/4',0,1,NULL,1,NULL),(8,'category',3,'bevande.html','catalog/category/view/id/3',0,1,NULL,1,NULL),(9,'product',4,'acqua.html','catalog/product/view/id/4',0,1,NULL,1,NULL),(10,'product',4,'bevande/acqua.html','catalog/product/view/id/4/category/3',0,1,NULL,1,'{\"category_id\":\"3\"}'),(11,'category',4,'pizze.html','catalog/category/view/id/4',0,1,NULL,1,NULL),(12,'category',5,'pizze/classiche.html','catalog/category/view/id/5',0,1,NULL,1,NULL),(13,'product',1,'margherita.html','catalog/product/view/id/1',0,1,NULL,1,NULL),(14,'product',1,'pizze/margherita.html','catalog/product/view/id/1/category/4',0,1,NULL,1,'{\"category_id\":\"4\"}'),(15,'product',1,'pizze/classiche/margherita.html','catalog/product/view/id/1/category/5',0,1,NULL,1,'{\"category_id\":\"5\"}'),(16,'product',2,'diavola.html','catalog/product/view/id/2',0,1,NULL,1,NULL),(17,'product',2,'pizze/diavola.html','catalog/product/view/id/2/category/4',0,1,NULL,1,'{\"category_id\":\"4\"}'),(18,'product',2,'pizze/classiche/diavola.html','catalog/product/view/id/2/category/5',0,1,NULL,1,'{\"category_id\":\"5\"}'),(19,'product',3,'capricciosa.html','catalog/product/view/id/3',0,1,NULL,1,NULL),(20,'product',3,'pizze/capricciosa.html','catalog/product/view/id/3/category/4',0,1,NULL,1,'{\"category_id\":\"4\"}'),(21,'product',3,'pizze/classiche/capricciosa.html','catalog/product/view/id/3/category/5',0,1,NULL,1,'{\"category_id\":\"5\"}');
 /*!40000 ALTER TABLE `url_rewrite` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -12009,4 +13299,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-15  6:25:46
+-- Dump completed on 2022-07-15 12:36:46
