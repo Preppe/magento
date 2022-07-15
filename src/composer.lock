@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e4faae4ed2c04821cd438e8b4f680e52",
+    "content-hash": "a1f183e38224dcc21e1065f90691bd88",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -50,6 +50,50 @@
                 "source": "https://github.com/2tvenom/CBOREncode/tree/1.0.2"
             },
             "time": "2020-10-27T07:22:41+00:00"
+        },
+        {
+            "name": "abelbm/magento2-disablefrontend",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/abelbm/magento2-disable-frontend.git",
+                "reference": "7f90d465d3692dda67eea63a48df4c17406cc984"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/abelbm/magento2-disable-frontend/zipball/7f90d465d3692dda67eea63a48df4c17406cc984",
+                "reference": "7f90d465d3692dda67eea63a48df4c17406cc984",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Abelbm\\DisableFrontend\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "description": "Disable Frontend in Magento 2.",
+            "keywords": [
+                "Disable Frontend Magento 2",
+                "disable",
+                "frontend",
+                "magento 2",
+                "magento2"
+            ],
+            "support": {
+                "issues": "https://github.com/abelbm/magento2-disable-frontend/issues",
+                "source": "https://github.com/abelbm/magento2-disable-frontend/tree/master"
+            },
+            "time": "2019-01-03T20:06:25+00:00"
         },
         {
             "name": "astock/stock-api-libphp",
@@ -16650,6 +16694,92 @@
             "time": "2022-06-21T01:22:39+00:00"
         },
         {
+            "name": "mageplaza/magento-2-italian-language-pack",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/magento-2-italian-language-pack.git",
+                "reference": "f5b04611ad2c515e245550a2e359f6f45ce4330f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/magento-2-italian-language-pack/zipball/f5b04611ad2c515e245550a2e359f6f45ce4330f",
+                "reference": "f5b04611ad2c515e245550a2e359f6f45ce4330f",
+                "shasum": ""
+            },
+            "require": {
+                "mageplaza/module-core": "^1.3.13"
+            },
+            "default-branch": true,
+            "type": "magento2-language",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza team",
+                    "email": "hi@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Leader"
+                }
+            ],
+            "description": "Italian language package for Magento 2",
+            "homepage": "https://www.mageplaza.com",
+            "support": {
+                "issues": "https://github.com/mageplaza/magento-2-italian-language-pack/issues",
+                "source": "https://github.com/mageplaza/magento-2-italian-language-pack/tree/master"
+            },
+            "time": "2022-02-22T09:04:35+00:00"
+        },
+        {
+            "name": "mageplaza/module-core",
+            "version": "1.4.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/module-core.git",
+                "reference": "85d1074fdee1259d438618c977ba6e21b76c4f39"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/module-core/zipball/85d1074fdee1259d438618c977ba6e21b76c4f39",
+                "reference": "85d1074fdee1259d438618c977ba6e21b76c4f39",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\Core\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Mageplaza Core for Magento 2",
+            "support": {
+                "issues": "https://github.com/mageplaza/module-core/issues",
+                "source": "https://github.com/mageplaza/module-core/tree/v1.4.12"
+            },
+            "time": "2022-05-30T03:41:05+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "2.7.0",
             "source": {
@@ -25730,7 +25860,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "mageplaza/magento-2-italian-language-pack": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

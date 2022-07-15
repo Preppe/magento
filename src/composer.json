@@ -17,9 +17,11 @@
     },
     "version": "2.4.4",
     "require": {
-        "magento/product-community-edition": "2.4.4",
+        "abelbm/magento2-disablefrontend": "^1.1",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
-        "magento/composer-root-update-plugin": "~2.0"
+        "magento/composer-root-update-plugin": "~2.0",
+        "magento/product-community-edition": "2.4.4",
+        "mageplaza/magento-2-italian-language-pack": "dev-master"
     },
     "autoload": {
         "exclude-from-classmap": [
@@ -82,4 +84,3 @@
         "magento-force": "override"
     }
 }
-
