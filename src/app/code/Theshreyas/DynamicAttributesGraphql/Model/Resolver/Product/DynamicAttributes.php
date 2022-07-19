@@ -44,6 +44,6 @@ class DynamicAttributes implements ResolverInterface
         $data[$fi] = $product->getData($fi);
       }
     }
-    return json_encode((object) $data);
+    return $data;
   }
 }
