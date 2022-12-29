@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  app:
+    networks:
+      - proxy
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=proxy
+      - traefik.http.routers.magento.rule=Host(`magento.giuseppe.best`) || Host(`magento.fumarola.ovh`)
+      - traefik.http.routers.magento.entrypoints=websecure
+      - traefik.http.services.magento.loadbalancer.server.port=8443
+      - traefik.http.services.magento.loadbalancer.server.scheme=https
+      - traefik.http.routers.magento.service=magento
+      - traefik.http.routers.magento.tls.certresolver=lets-encrypt
+
+networks:
+  proxy:
+    external: true
