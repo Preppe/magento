@@ -14,7 +14,7 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
   build_project:
-    depends-on: copy_files
+    needs: copy_files
     runs-on: ubuntu-latest
     steps:
       - name: Accedi alla VPS
