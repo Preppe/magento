@@ -16,6 +16,9 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+      - name: Set SSH config
+        run: |
+          echo -e "Host *\n  StrictHostKeyChecking no" > ~/.ssh/config
       - name: Sync folder with server
         run: rsync -avz . ubuntu@129.152.11.153:/home/ubuntu/sites/magento2
   build_project:
