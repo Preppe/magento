@@ -14,9 +14,8 @@ jobs:
           touch myfile
           chmod 600 myfile
           echo $SSH_PRIVATE_KEY > myfile
-          cat myfile
       - name: Copia file da GitHub alla VPS
-        run: rsync -avz -e "ssh -i ~/.ssh/id_rsa" * ubuntu@129.152.11.153:/home/ubuntu/sites/magento2
+        run: rsync -avz -e "ssh -i myfile" * ubuntu@129.152.11.153:/home/ubuntu/sites/magento2
         env:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
   build_project:
