@@ -18,6 +18,11 @@ return [
                     'base_url' => 'https://magento.fumarola.ovh/',
                     'base_link_url' => '{{secure_base_url}}'
                 ]
+            ],
+            'catalog' => [
+                'search' => [
+                    'elasticsearch7_server_hostname' => 'opensearch'
+                ]
             ]
         ]
     ],
