@@ -6,10 +6,8 @@ on:
       - main
 
 jobs:
-  set_ssh_key:
+  create_ssh_key:
     runs-on: ubuntu-latest
-    strategy:
-      continue-on-error: true
     steps:
       - name: Set SSH key
         run: |
@@ -20,18 +18,14 @@ jobs:
         run: |
           echo -e "Host *\n  StrictHostKeyChecking no" > ~/.ssh/config
   sync_folder:
-    needs: set_ssh_key
+    needs: create_ssh_key
     runs-on: ubuntu-latest
-    strategy:
-      continue-on-error: true
     steps:
       - name: Sync folder with server
         run: rsync -avz --exclude=.git --exclude=.github . ubuntu@129.152.11.153:/home/ubuntu/sites/magento2
   build_project:
     needs: sync_folder
     runs-on: ubuntu-latest
-    strategy:
-      continue-on-error: true
     steps:
       - name: Build project on server
         run: ssh ubuntu@129.152.11.153 'cd /home/ubuntu/sites/magento2 && /home/ubuntu/sites/magento2/build.sh'
