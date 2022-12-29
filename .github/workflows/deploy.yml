@@ -21,19 +21,5 @@ jobs:
           echo -e "Host *\n  StrictHostKeyChecking no" > ~/.ssh/config
       - name: Sync folder with server
         run: rsync -avz --exclude=.git --exclude=.github . ubuntu@129.152.11.153:/home/ubuntu/sites/magento2
-  build_project:
-    needs: copy_files
-    runs-on: ubuntu-latest
-    steps:
-      - name: Accedi alla VPS
-        run: ssh -i ssh_private_key ubuntu@129.152.11.153
-      - name: Esegui comandi di build del progetto sulla VPS
-        run: |
-          cd /home/ubuntu/sites/magento2
-          bin/start --no-dev
-          bin/copytocontainer --all
-          bin/clinotty composer install
-          bin/clinotty bin/magento setup:upgrade
-          bin/clinotty bin/magento deploy:mode:set production
-          bin/clinotty bin/magento indexer:reindex
-          bin/clinotty bin/magento maintenance:disable
+      - name: Build project on server
+        run: ssh ubuntu@129.152.11.153 'cd /home/ubuntu/sites/magento2 && /home/ubuntu/sites/magento2/build.sh'
