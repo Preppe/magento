@@ -20,7 +20,7 @@ jobs:
         run: |
           echo -e "Host *\n  StrictHostKeyChecking no" > ~/.ssh/config
       - name: Sync folder with server
-        run: rsync -avz . ubuntu@129.152.11.153:/home/ubuntu/sites/magento2
+        run: rsync -avz --exclude=.git --exclude=.github . ubuntu@129.152.11.153:/home/ubuntu/sites/magento2
   build_project:
     needs: copy_files
     runs-on: ubuntu-latest
