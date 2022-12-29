@@ -9,15 +9,16 @@ jobs:
   copy_files:
     runs-on: ubuntu-latest
     steps:
-      - name: Crea il file della chiave privata
+      - name: Set SSH key
         run: |
-          touch myfile
-          chmod 600 myfile
-          echo $SSH_PRIVATE_KEY > myfile
-      - name: Copia file da GitHub alla VPS
-        run: rsync -avz -e "ssh -i myfile" * ubuntu@129.152.11.153:/home/ubuntu/sites/magento2
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+      - name: Sync folder with server
+        uses: actions/rsync@v1
+        with:
+          source: "/"
+          destination: "ubuntu@129.152.11.153:/home/ubuntu/sites/magento2"
   build_project:
     needs: copy_files
     runs-on: ubuntu-latest
