@@ -17,6 +17,8 @@ jobs:
       - name: Set SSH config
         run: |
           echo -e "Host *\n  StrictHostKeyChecking no" > ~/.ssh/config
+      - name: Persist SSH key
+        persist-to: ~/.ssh/id_rsa
   sync_folder:
     needs: create_ssh_key
     runs-on: ubuntu-latest
